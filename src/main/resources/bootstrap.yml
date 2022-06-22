@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: sat_tri_sge
+  cloud:
+    config:
+      failFast: false
+      uri: ${urlServerConfig:http://127.0.0.1}

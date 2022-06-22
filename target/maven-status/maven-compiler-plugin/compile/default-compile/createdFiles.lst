@@ -1,0 +1,7 @@
+gt\gob\sat\sat_tri_sge\models\NombreEntidad.class
+gt\gob\sat\sat_tri_sge\projections\NombreInterfazProjection.class
+gt\gob\sat\sat_tri_sge\dtos\NombreDTODto.class
+gt\gob\sat\sat_tri_sge\controllers\NombreMicroservicioController.class
+gt\gob\sat\sat_tri_sge\Application.class
+gt\gob\sat\sat_tri_sge\repositories\NombreRepositorioRepository.class
+gt\gob\sat\sat_tri_sge\services\NombreServicioService.class
