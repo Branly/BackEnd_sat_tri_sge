@@ -19,21 +19,21 @@ public interface ReporteProjection {
 
     String getNit_contribuyente();
 
-    Date getFecha_ingredo();
+    Date getFecha_ingreso();
 
-    String getGerencia_origent();
+    String getGerencia_origen();
 
     String getObservacion();
 
     String getNo_expediente_tributa();
 
-    int getComplejidad();
+    Integer getComplejidad();
 
-    int getCantidad_ajustes();
+    Integer getCantidad_ajustes();
 
     String getImpuesto();
 
-    int getMonto();
+    Integer getMonto();
 
     String getTipocaso();
 

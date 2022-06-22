@@ -24,6 +24,7 @@ import gt.gob.sat.sat_tri_sge.models.SgeResumen;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
+import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
 import gt.gob.sat.sat_tri_sge.repositories.AnexoRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ComplementoExpedienteRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ExpedienteImpuestoRepository;
@@ -155,9 +156,9 @@ public class ExpedientesService {
      * @return updateState
      */
     @Transactional
-    public SgeExpediente updateState(ExpedientesDTO dto, String noExpedienteTributa) {
+    public SgeExpediente updateState(int estado, String noExpedienteTributa) {
         final SgeExpediente updateState = expedientesRepository.findById(noExpedienteTributa).orElse(null);
-        updateState.setIdEstado(dto.getIdEstado());
+        updateState.setIdEstado(estado);
         return expedientesRepository.save(updateState);
     }
 
@@ -260,7 +261,14 @@ public class ExpedientesService {
         return expedienteImpuestoRepository.save(fileTaxCreate);
     }
 
- 
+    /**
+     * Metodo para crear el resumen del exediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param dto
+     * @since 20/06/2022
+     * @return resumenCreate
+     */
     @Transactional
     public SgeResumen CreateResumen(ResumenDTO dto){
         final SgeResumen resumenCreate = new SgeResumen();
@@ -274,6 +282,14 @@ public class ExpedientesService {
         return resumenRepository.save(resumenCreate);
     }
     
+    /**
+     * Metodo para actualizar el resumen
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param dto
+     * @since 22/06/2022
+     * @return resumenCreate
+     */
     @Transactional
     public SgeResumen UpdateResumen(ResumenDTO dto){
         final SgeResumen resumenCreate = resumenRepository.findById(dto.getIdResumen()).orElse(null);
@@ -286,9 +302,44 @@ public class ExpedientesService {
         return resumenRepository.save(resumenCreate);
     }
     
+    /**
+     * Metodo para obtener los expedientes de un mes para el reporte
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param anio
+     * @param mes
+     * @since 22/06/2022
+     * @return Report
+     */
     @Transactional(readOnly = true)
-    public List<ReporteProjection> Report(){
-        return expedientesRepository.Report();
+    public List<ReporteProjection> Report(int anio, int mes){
+        return expedientesRepository.Report(anio, mes);
+    }
+    
+    /**
+     * Metodo para obtener los expedientes de una agenda en especifico
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param agenda
+     * @since 22/06/2022
+     * @return DiaryFile
+     */
+    @Transactional(readOnly = true)
+    public List<ExpedientesProjetions> diaryFile(String agenda){
+        return  expedientesRepository.DiaryFiles(agenda);
+    }
+    
+    /**
+     * Metodo para obtener los resumenes para generar el documento Resumen.docx
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param agenda
+     * @since 22/06/2022
+     * @return Resum
+     */
+    @Transactional(readOnly = true)
+    public List<ResumenProjection> Resum(String agenda){
+        return  expedientesRepository.Resum(agenda);
     }
     
 }

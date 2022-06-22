@@ -81,6 +81,11 @@ public class ColaboradorController {
         return  ResponseEntity.ok(colaboradorService.CreateHistory(dtoHistorial));
     }
     
-    
+    @GetMapping(path = "CollaboratorRole/{puesto}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener a los colaboradores segun su rol.")
+    public ResponseEntity<List<ColaboradorProjection>> CollaboratorRole(@PathVariable Integer puesto){    
+        return ResponseEntity.ok(colaboradorService.ColaboratorRole(puesto));
+    }
     
 }

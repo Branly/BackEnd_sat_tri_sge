@@ -168,4 +168,17 @@ public class ColaboradorService {
          return bitacoraAsignacionColaboradorRepository.save(historyAssignment);
      }
      
+     /**
+     * Metodo para crear la bitacora de asignaciones de Colaborador
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param puesto
+     * @since 22/06/2022
+     * @return CollaboratorRole
+     */
+     @Transactional(readOnly = true)
+     public List<ColaboradorProjection> ColaboratorRole(Integer puesto){
+      return colaboradorRepository.CollaboratorRole(puesto);
+     }
+     
 }
