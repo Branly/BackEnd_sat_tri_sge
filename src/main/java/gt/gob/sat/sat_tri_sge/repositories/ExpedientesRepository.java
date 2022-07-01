@@ -8,8 +8,11 @@ package gt.gob.sat.sat_tri_sge.repositories;
 import gt.gob.sat.sat_tri_sge.models.SgeExpediente;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
+import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
+import gt.gob.sat.sat_tri_sge.projections.RechazoExpedienteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
+import gt.gob.sat.sat_tri_sge.projections.TipoCasoProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -103,6 +106,35 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "left join sat_tri_sge.sge_colaborador sc on sc.nit = sgt.nit_encargado\n"
             + "where se.id_agenda = :agenda", nativeQuery = true)
     List<ResumenProjection> Resum(@Param("agenda") String agenda);
+
+    //Query para taer los impuesto y mon5tod de un Expediente
+    @Query(value = "select scd.nombre as Impuesto, sei.monto from sat_tri_sge.sge_expediente_impuesto sei\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on sei.id_impuesto = scd.codigo\n"
+            + "where sei.no_expediente_tributa = :expediente", nativeQuery = true)
+    List<ReporteProjection> impost(@Param("expediente") String expediente);
+
+    //Queru de los profesionales activos y con menor carga de trabajo
+    @Query(value = "select sc.nit,  min(sc.carga_trabajo) as Carga from sat_tri_sge.sge_colaborador sc\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sc.id_puesto \n"
+            + "where sc.tipo_tributa = 9 and sc.id_estado = 1 and scd.nombre = 'Profesional'\n"
+            + "group by sc.nit\n"
+            + "order by sc.carga_trabajo asc", nativeQuery = true)
+    List<ProfesionalProjection> professional();
+
+    @Query(value = "select sce.tipo_caso as TipoCaso from sat_tri_sge.sge_expediente se\n"
+            + "inner join sat_tri_sge.sge_complemento_expediente sce on se.no_expediente_tributa = sce.no_expediente_tributa\n"
+            + "where se.nit_profesional = :nit\n"
+            + "order by se.fecha_ingreso desc \n"
+            + "limit :limite", nativeQuery = true)
+    List<Integer> caseType(@Param("nit") String nit, @Param("limite") int limite);
+
+    @Query(value = "select scd.nombre as Obserbacion, se.nit_contribuyente from sat_tri_sge.sge_expediente se\n"
+            + "inner join sat_tri_sge.sge_observacion so on se.no_expediente_tributa  = so.no_expediente_tributa \n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo  = so.id_observacion\n"
+            + "where se.no_expediente_tributa = :expediente\n"
+            + "order by so.fecha_modifica desc\n"
+            + "limit 1", nativeQuery = true)
+    RechazoExpedienteProjection rechazoExpediente();
 
 
 }

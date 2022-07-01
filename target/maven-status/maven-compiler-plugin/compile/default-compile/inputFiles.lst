@@ -1,51 +1,79 @@
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\Country.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeProvidencia.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\NombreRepositorioRepository.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeIntegranteGrupo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeHistorialEstadosColaborador.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\projections\CityProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatEstadoDato.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgePrestamo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\Address.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeBitacoraAsignacionColaborador.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\projections\AddressProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\projections\StreetProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\NombreServicioService.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\NombreMicroservicioController.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeGrupoTrabjo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeObservacion.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\Street.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\repositories\CountryRepository.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\dtos\UserDto.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeComplementoExpediente.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteImpuesto.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpediente.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\User.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeColaborador.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\controllers\UserController.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\projections\CountryProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeIntegranteGrupoId.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\dtos\AddressDto.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatEstadoCatalogo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\NombreInterfazProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\controllers\CountryController.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeHistorialEstadoExpediente.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteProvidencia.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\services\CountryService.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteImpuestoId.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatCatalogo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeAgenda.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeAnexo.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\repositories\CommonRepository.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\projections\UserProjection.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\repositories\UserPageRepository.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeResumen.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteProvidenciaId.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\Application.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\NombreEntidad.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatDato.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\AddressPK.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\NombreDTODto.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\models\City.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\repositories\UserRepository.java
-C:\Users\crist\Desktop\Trabajo\sat_tri_sge\sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\ejemplo\services\UserService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ProvidenciaRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ComplementoExpedienteRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\BitacoraAsignacionColaboradorDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\NombreRepositorioRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\HistorialEstadosColaboradorRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeComplementoExpediente.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeHistorialEstadosColaborador.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ProvidenciaDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\HistorialEstadosExpedienteDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteImpuestoId.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\GrupoTrabajoRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatDato.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatCatalogo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\ExpedientesService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeHistorialEstadoExpediente.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\HistorialEstadosColaboradorController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\NombreDTODto.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\IntegranteGrupoRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeResumen.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ExpedientesProjetions.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\GrupoTrabajoService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\ProvidenciaService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ColaboradorDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\GrupotrabajoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeIntegranteGrupo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeProvidencia.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ExpedienteProvidenciaDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\Application.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ExpedientesDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ExpedienteImpuestoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\NombreEntidad.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\AnexoRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ExpedientesProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\GrupoTrabajoController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgePrestamo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ActualizarIntegrantesGrupoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ExpedienteImpuestoRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\PrestamoRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\PrestamoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeObservacion.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ReporteProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\ColaboradorService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\HistorialEstadosExpedienteRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeAnexo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ResumenDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\ProvidenciaController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeIntegranteGrupoId.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\GrupoTrabajoProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\NombreInterfazProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\BitacoraAsignacionColaboradorRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeGrupoTrabjo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\services\NombreServicioService.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\IntegranteGurpoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\NombreMicroservicioController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\ColaboradorController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ExpedientesRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ColaboradorProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ComplementoExpedienteDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteProvidencia.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteProvidenciaId.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpedienteImpuesto.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ProfesionalProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\Utils\ReportesUtils.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ColaboradorRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeBitacoraAsignacionColaborador.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\ResumenProjection.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\AnexoDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\controllers\ExpedientesController.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatEstadoDato.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeAgenda.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeColaborador.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ObservacionRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\HistorialEstadosColaboradorDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ResumenRepository.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\dtos\ObservacionDTO.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\repositories\ExpedienteProvidenciaRepitory.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeCatEstadoCatalogo.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\models\SgeExpediente.java
+C:\Users\crist\Desktop\Trabajo\sistema de gestion\BackEnd_sat_tri_sge\src\main\java\gt\gob\sat\sat_tri_sge\projections\TipoCasoProjection.java

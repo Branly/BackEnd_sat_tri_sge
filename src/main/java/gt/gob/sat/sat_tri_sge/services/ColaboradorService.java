@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
 import gt.gob.sat.sat_tri_sge.repositories.BitacoraAsignacionColaboradorRepository;
+import java.util.Date;
 
 /**
  *
@@ -119,6 +120,8 @@ public class ColaboradorService {
      * Metodo de Eliminacion logica de un colaborador
      *
      * @author Cristian Raguay (acdraguay)
+     * @param nit
+     * @param dto
      * @since 10/06/2022
      * @return colaboradorDelete
      */
@@ -134,17 +137,18 @@ public class ColaboradorService {
      * Metodo para Crear un historial de estados del colaborador
      *
      * @author Cristian Raguay (acdraguay)
+     * @param dto
      * @since 10/06/2022
      * @return historyCreate
      */
      @Transactional
      public SgeHistorialEstadosColaborador CreateHistory(HistorialEstadosColaboradorDTO dto){
         final SgeHistorialEstadosColaborador historyCreate = new SgeHistorialEstadosColaborador();
-        historyCreate.setFechaModifica(dto.getFechaModifica());
+        historyCreate.setFechaModifica(new Date());
         historyCreate.setIdEstado(dto.getIdEstado());
-        historyCreate.setIpModifica(dto.getIpModifica());
+        historyCreate.setIpModifica(detector.getIp());
         historyCreate.setNitColaborador(dto.getNitColaborador());
-        historyCreate.setUsuarioModifica(dto.getUsuarioModifica());
+        historyCreate.setUsuarioModifica(detector.getLogin());
         return historialEstadosColaboradorRepository.save(historyCreate);
     }
      
@@ -152,6 +156,7 @@ public class ColaboradorService {
      * Metodo para crear la bitacora de asignaciones de Colaborador
      *
      * @author Cristian Raguay (acdraguay)
+     * @param dto
      * @since 14/06/2022
      * @return historyAssignment
      */
@@ -159,12 +164,12 @@ public class ColaboradorService {
      public SgeBitacoraAsignacionColaborador CrateHistoryAssignmentCollaborator(BitacoraAsignacionColaboradorDTO dto){
          final SgeBitacoraAsignacionColaborador historyAssignment = new SgeBitacoraAsignacionColaborador();
          historyAssignment.setComentario(dto.getComentario());
-         historyAssignment.setFechaModifica(dto.getFechaModifica());
+         historyAssignment.setFechaModifica(new Date());
          historyAssignment.setIdEstado(dto.getIdEstado());
-         historyAssignment.setIpModifica(dto.getIpModifica());
+         historyAssignment.setIpModifica(detector.getIp());
          historyAssignment.setNit(dto.getNit());
          historyAssignment.setNoExpedienteTributa(dto.getNoExpedienteTributa());
-         historyAssignment.setUsuarioModifica(dto.getUsuarioModifica());
+         historyAssignment.setUsuarioModifica(detector.getLogin());
          return bitacoraAsignacionColaboradorRepository.save(historyAssignment);
      }
      
@@ -177,8 +182,21 @@ public class ColaboradorService {
      * @return CollaboratorRole
      */
      @Transactional(readOnly = true)
-     public List<ColaboradorProjection> ColaboratorRole(Integer puesto){
-      return colaboradorRepository.CollaboratorRole(puesto);
+     public List<ColaboradorProjection> CollaboratorRol(int rol, int tipo){
+      return colaboradorRepository.collaboratorsRol(rol, tipo);
      }
      
+     
+     @Transactional
+     public String centralizer(String rol){
+         return colaboradorRepository.Centralizer(rol);
+     }
+     
+     public String collaboratorSupervisor(String nit){
+         return colaboradorRepository.collaboratorSupervisor(nit);
+     }
+     
+     public String collaboratorSpecialist(String nit){
+         return colaboradorRepository.collaboratorSpecialist(nit);
+     }
 }

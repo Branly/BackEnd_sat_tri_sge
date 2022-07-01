@@ -7,6 +7,7 @@ package gt.gob.sat.sat_tri_sge.services;
 
 import gt.gob.sat.arquitectura.microservices.config.request.Detector;
 import gt.gob.sat.sat_tri_sge.dtos.AnexoDTO;
+import gt.gob.sat.sat_tri_sge.dtos.BitacoraAsignacionColaboradorDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ComplementoExpedienteDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ExpedienteImpuestoDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ExpedientesDTO;
@@ -14,32 +15,35 @@ import gt.gob.sat.sat_tri_sge.dtos.ObservacionDTO;
 import gt.gob.sat.sat_tri_sge.dtos.PrestamoDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ResumenDTO;
 import gt.gob.sat.sat_tri_sge.models.SgeAnexo;
+import gt.gob.sat.sat_tri_sge.models.SgeColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeComplementoExpediente;
 import gt.gob.sat.sat_tri_sge.models.SgeExpediente;
 import gt.gob.sat.sat_tri_sge.models.SgeExpedienteImpuesto;
 import gt.gob.sat.sat_tri_sge.models.SgeExpedienteImpuestoId;
+import gt.gob.sat.sat_tri_sge.models.SgeHistorialEstadoExpediente;
 import gt.gob.sat.sat_tri_sge.models.SgeObservacion;
 import gt.gob.sat.sat_tri_sge.models.SgePrestamo;
 import gt.gob.sat.sat_tri_sge.models.SgeResumen;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
+import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
 import gt.gob.sat.sat_tri_sge.repositories.AnexoRepository;
+import gt.gob.sat.sat_tri_sge.repositories.ColaboradorRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ComplementoExpedienteRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ExpedienteImpuestoRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ExpedientesRepository;
+import gt.gob.sat.sat_tri_sge.repositories.HistorialEstadosExpedienteRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ObservacionRepository;
 import gt.gob.sat.sat_tri_sge.repositories.PrestamoRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ResumenRepository;
 import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.bouncycastle.operator.AADProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -71,9 +75,18 @@ public class ExpedientesService {
 
     @Autowired
     private ExpedienteImpuestoRepository expedienteImpuestoRepository;
-    
+
     @Autowired
     private ResumenRepository resumenRepository;
+
+    @Autowired
+    private ColaboradorRepository colaboradoRepository;
+
+    @Autowired
+    private HistorialEstadosExpedienteRepository historialEstadosExpedienteRepository;
+
+    @Autowired
+    private ColaboradorService colaboradorService;
 
     @Transactional(readOnly = true)
     public List<ExpedientesProjection> getFiles() {
@@ -109,9 +122,6 @@ public class ExpedientesService {
         return expedientesRepository.save(fileCreate);
     }
 
-
-
-    
     /**
      * Metodo para obtener los expedientes asignados a un Supervisor
      *
@@ -139,10 +149,14 @@ public class ExpedientesService {
     public SgeComplementoExpediente createComplement(ComplementoExpedienteDTO dto) {
         final SgeComplementoExpediente complementCreate = new SgeComplementoExpediente();
         complementCreate.setNoExpedienteTributa(dto.getNoExpedienteTributa());
+        complementCreate.setIdCasoEspecial(dto.getIdCasoEspecial());
         complementCreate.setTipoCaso(dto.getTipoCaso());
         complementCreate.setSubTipoCaso(dto.getSubTipoCaso());
+        complementCreate.setComplejidad(this.complexityFile(dto.getNoExpedienteTributa()));
         complementCreate.setFechaInterposicion(dto.getFechaInterposicion());
-        complementCreate.setIdCasoEspecial(dto.getIdCasoEspecial());
+        complementCreate.setFechaModifica(new Date());
+        complementCreate.setUsuarioModifica(detector.getLogin());
+        complementCreate.setIpModifica(detector.getIp());
         return complentoExpedienteRepository.save(complementCreate);
     }
 
@@ -150,7 +164,7 @@ public class ExpedientesService {
      * Metodo para actualizar el estado de un Expediente
      *
      * @author Cristian Raguay (acdraguay)
-     * @param dto
+     * @param estado
      * @param noExpedienteTributa
      * @since 14/06/2022
      * @return updateState
@@ -158,7 +172,14 @@ public class ExpedientesService {
     @Transactional
     public SgeExpediente updateState(int estado, String noExpedienteTributa) {
         final SgeExpediente updateState = expedientesRepository.findById(noExpedienteTributa).orElse(null);
+        final SgeHistorialEstadoExpediente history = new SgeHistorialEstadoExpediente();
+        history.setFechaModifica(new Date());
+        history.setIdEstado(estado);
+        history.setIpModifica(detector.getIp());
+        history.setNoExpedienteTributa(noExpedienteTributa);
+        history.setUsuarioModifica(detector.getLogin());
         updateState.setIdEstado(estado);
+        historialEstadosExpedienteRepository.save(history);
         return expedientesRepository.save(updateState);
     }
 
@@ -241,7 +262,7 @@ public class ExpedientesService {
         loanUpdate.setIpModifica(detector.getIp());
         return prestamoRepository.save(loanUpdate);
     }
-    
+
     /**
      * Metodo para agregar impuestos a un expediente
      *
@@ -270,7 +291,7 @@ public class ExpedientesService {
      * @return resumenCreate
      */
     @Transactional
-    public SgeResumen CreateResumen(ResumenDTO dto){
+    public SgeResumen CreateResumen(ResumenDTO dto) {
         final SgeResumen resumenCreate = new SgeResumen();
         resumenCreate.setFechaModifica(new Date());
         resumenCreate.setIpModifica(detector.getIp());
@@ -278,10 +299,10 @@ public class ExpedientesService {
         resumenCreate.setResolucion(dto.getResolucion());
         resumenCreate.setResumen(dto.getResumen());
         resumenCreate.setSentido(dto.getSentido());
-        resumenCreate. setUsuarioModifica(detector.getLogin());
+        resumenCreate.setUsuarioModifica(detector.getLogin());
         return resumenRepository.save(resumenCreate);
     }
-    
+
     /**
      * Metodo para actualizar el resumen
      *
@@ -291,17 +312,17 @@ public class ExpedientesService {
      * @return resumenCreate
      */
     @Transactional
-    public SgeResumen UpdateResumen(ResumenDTO dto){
+    public SgeResumen UpdateResumen(ResumenDTO dto) {
         final SgeResumen resumenCreate = resumenRepository.findById(dto.getIdResumen()).orElse(null);
         resumenCreate.setFechaModifica(new Date());
         resumenCreate.setIpModifica(detector.getIp());
         resumenCreate.setResolucion(dto.getResolucion());
         resumenCreate.setResumen(dto.getResumen());
         resumenCreate.setSentido(dto.getSentido());
-        resumenCreate. setUsuarioModifica(detector.getLogin());
+        resumenCreate.setUsuarioModifica(detector.getLogin());
         return resumenRepository.save(resumenCreate);
     }
-    
+
     /**
      * Metodo para obtener los expedientes de un mes para el reporte
      *
@@ -312,10 +333,10 @@ public class ExpedientesService {
      * @return Report
      */
     @Transactional(readOnly = true)
-    public List<ReporteProjection> Report(int anio, int mes){
+    public List<ReporteProjection> Report(int anio, int mes) {
         return expedientesRepository.Report(anio, mes);
     }
-    
+
     /**
      * Metodo para obtener los expedientes de una agenda en especifico
      *
@@ -325,21 +346,187 @@ public class ExpedientesService {
      * @return DiaryFile
      */
     @Transactional(readOnly = true)
-    public List<ExpedientesProjetions> diaryFile(String agenda){
-        return  expedientesRepository.DiaryFiles(agenda);
+    public List<ExpedientesProjetions> diaryFile(String agenda) {
+        return expedientesRepository.DiaryFiles(agenda);
     }
-    
+
     /**
      * Metodo para obtener los resumenes para generar el documento Resumen.docx
      *
      * @author Cristian Raguay (acdraguay)
      * @param agenda
      * @since 22/06/2022
-     * @return Resum
+     * @return agenda
      */
     @Transactional(readOnly = true)
-    public List<ResumenProjection> Resum(String agenda){
-        return  expedientesRepository.Resum(agenda);
+    public List<ResumenProjection> Resum(String agenda) {
+        return expedientesRepository.Resum(agenda);
     }
-    
+
+    /**
+     * Metodo para agregar al ponente del expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param id
+     * @param nit
+     * @since 24/06/2022
+     * @return complement
+     */
+    @Transactional
+    public SgeComplementoExpediente updateComplement(String id, String nit) {
+        final SgeComplementoExpediente complement = complentoExpedienteRepository.findById(id).orElse(null);
+        complement.setNitColaboradorConfronto(nit);
+        return complentoExpedienteRepository.save(complement);
+    }
+
+    /**
+     * Metodo para calcular la complejidad del expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @since 24/06/2022
+     * @return Resum
+     */
+    @Transactional
+    private int complexityFile(String noFile) {
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        final List<ReporteProjection> impostList = expedientesRepository.impost(noFile);
+        int materia = 0;
+        int ajuste = 0;
+        int monto = 0;
+        for (int i = 0; i < impostList.size(); i++) {
+            if (impostList.get(i).getImpuesto().equals("ISR")) {
+                materia = 30;
+                monto = complesityAmount(impostList.get(i).getMonto());
+                break;
+            } else if (impostList.get(i).getImpuesto().equals("Devolución") && materia < 25) {
+                materia = 25;
+                monto = complesityAmount(impostList.get(i).getMonto());
+            } else if (impostList.get(i).getImpuesto().equals("IVA") && materia <= 10) {
+                materia = 10;
+                monto = complesityAmount(impostList.get(i).getMonto());
+            } else if (impostList.get(i).getImpuesto().equals("ISO") && materia <= 10) {
+                materia = 10;
+                monto = complesityAmount(impostList.get(i).getMonto());
+            } else if (impostList.get(i).getImpuesto().equals("OTROS") && materia < 10) {
+                materia += 10;
+                monto = complesityAmount(impostList.get(i).getMonto());
+            }
+        }
+
+        if (file.getCantidadAjustes() == 1) {
+            ajuste = 5;
+        } else if (file.getCantidadAjustes() == 2 || file.getCantidadAjustes() == 3) {
+            ajuste = 15;
+        } else if (file.getCantidadAjustes() >= 4 && file.getCantidadAjustes() <= 7) {
+            ajuste = 20;
+        } else if (file.getCantidadAjustes() >= 8) {
+            ajuste = 25;
+        }
+        return ajuste + monto + materia;
+    }
+
+    /**
+     * Metodo para calcular la complejidad segun el monto del impuesto
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param amount
+     * @since 24/06/2022
+     * @return complexity
+     */
+    private int complesityAmount(int amount) {
+        int complexity = 0;
+        if (amount >= 1000001) {
+            complexity = 25;
+        } else if (amount >= 150001 && amount <= 1000000) {
+            complexity = 20;
+        } else if (amount >= 50001 && amount <= 150000) {
+            complexity = 15;
+        } else if (amount >= 25001 && amount <= 50000) {
+            complexity = 10;
+        } else if (amount <= 25000) {
+            complexity = 5;
+        }
+        return complexity;
+    }
+
+    /**
+     * Metodo para asignar un profesional a un Expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param limite
+     * @since 24/06/2022
+     */
+    @Transactional
+    public void assignProfessional(String noFile, int limite) {
+        final List<ProfesionalProjection> professionals = expedientesRepository.professional();
+        final SgeComplementoExpediente complement = complentoExpedienteRepository.findById(noFile).orElse(null);
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        List<Integer> typeCase;
+        for (ProfesionalProjection professional : professionals) {
+            typeCase = expedientesRepository.caseType(professional.getNit(), limite);
+            if (!typeCase.isEmpty()) {
+                if (typeCase.contains(complement.getTipoCaso())) {
+                    file.setNitProfesional(professional.getNit());
+                    SgeColaborador collamorator = colaboradoRepository.findById(professional.getNit()).orElse(null);
+                    collamorator.setCargaTrabajo(collamorator.getCargaTrabajo() + complement.getComplejidad());
+                    colaboradoRepository.save(collamorator);
+                    expedientesRepository.save(file);
+                    this.updateState(28, noFile);
+                    break;
+                }
+            } else {
+                file.setNitProfesional(professional.getNit());
+                SgeColaborador collamorator = colaboradoRepository.findById(professional.getNit()).orElse(null);
+                collamorator.setCargaTrabajo(collamorator.getCargaTrabajo() + complement.getComplejidad());
+                colaboradoRepository.save(collamorator);
+                expedientesRepository.save(file);
+                this.updateState(28, noFile);
+            }
+        }
+        if (file.getNitProfesional() == null) {
+            this.assignProfessional(noFile, limite - 1);
+        }
+    }
+
+    public void AssignmentCentralizer(String noFile, String rol) {
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
+        dto.setComentario("Se asigno el expediente al "+rol);
+        dto.setIdEstado(file.getIdEstado());
+        dto.setNit(colaboradorService.centralizer(rol));
+        dto.setNoExpedienteTributa(noFile);
+        colaboradorService.CrateHistoryAssignmentCollaborator(dto);
+    }
+
+    public void AssignmentCollaborator(String noFile, int rol) {
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
+        dto.setIdEstado(file.getIdEstado());
+        switch (rol) {
+            case 1:
+                dto.setNit(colaboradorService.CollaboratorRol(rol, file.getTipoRecurso()).get(0).getNit());
+                dto.setComentario("Asignasion del Expediente a Secretaria");
+                break;
+            case 19:
+                dto.setNit(file.getNitProfesional());
+                dto.setComentario("Asignasion del Expediente al Profesional");
+                break;
+            case 20:
+                dto.setNit(colaboradorService.collaboratorSupervisor(file.getNitProfesional()));
+                dto.setComentario("Asignacion del Expediente al Supervisor");
+                break;
+            case 21:
+                dto.setNit(colaboradorService.collaboratorSpecialist(file.getNitProfesional()));
+                dto.setComentario("Asignacion del Expediente Especialista");
+                break;
+            case 45:
+                dto.setNit(colaboradorService.centralizer("Recepcion"));
+                dto.setComentario("Asignasion del Expediente a Recepcion");
+                break;
+        }
+        dto.setNoExpedienteTributa(noFile);
+        colaboradorService.CrateHistoryAssignmentCollaborator(dto);
+    }
 }
