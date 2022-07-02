@@ -296,5 +296,26 @@ public class ExpedientesController {
     public void complement(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
         expedientesService.updateComplement(noExpedienteTributa, nit);
     }
-
+    
+    @PutMapping(path = "/manualAssignment/{noExpedienteTributa}/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Asigna manualmete un Profesional a un Expediente")
+    public void manualAssignment(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
+        expedientesService.manualAssignment(noExpedienteTributa, nit);
+    }
+    
+    @PutMapping(path = "/diaryAssignment/{noExpedienteTributa}/{idagenda}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Asigna una expediente a una agenda")
+    public void diaryAssignment(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String idagenda) {
+        expedientesService.diaryAssignment(noExpedienteTributa, idagenda);
+    }
+    
+    @PutMapping(path = "/confrontationAssignment/{noExpedienteTributa}/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Asigna manualmete un Profesional a un Expediente")
+    public void confrontationAssignment(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
+        expedientesService.confrontationAssignment(noExpedienteTributa, nit);
+    }
+    
 }

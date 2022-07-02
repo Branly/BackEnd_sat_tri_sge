@@ -490,6 +490,7 @@ public class ExpedientesService {
         }
     }
 
+    @Transactional
     public void AssignmentCentralizer(String noFile, String rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
@@ -500,6 +501,7 @@ public class ExpedientesService {
         colaboradorService.CrateHistoryAssignmentCollaborator(dto);
     }
 
+    @Transactional
     public void AssignmentCollaborator(String noFile, int rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
@@ -528,5 +530,27 @@ public class ExpedientesService {
         }
         dto.setNoExpedienteTributa(noFile);
         colaboradorService.CrateHistoryAssignmentCollaborator(dto);
+    }
+    
+    
+    @Transactional
+    public SgeExpediente manualAssignment(String noFile, String nit){
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        file.setNitProfesional(nit);
+        return expedientesRepository.save(file);
+    }
+    
+    @Transactional
+    public SgeExpediente diaryAssignment(String noFile, String diary){
+            final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+            file.setIdAgenda(diary);
+            return expedientesRepository.save(file);
+    }
+    
+    @Transactional
+    public SgeComplementoExpediente confrontationAssignment(String noFile, String nit){
+        final SgeComplementoExpediente file = complentoExpedienteRepository.findById(noFile).orElse(null);
+        file.setNitColaboradorConfronto(nit);
+        return complentoExpedienteRepository.save(file);
     }
 }
