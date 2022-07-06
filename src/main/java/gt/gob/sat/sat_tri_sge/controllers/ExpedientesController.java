@@ -14,6 +14,7 @@ import gt.gob.sat.sat_tri_sge.dtos.PrestamoDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ResumenDTO;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
+import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.services.ExpedientesService;
 import io.swagger.annotations.Api;
@@ -318,4 +319,10 @@ public class ExpedientesController {
         expedientesService.confrontationAssignment(noExpedienteTributa, nit);
     }
     
+    @GetMapping(path = "/Receptionist", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener los expedientes.")
+    public ResponseEntity<List<RecepcionistaProjection>> receptionist() {
+        return ResponseEntity.ok(expedientesService.receptionist());
+    }
 }

@@ -27,6 +27,7 @@ import gt.gob.sat.sat_tri_sge.models.SgeResumen;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
+import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
 import gt.gob.sat.sat_tri_sge.repositories.AnexoRepository;
@@ -552,5 +553,10 @@ public class ExpedientesService {
         final SgeComplementoExpediente file = complentoExpedienteRepository.findById(noFile).orElse(null);
         file.setNitColaboradorConfronto(nit);
         return complentoExpedienteRepository.save(file);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<RecepcionistaProjection> receptionist(){
+        return expedientesRepository.receptionist();
     }
 }

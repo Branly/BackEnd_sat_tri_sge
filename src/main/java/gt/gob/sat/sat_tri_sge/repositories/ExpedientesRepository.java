@@ -9,6 +9,7 @@ import gt.gob.sat.sat_tri_sge.models.SgeExpediente;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
+import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.RechazoExpedienteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
@@ -136,5 +137,18 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "limit 1", nativeQuery = true)
     RechazoExpedienteProjection rechazoExpediente();
 
+    @Query(value = "select se.no_expediente, scd.nombre as Tipo_Recurso, se.gerencia_origen as Nombre, se.nit_contribuyente, \n"
+            + "se.fecha_ingreso, se.gerencia_origen, se.folios, string_agg(scd2.nombre, ', ' order by scd2.nombre) as Obsevacion, \n"
+            + "se.no_expediente_tributa, se.no_expediente_tributa as Recurso, \n"
+            + "se.direccion_fiscal, se.cantidad_ajustes\n"
+            + "from sat_tri_sge.sge_expediente se\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = se.tipo_recurso\n"
+            + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
+            + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = so.id_observacion\n"
+            + "where se.id_estado in (5, 6)\n"
+            + "group by se.no_expediente, scd.nombre, se.gerencia_origen, se.nit_contribuyente, \n"
+            + "se.fecha_ingreso, se.gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa, \n"
+            + "se.direccion_fiscal, se.cantidad_ajustes", nativeQuery = true)
+    List<RecepcionistaProjection> receptionist();
 
 }
