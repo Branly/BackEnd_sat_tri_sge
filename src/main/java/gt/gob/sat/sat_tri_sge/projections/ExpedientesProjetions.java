@@ -12,6 +12,7 @@ import java.util.Date;
  * @author crist
  */
 public interface ExpedientesProjetions {
+
     String getNit_contribuyente();
 
     Date getFecha_ingreso();
@@ -21,6 +22,8 @@ public interface ExpedientesProjetions {
     String getEstado();
 
     Date getFecha_preincripcion();
+    
+    String getProfesional();
 
     String getNombre();
 }

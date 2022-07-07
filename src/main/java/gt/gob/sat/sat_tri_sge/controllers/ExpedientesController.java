@@ -51,11 +51,18 @@ public class ExpedientesController {
     @Autowired
     private ExpedientesService expedientesService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/Tributario" ,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Obtener los expedientes.")
-    public ResponseEntity<List<ExpedientesProjection>> getColaborators() {
-        return ResponseEntity.ok(expedientesService.getFiles());
+    @ApiOperation(value = "Obtener los expedientes del presidente Tributario.")
+    public ResponseEntity<List<ExpedientesProjection>> getFileTributary(){
+        return ResponseEntity.ok(expedientesService.getFiles(9));
+    }
+    
+    @GetMapping(path = "/Aduanero" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener los expedientes del presidente Aduanero.")
+    public ResponseEntity<List<ExpedientesProjection>> getFileCustoms(){
+        return ResponseEntity.ok(expedientesService.getFiles(10));
     }
 
     @PostMapping(path = "/Complemnt", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

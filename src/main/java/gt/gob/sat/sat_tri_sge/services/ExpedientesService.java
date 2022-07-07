@@ -90,9 +90,9 @@ public class ExpedientesService {
     private ColaboradorService colaboradorService;
 
     @Transactional(readOnly = true)
-    public List<ExpedientesProjection> getFiles() {
+    public List<ExpedientesProjection> getFiles(int tipo) {
         log.debug("Obteniendo Expedientes");
-        return expedientesRepository.Expedientes();
+        return expedientesRepository.expedientes(tipo);
     }
 
     /**

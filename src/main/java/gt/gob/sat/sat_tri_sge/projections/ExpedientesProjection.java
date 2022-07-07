@@ -13,24 +13,31 @@ import java.util.Date;
  */
 public interface ExpedientesProjection {
 
-    String getNoExpedienteTributa();
+    String getNo_Expediente();
 
-    Integer getTipoRecurso();
+    String getTipo_Recurso();
 
     String getNit_contribuyente();
+    
+    String getNombre();
 
     Date getFecha_ingreso();
 
     String getGerencia_Origen();
 
+    Date getFecha_interposicion();
+    
+    String getRecurso();
+    
     Integer getMonto();
 
-    Date getFecha_interposicion();
-
-    String getId_estado();
-
-    String getNit_profesional();
-
-    String getEspcialista();
+    Date getFecha_preincripcion();
     
+    String getEstado();
+
+    String getProfesional();
+
+    String getEspecialista();
+    
+    String getId_agenda();
 }
