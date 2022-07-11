@@ -12,6 +12,7 @@ import gt.gob.sat.sat_tri_sge.dtos.ExpedientesDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ObservacionDTO;
 import gt.gob.sat.sat_tri_sge.dtos.PrestamoDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ResumenDTO;
+import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
@@ -300,7 +301,7 @@ public class ExpedientesController {
 
     @PutMapping(path = "/complement/{noExpedienteTributa}/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Actualiza el complemento del Expediente")
+    @ApiOperation(value = "Agrega al colaborador que confronta")
     public void complement(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
         expedientesService.updateComplement(noExpedienteTributa, nit);
     }
@@ -331,5 +332,12 @@ public class ExpedientesController {
     @ApiOperation(value = "Obtener los expedientes.")
     public ResponseEntity<List<RecepcionistaProjection>> receptionist() {
         return ResponseEntity.ok(expedientesService.receptionist());
+    }
+    
+    @GetMapping(path = "/Coordinator", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener los expedientes.")
+    public ResponseEntity<List<AsignacionManualProjection>> coordinatorFiles() {
+        return ResponseEntity.ok(expedientesService.coordinator());
     }
 }

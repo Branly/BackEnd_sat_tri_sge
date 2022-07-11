@@ -24,6 +24,7 @@ import gt.gob.sat.sat_tri_sge.models.SgeHistorialEstadoExpediente;
 import gt.gob.sat.sat_tri_sge.models.SgeObservacion;
 import gt.gob.sat.sat_tri_sge.models.SgePrestamo;
 import gt.gob.sat.sat_tri_sge.models.SgeResumen;
+import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
@@ -491,6 +492,14 @@ public class ExpedientesService {
         }
     }
 
+    /**
+     * Metodo para asignar un colaborador segun su rol a un expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param rol
+     * @since 28/06/2022
+     */
     @Transactional
     public void AssignmentCentralizer(String noFile, String rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
@@ -501,7 +510,14 @@ public class ExpedientesService {
         dto.setNoExpedienteTributa(noFile);
         colaboradorService.CrateHistoryAssignmentCollaborator(dto);
     }
-
+    /**
+     * Metodo para asignar un colaborador segun su rol y el tipo de tribunal a un expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param rol
+     * @since 28/06/2022
+     */
     @Transactional
     public void AssignmentCollaborator(String noFile, int rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
@@ -533,7 +549,15 @@ public class ExpedientesService {
         colaboradorService.CrateHistoryAssignmentCollaborator(dto);
     }
     
-    
+        /**
+     * Metodo para asignar manualmentu un colaborador
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param nit
+     * @return file
+     * @since 01/07/2022
+     */
     @Transactional
     public SgeExpediente manualAssignment(String noFile, String nit){
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
@@ -541,6 +565,15 @@ public class ExpedientesService {
         return expedientesRepository.save(file);
     }
     
+        /**
+     * Metodo para asignar un expediente a una agenda
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param diary
+     * @return file
+     * @since 01/07/2022
+     */
     @Transactional
     public SgeExpediente diaryAssignment(String noFile, String diary){
             final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
@@ -548,15 +581,35 @@ public class ExpedientesService {
             return expedientesRepository.save(file);
     }
     
+     /**
+     * Metodo para asignar al profecional que confronta el proyecto de resulucion
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param noFile
+     * @param nit
+     * @return file
+     * @since 05/07/2022
+     */
     @Transactional
     public SgeComplementoExpediente confrontationAssignment(String noFile, String nit){
         final SgeComplementoExpediente file = complentoExpedienteRepository.findById(noFile).orElse(null);
         file.setNitColaboradorConfronto(nit);
         return complentoExpedienteRepository.save(file);
     }
-    
+        /**
+     * Metodo para asignar un colaborador segun su rol a un expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @return receptionist
+     * @since 05/07/2022
+     */
     @Transactional(readOnly = true)
     public List<RecepcionistaProjection> receptionist(){
         return expedientesRepository.receptionist();
+    }
+    
+    @Transactional(readOnly = true)
+    public List<AsignacionManualProjection> coordinator(){
+     return expedientesRepository.coordinator();
     }
 }
