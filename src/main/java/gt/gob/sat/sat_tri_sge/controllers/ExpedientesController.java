@@ -340,4 +340,11 @@ public class ExpedientesController {
     public ResponseEntity<List<AsignacionManualProjection>> coordinatorFiles() {
         return ResponseEntity.ok(expedientesService.coordinator());
     }
+    
+    @GetMapping(path = "/Verification/{expediente}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener los expedientes.")
+    public ResponseEntity<List<ExpedientesProjection>> informationVerification(@PathVariable(required = true) String expediente) {
+        return ResponseEntity.ok(expedientesService.informationVerification(expediente));
+    }
 }

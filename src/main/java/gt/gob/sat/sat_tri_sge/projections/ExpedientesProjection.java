@@ -40,4 +40,12 @@ public interface ExpedientesProjection {
     String getEspecialista();
     
     String getId_agenda();
+    
+    Integer getFolios();
+    
+    String getDireccion_fiscal();
+    
+    Integer getCantidad_ajustes();
+    
+    String getObservacion();
 }

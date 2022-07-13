@@ -612,4 +612,9 @@ public class ExpedientesService {
     public List<AsignacionManualProjection> coordinator(){
      return expedientesRepository.coordinator();
     }
+    
+    @Transactional(readOnly = true)
+    public List<ExpedientesProjection> informationVerification(String expediente){
+        return expedientesRepository.informationVerification(expediente);
+    }
 }
