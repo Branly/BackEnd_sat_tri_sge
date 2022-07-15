@@ -46,7 +46,7 @@ public interface ColaboradorRepository extends CrudRepository<SgeColaborador, St
     //Query para traer listas de Colaboradores Segun su Rol
     @Query(value = "select sc.nombre, sc.nit from sat_tri_sge.sge_colaborador sc\n"
             + "left join sat_tri_sge.sge_cat_dato scd on sc.id_puesto = scd.codigo\n"
-            + "where sc.id_estado = :rol and sc.tipo_tributa = :tipo", nativeQuery = true)
+            + "where sc.id_puesto = :rol and sc.tipo_tributa = :tipo", nativeQuery = true)
     List<ColaboradorProjection> collaboratorsRol(@Param("rol") int rol, @Param("tipo") int tipo);
 
     //Query que trae el nit de un centralizador
@@ -66,9 +66,14 @@ public interface ColaboradorRepository extends CrudRepository<SgeColaborador, St
             + "where sig.nit = :nit", nativeQuery = true)
     String collaboratorSpecialist(@Param("nit") String nit);
 
-    @Query(value = "select sc.nit from sat_tri_sge.sge_colaborador sc\n"
-            + "left join sat_tri_sge.sge_cat_dato scd on sc.id_puesto = scd.codigo\n"
-            + "where sc.tipo_tributa = :tipo and sc.id_puesto = :rol", nativeQuery = true)
-    String collaboratorRol(@Param("tipo") int tipo, @Param("rol") int rol);
+//    @Query(value = "select sc.nit from sat_tri_sge.sge_colaborador sc\n"
+//            + "left join sat_tri_sge.sge_cat_dato scd on sc.id_puesto = scd.codigo\n"
+//            + "where sc.tipo_tributa = :tipo and sc.id_puesto = :rol", nativeQuery = true)
+//    String collaboratorRol(@Param("tipo") int tipo, @Param("rol") int rol);
+    @Query(value = "select sc.nombre, sc.nit from sat_tri_sge.sge_colaborador sc\n"
+            + "left join sat_tri_sge.sge_cat_dato scd on sc.tipo_tributa = scd.codigo\n"
+            + "where sc.id_puesto = :rol and scd.nombre = :tipo and sc.id_estado = 44", nativeQuery = true)
+    List<ColaboradorProjection> collaboratorType(@Param("rol") int rol, @Param("tipo") String tipo);
+
 
 }

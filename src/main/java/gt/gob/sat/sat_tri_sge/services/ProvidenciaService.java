@@ -77,7 +77,4 @@ public class ProvidenciaService {
         newcreateFileProvidence.setIpModifica(detector.getIp());
         return expedienteProvidenciaRepository.save(newcreateFileProvidence);
     }
-
-
-    
 }

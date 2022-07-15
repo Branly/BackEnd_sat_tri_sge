@@ -161,7 +161,7 @@ public class ColaboradorService {
      * @return historyAssignment
      */
      @Transactional
-     public SgeBitacoraAsignacionColaborador CrateHistoryAssignmentCollaborator(BitacoraAsignacionColaboradorDTO dto){
+     public SgeBitacoraAsignacionColaborador createHistoryAssignmentCollaborator(BitacoraAsignacionColaboradorDTO dto){
          final SgeBitacoraAsignacionColaborador historyAssignment = new SgeBitacoraAsignacionColaborador();
          historyAssignment.setComentario(dto.getComentario());
          historyAssignment.setFechaModifica(new Date());
@@ -186,6 +186,10 @@ public class ColaboradorService {
       return colaboradorRepository.collaboratorsRol(rol, tipo);
      }
      
+     @Transactional(readOnly = true)
+     public List<ColaboradorProjection> CollaboratorType(int rol, String tipo){
+      return colaboradorRepository.collaboratorType(rol, tipo);
+     }
      
      @Transactional
      public String centralizer(String rol){

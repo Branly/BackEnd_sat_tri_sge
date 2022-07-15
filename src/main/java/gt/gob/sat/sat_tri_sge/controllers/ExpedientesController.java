@@ -310,6 +310,7 @@ public class ExpedientesController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Asigna manualmete un Profesional a un Expediente")
     public void manualAssignment(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
+        expedientesService.updateState(28, noExpedienteTributa);
         expedientesService.manualAssignment(noExpedienteTributa, nit);
     }
     
@@ -322,7 +323,7 @@ public class ExpedientesController {
     
     @PutMapping(path = "/confrontationAssignment/{noExpedienteTributa}/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Asigna manualmete un Profesional a un Expediente")
+    @ApiOperation(value = "Asigna manualmete un Profesional que Confronta a un Expediente")
     public void confrontationAssignment(@PathVariable(required = true) String noExpedienteTributa, @PathVariable(required = true) String nit) {
         expedientesService.confrontationAssignment(noExpedienteTributa, nit);
     }
@@ -346,5 +347,12 @@ public class ExpedientesController {
     @ApiOperation(value = "Obtener los expedientes.")
     public ResponseEntity<List<ExpedientesProjection>> informationVerification(@PathVariable(required = true) String expediente) {
         return ResponseEntity.ok(expedientesService.informationVerification(expediente));
+    }
+    
+    @GetMapping(path = "/informationProfessional/{expediente}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener la informacion de un expediente asignadio a un profesional.")
+    public ResponseEntity<ExpedientesProjection> informationProfessional(@PathVariable(required = true) String expediente) {
+        return ResponseEntity.ok(expedientesService.informationProfessional(expediente));
     }
 }

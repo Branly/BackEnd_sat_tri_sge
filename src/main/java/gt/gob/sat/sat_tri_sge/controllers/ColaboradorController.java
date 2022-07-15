@@ -84,8 +84,8 @@ public class ColaboradorController {
     @GetMapping(path = "CollaboratorRole/{puesto}/{tipo}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtener a los colaboradores segun su rol.")
-    public ResponseEntity<List<ColaboradorProjection>> CollaboratorRole(@PathVariable Integer puesto, @PathVariable Integer tipo){    
-        return ResponseEntity.ok(colaboradorService.CollaboratorRol(puesto, tipo));
+    public ResponseEntity<List<ColaboradorProjection>> CollaboratorRole(@PathVariable Integer puesto, @PathVariable String tipo){    
+        return ResponseEntity.ok(colaboradorService.CollaboratorType(puesto, tipo));
     }
     
 }

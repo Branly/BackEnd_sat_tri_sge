@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public interface ExpedientesProjection {
 
-    String getNo_Expediente();
+    String getNo_expediente();
 
-    String getTipo_Recurso();
+    String getTipo_recurso();
 
     String getNit_contribuyente();
     
@@ -23,7 +23,7 @@ public interface ExpedientesProjection {
 
     Date getFecha_ingreso();
 
-    String getGerencia_Origen();
+    String getGerencia_origen();
 
     Date getFecha_interposicion();
     
@@ -48,4 +48,11 @@ public interface ExpedientesProjection {
     Integer getCantidad_ajustes();
     
     String getObservacion();
+    
+    String getImpuesto();
+    
+    String getTipo_caso();
+    
+    String getSubTipo_caso();
+    
 }

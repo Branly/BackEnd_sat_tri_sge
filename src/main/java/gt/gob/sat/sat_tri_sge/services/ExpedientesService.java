@@ -15,6 +15,7 @@ import gt.gob.sat.sat_tri_sge.dtos.ObservacionDTO;
 import gt.gob.sat.sat_tri_sge.dtos.PrestamoDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ResumenDTO;
 import gt.gob.sat.sat_tri_sge.models.SgeAnexo;
+import gt.gob.sat.sat_tri_sge.models.SgeBitacoraAsignacionColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeComplementoExpediente;
 import gt.gob.sat.sat_tri_sge.models.SgeExpediente;
@@ -508,7 +509,7 @@ public class ExpedientesService {
         dto.setIdEstado(file.getIdEstado());
         dto.setNit(colaboradorService.centralizer(rol));
         dto.setNoExpedienteTributa(noFile);
-        colaboradorService.CrateHistoryAssignmentCollaborator(dto);
+        colaboradorService.createHistoryAssignmentCollaborator(dto);
     }
     /**
      * Metodo para asignar un colaborador segun su rol y el tipo de tribunal a un expediente
@@ -546,7 +547,7 @@ public class ExpedientesService {
                 break;
         }
         dto.setNoExpedienteTributa(noFile);
-        colaboradorService.CrateHistoryAssignmentCollaborator(dto);
+        colaboradorService.createHistoryAssignmentCollaborator(dto);
     }
     
         /**
@@ -561,7 +562,16 @@ public class ExpedientesService {
     @Transactional
     public SgeExpediente manualAssignment(String noFile, String nit){
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        final BitacoraAsignacionColaboradorDTO collaborator = new BitacoraAsignacionColaboradorDTO();
+        collaborator.setComentario("Se asigno el Expediente a un Profesional");
+        collaborator.setFechaModifica(new Date());
+        collaborator.setIdEstado(file.getIdEstado());
+        collaborator.setIpModifica(detector.getIp());
+        collaborator.setNit(nit);
+        collaborator.setNoExpedienteTributa(noFile);
+        collaborator.setUsuarioModifica(detector.getLogin());
         file.setNitProfesional(nit);
+        colaboradorService.createHistoryAssignmentCollaborator(collaborator);
         return expedientesRepository.save(file);
     }
     
@@ -616,5 +626,10 @@ public class ExpedientesService {
     @Transactional(readOnly = true)
     public List<ExpedientesProjection> informationVerification(String expediente){
         return expedientesRepository.informationVerification(expediente);
+    }
+    
+    @Transactional(readOnly = true)
+    public ExpedientesProjection informationProfessional(String expediente){
+        return expedientesRepository.informationProfessional(expediente);
     }
 }

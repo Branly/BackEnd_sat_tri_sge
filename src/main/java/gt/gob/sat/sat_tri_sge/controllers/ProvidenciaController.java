@@ -41,7 +41,7 @@ public class ProvidenciaController {
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Crea una providencia de entrada.")
+    @ApiOperation(value = "Crea la providencia de entrada y salida.")
     public ResponseEntity<?> createProvidence(@RequestBody ProvidenciaDTO dto) {
         return ResponseEntity.ok(providenciaService.createProvidence(dto));
     }
