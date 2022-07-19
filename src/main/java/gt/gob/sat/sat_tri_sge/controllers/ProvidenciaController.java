@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,14 +41,13 @@ public class ProvidenciaController {
 
     @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Crea la providencia de entrada y salida.")
     public ResponseEntity<?> createProvidence(@RequestBody ProvidenciaDTO dto) {
         return ResponseEntity.ok(providenciaService.createProvidence(dto));
     }
-
-    @PostMapping(path = "/file/crate", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    
+    @PostMapping(path = "/ExpedientProvidens", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "asigna un providencia a un expediente.")
     public ResponseEntity<?> createFileProvidence(@RequestBody ExpedienteProvidenciaDTO dto) {

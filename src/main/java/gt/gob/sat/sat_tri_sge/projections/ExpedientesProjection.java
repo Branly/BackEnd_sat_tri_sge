@@ -55,4 +55,5 @@ public interface ExpedientesProjection {
     
     String getSubTipo_caso();
     
+    
 }

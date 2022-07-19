@@ -33,4 +33,6 @@ public class ProvidenciaDTO {
     private String usuarioModifica;
 
     private String ipModifica;
+    
+    private Integer idTribunal;
 }
