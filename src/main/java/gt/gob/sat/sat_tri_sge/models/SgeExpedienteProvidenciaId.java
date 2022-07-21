@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:15:47 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -45,23 +45,6 @@ public class SgeExpedienteProvidenciaId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof SgeExpedienteProvidenciaId) ) return false;
-		 SgeExpedienteProvidenciaId castOther = ( SgeExpedienteProvidenciaId ) other; 
-         
-		 return ( (this.getIdProvidencia()==castOther.getIdProvidencia()) || ( this.getIdProvidencia()!=null && castOther.getIdProvidencia()!=null && this.getIdProvidencia().equals(castOther.getIdProvidencia()) ) )
- && ( (this.getNoExpedienteTributa()==castOther.getNoExpedienteTributa()) || ( this.getNoExpedienteTributa()!=null && castOther.getNoExpedienteTributa()!=null && this.getNoExpedienteTributa().equals(castOther.getNoExpedienteTributa()) ) );
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + ( getIdProvidencia() == null ? 0 : this.getIdProvidencia().hashCode() );
-         result = 37 * result + ( getNoExpedienteTributa() == null ? 0 : this.getNoExpedienteTributa().hashCode() );
-         return result;
-   }   
 
 
 }

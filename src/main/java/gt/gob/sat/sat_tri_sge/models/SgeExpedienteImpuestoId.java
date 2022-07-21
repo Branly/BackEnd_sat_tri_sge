@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:08:11 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -12,27 +12,17 @@ import javax.persistence.Embeddable;
 public class SgeExpedienteImpuestoId  implements java.io.Serializable {
 
 
-     private String noExpedienteTributa;
      private int idImpuesto;
+     private String noExpedienteTributa;
 
     public SgeExpedienteImpuestoId() {
     }
 
-    public SgeExpedienteImpuestoId(String noExpedienteTributa, int idImpuesto) {
-       this.noExpedienteTributa = noExpedienteTributa;
+    public SgeExpedienteImpuestoId(int idImpuesto, String noExpedienteTributa) {
        this.idImpuesto = idImpuesto;
+       this.noExpedienteTributa = noExpedienteTributa;
     }
    
-
-
-    @Column(name="no_expediente_tributa", nullable=false, length=50)
-    public String getNoExpedienteTributa() {
-        return this.noExpedienteTributa;
-    }
-    
-    public void setNoExpedienteTributa(String noExpedienteTributa) {
-        this.noExpedienteTributa = noExpedienteTributa;
-    }
 
 
     @Column(name="id_impuesto", nullable=false)
@@ -45,23 +35,16 @@ public class SgeExpedienteImpuestoId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof SgeExpedienteImpuestoId) ) return false;
-		 SgeExpedienteImpuestoId castOther = ( SgeExpedienteImpuestoId ) other; 
-         
-		 return ( (this.getNoExpedienteTributa()==castOther.getNoExpedienteTributa()) || ( this.getNoExpedienteTributa()!=null && castOther.getNoExpedienteTributa()!=null && this.getNoExpedienteTributa().equals(castOther.getNoExpedienteTributa()) ) )
- && (this.getIdImpuesto()==castOther.getIdImpuesto());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + ( getNoExpedienteTributa() == null ? 0 : this.getNoExpedienteTributa().hashCode() );
-         result = 37 * result + this.getIdImpuesto();
-         return result;
-   }   
+    @Column(name="no_expediente_tributa", nullable=false, length=50)
+    public String getNoExpedienteTributa() {
+        return this.noExpedienteTributa;
+    }
+    
+    public void setNoExpedienteTributa(String noExpedienteTributa) {
+        this.noExpedienteTributa = noExpedienteTributa;
+    }
+
+
 
 
 }

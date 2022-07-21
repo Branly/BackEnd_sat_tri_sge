@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:01:58 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

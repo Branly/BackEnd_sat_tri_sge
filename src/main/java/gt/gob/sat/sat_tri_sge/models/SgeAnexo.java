@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:01:58 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,8 +32,7 @@ public class SgeAnexo  implements java.io.Serializable {
     public SgeAnexo() {
     }
 
-    public SgeAnexo(int idAnexo, Date fechaEntrada, Date fechaModifica, String ipModifica, String noExpedienteTributa, String usuarioModifica) {
-       this.idAnexo = idAnexo;
+    public SgeAnexo(Date fechaEntrada, Date fechaModifica, String ipModifica, String noExpedienteTributa, String usuarioModifica) {
        this.fechaEntrada = fechaEntrada;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
@@ -41,8 +40,9 @@ public class SgeAnexo  implements java.io.Serializable {
        this.usuarioModifica = usuarioModifica;
     }
    
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_anexo", unique=true, nullable=false)
     public int getIdAnexo() {
         return this.idAnexo;

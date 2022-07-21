@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:12:37 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:20:10 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -39,7 +39,9 @@ public class SgeProvidencia  implements java.io.Serializable {
        this.ipModifica = ipModifica;
     }
    
-    @Id 
+     @Id 
+
+    
     @Column(name="id_providencia", unique=true, nullable=false, length=50)
     public String getIdProvidencia() {
         return this.idProvidencia;

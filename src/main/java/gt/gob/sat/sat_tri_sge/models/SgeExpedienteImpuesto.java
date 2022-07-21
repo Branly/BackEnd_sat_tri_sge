@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:08:11 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,44 +23,34 @@ public class SgeExpedienteImpuesto  implements java.io.Serializable {
 
 
      private SgeExpedienteImpuestoId id;
-     private int monto;
      private Date fechaModifica;
-     private String usuarioModifica;
      private String ipModifica;
+     private int monto;
+     private String usuarioModifica;
 
     public SgeExpedienteImpuesto() {
     }
 
-    public SgeExpedienteImpuesto(SgeExpedienteImpuestoId id, int monto, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeExpedienteImpuesto(SgeExpedienteImpuestoId id, Date fechaModifica, String ipModifica, int monto, String usuarioModifica) {
        this.id = id;
-       this.monto = monto;
        this.fechaModifica = fechaModifica;
-       this.usuarioModifica = usuarioModifica;
        this.ipModifica = ipModifica;
+       this.monto = monto;
+       this.usuarioModifica = usuarioModifica;
     }
    
      @EmbeddedId
 
     
     @AttributeOverrides( {
-        @AttributeOverride(name="noExpedienteTributa", column=@Column(name="no_expediente_tributa", nullable=false, length=50) ), 
-        @AttributeOverride(name="idImpuesto", column=@Column(name="id_impuesto", nullable=false) ) } )
+        @AttributeOverride(name="idImpuesto", column=@Column(name="id_impuesto", nullable=false) ), 
+        @AttributeOverride(name="noExpedienteTributa", column=@Column(name="no_expediente_tributa", nullable=false, length=50) ) } )
     public SgeExpedienteImpuestoId getId() {
         return this.id;
     }
     
     public void setId(SgeExpedienteImpuestoId id) {
         this.id = id;
-    }
-
-    
-    @Column(name="monto", nullable=false)
-    public int getMonto() {
-        return this.monto;
-    }
-    
-    public void setMonto(int monto) {
-        this.monto = monto;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -74,16 +64,6 @@ public class SgeExpedienteImpuesto  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
-    }
-
-    
     @Column(name="ip_modifica", nullable=false, length=15)
     public String getIpModifica() {
         return this.ipModifica;
@@ -91,6 +71,26 @@ public class SgeExpedienteImpuesto  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="monto", nullable=false)
+    public int getMonto() {
+        return this.monto;
+    }
+    
+    public void setMonto(int monto) {
+        this.monto = monto;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

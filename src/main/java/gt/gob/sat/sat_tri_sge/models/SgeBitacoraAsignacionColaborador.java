@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:04:35 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,40 +23,39 @@ public class SgeBitacoraAsignacionColaborador  implements java.io.Serializable {
 
 
      private int idBitacora;
-     private String noExpedienteTributa;
-     private String nit;
-     private int idEstado;
      private String comentario;
-     private String usuarioModifica;
      private Date fechaModifica;
+     private int idEstado;
      private String ipModifica;
+     private String nit;
+     private String noExpedienteTributa;
+     private String usuarioModifica;
 
     public SgeBitacoraAsignacionColaborador() {
     }
 
 	
-    public SgeBitacoraAsignacionColaborador(int idBitacora, String noExpedienteTributa, String nit, int idEstado, String usuarioModifica, Date fechaModifica, String ipModifica) {
-        this.idBitacora = idBitacora;
-        this.noExpedienteTributa = noExpedienteTributa;
-        this.nit = nit;
-        this.idEstado = idEstado;
-        this.usuarioModifica = usuarioModifica;
+    public SgeBitacoraAsignacionColaborador(Date fechaModifica, int idEstado, String ipModifica, String nit, String noExpedienteTributa, String usuarioModifica) {
         this.fechaModifica = fechaModifica;
+        this.idEstado = idEstado;
         this.ipModifica = ipModifica;
+        this.nit = nit;
+        this.noExpedienteTributa = noExpedienteTributa;
+        this.usuarioModifica = usuarioModifica;
     }
-    public SgeBitacoraAsignacionColaborador(int idBitacora, String noExpedienteTributa, String nit, int idEstado, String comentario, String usuarioModifica, Date fechaModifica, String ipModifica) {
-       this.idBitacora = idBitacora;
-       this.noExpedienteTributa = noExpedienteTributa;
-       this.nit = nit;
-       this.idEstado = idEstado;
+    public SgeBitacoraAsignacionColaborador(String comentario, Date fechaModifica, int idEstado, String ipModifica, String nit, String noExpedienteTributa, String usuarioModifica) {
        this.comentario = comentario;
-       this.usuarioModifica = usuarioModifica;
        this.fechaModifica = fechaModifica;
+       this.idEstado = idEstado;
        this.ipModifica = ipModifica;
+       this.nit = nit;
+       this.noExpedienteTributa = noExpedienteTributa;
+       this.usuarioModifica = usuarioModifica;
     }
    
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_bitacora", unique=true, nullable=false)
     public int getIdBitacora() {
         return this.idBitacora;
@@ -67,36 +66,6 @@ public class SgeBitacoraAsignacionColaborador  implements java.io.Serializable {
     }
 
     
-    @Column(name="no_expediente_tributa", nullable=false, length=50)
-    public String getNoExpedienteTributa() {
-        return this.noExpedienteTributa;
-    }
-    
-    public void setNoExpedienteTributa(String noExpedienteTributa) {
-        this.noExpedienteTributa = noExpedienteTributa;
-    }
-
-    
-    @Column(name="nit", nullable=false, length=16)
-    public String getNit() {
-        return this.nit;
-    }
-    
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    
-    @Column(name="id_estado", nullable=false)
-    public int getIdEstado() {
-        return this.idEstado;
-    }
-    
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    
     @Column(name="comentario", length=500)
     public String getComentario() {
         return this.comentario;
@@ -104,16 +73,6 @@ public class SgeBitacoraAsignacionColaborador  implements java.io.Serializable {
     
     public void setComentario(String comentario) {
         this.comentario = comentario;
-    }
-
-    
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -127,6 +86,16 @@ public class SgeBitacoraAsignacionColaborador  implements java.io.Serializable {
     }
 
     
+    @Column(name="id_estado", nullable=false)
+    public int getIdEstado() {
+        return this.idEstado;
+    }
+    
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    
     @Column(name="ip_modifica", nullable=false, length=15)
     public String getIpModifica() {
         return this.ipModifica;
@@ -134,6 +103,36 @@ public class SgeBitacoraAsignacionColaborador  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="nit", nullable=false, length=16)
+    public String getNit() {
+        return this.nit;
+    }
+    
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    
+    @Column(name="no_expediente_tributa", nullable=false, length=50)
+    public String getNoExpedienteTributa() {
+        return this.noExpedienteTributa;
+    }
+    
+    public void setNoExpedienteTributa(String noExpedienteTributa) {
+        this.noExpedienteTributa = noExpedienteTributa;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

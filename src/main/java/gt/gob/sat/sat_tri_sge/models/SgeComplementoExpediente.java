@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:07:06 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,45 +21,47 @@ public class SgeComplementoExpediente  implements java.io.Serializable {
 
 
      private String noExpedienteTributa;
-     private String nitColaboradorConfronto;
-     private int idCasoEspecial;
-     private int subTipoCaso;
-     private int tipoCaso;
      private int complejidad;
      private Date fechaInterposicion;
      private Date fechaModifica;
-     private String usuarioModifica;
+     private int idCasoEspecial;
      private String ipModifica;
+     private String nitColaboradorConfronto;
+     private int subTipoCaso;
+     private int tipoCaso;
+     private String usuarioModifica;
 
     public SgeComplementoExpediente() {
     }
 
 	
-    public SgeComplementoExpediente(String noExpedienteTributa, int idCasoEspecial, int subTipoCaso, int tipoCaso, int complejidad, Date fechaInterposicion, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeComplementoExpediente(String noExpedienteTributa, int complejidad, Date fechaInterposicion, Date fechaModifica, int idCasoEspecial, String ipModifica, int subTipoCaso, int tipoCaso, String usuarioModifica) {
         this.noExpedienteTributa = noExpedienteTributa;
-        this.idCasoEspecial = idCasoEspecial;
-        this.subTipoCaso = subTipoCaso;
-        this.tipoCaso = tipoCaso;
         this.complejidad = complejidad;
         this.fechaInterposicion = fechaInterposicion;
         this.fechaModifica = fechaModifica;
-        this.usuarioModifica = usuarioModifica;
+        this.idCasoEspecial = idCasoEspecial;
         this.ipModifica = ipModifica;
+        this.subTipoCaso = subTipoCaso;
+        this.tipoCaso = tipoCaso;
+        this.usuarioModifica = usuarioModifica;
     }
-    public SgeComplementoExpediente(String noExpedienteTributa, String nitColaboradorConfronto, int idCasoEspecial, int subTipoCaso, int tipoCaso, int complejidad, Date fechaInterposicion, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeComplementoExpediente(String noExpedienteTributa, int complejidad, Date fechaInterposicion, Date fechaModifica, int idCasoEspecial, String ipModifica, String nitColaboradorConfronto, int subTipoCaso, int tipoCaso, String usuarioModifica) {
        this.noExpedienteTributa = noExpedienteTributa;
-       this.nitColaboradorConfronto = nitColaboradorConfronto;
-       this.idCasoEspecial = idCasoEspecial;
-       this.subTipoCaso = subTipoCaso;
-       this.tipoCaso = tipoCaso;
        this.complejidad = complejidad;
        this.fechaInterposicion = fechaInterposicion;
        this.fechaModifica = fechaModifica;
-       this.usuarioModifica = usuarioModifica;
+       this.idCasoEspecial = idCasoEspecial;
        this.ipModifica = ipModifica;
+       this.nitColaboradorConfronto = nitColaboradorConfronto;
+       this.subTipoCaso = subTipoCaso;
+       this.tipoCaso = tipoCaso;
+       this.usuarioModifica = usuarioModifica;
     }
    
-    @Id 
+     @Id 
+
+    
     @Column(name="no_expediente_tributa", unique=true, nullable=false, length=50)
     public String getNoExpedienteTributa() {
         return this.noExpedienteTributa;
@@ -67,46 +69,6 @@ public class SgeComplementoExpediente  implements java.io.Serializable {
     
     public void setNoExpedienteTributa(String noExpedienteTributa) {
         this.noExpedienteTributa = noExpedienteTributa;
-    }
-
-    
-    @Column(name="nit_colaborador_confronto", length=16)
-    public String getNitColaboradorConfronto() {
-        return this.nitColaboradorConfronto;
-    }
-    
-    public void setNitColaboradorConfronto(String nitColaboradorConfronto) {
-        this.nitColaboradorConfronto = nitColaboradorConfronto;
-    }
-
-    
-    @Column(name="id_caso_especial", nullable=false)
-    public int getIdCasoEspecial() {
-        return this.idCasoEspecial;
-    }
-    
-    public void setIdCasoEspecial(int idCasoEspecial) {
-        this.idCasoEspecial = idCasoEspecial;
-    }
-
-    
-    @Column(name="sub_tipo_caso", nullable=false)
-    public int getSubTipoCaso() {
-        return this.subTipoCaso;
-    }
-    
-    public void setSubTipoCaso(int subTipoCaso) {
-        this.subTipoCaso = subTipoCaso;
-    }
-
-    
-    @Column(name="tipo_caso", nullable=false)
-    public int getTipoCaso() {
-        return this.tipoCaso;
-    }
-    
-    public void setTipoCaso(int tipoCaso) {
-        this.tipoCaso = tipoCaso;
     }
 
     
@@ -140,13 +102,13 @@ public class SgeComplementoExpediente  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
+    @Column(name="id_caso_especial", nullable=false)
+    public int getIdCasoEspecial() {
+        return this.idCasoEspecial;
     }
     
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
+    public void setIdCasoEspecial(int idCasoEspecial) {
+        this.idCasoEspecial = idCasoEspecial;
     }
 
     
@@ -157,6 +119,46 @@ public class SgeComplementoExpediente  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="nit_colaborador_confronto", length=16)
+    public String getNitColaboradorConfronto() {
+        return this.nitColaboradorConfronto;
+    }
+    
+    public void setNitColaboradorConfronto(String nitColaboradorConfronto) {
+        this.nitColaboradorConfronto = nitColaboradorConfronto;
+    }
+
+    
+    @Column(name="sub_tipo_caso", nullable=false)
+    public int getSubTipoCaso() {
+        return this.subTipoCaso;
+    }
+    
+    public void setSubTipoCaso(int subTipoCaso) {
+        this.subTipoCaso = subTipoCaso;
+    }
+
+    
+    @Column(name="tipo_caso", nullable=false)
+    public int getTipoCaso() {
+        return this.tipoCaso;
+    }
+    
+    public void setTipoCaso(int tipoCaso) {
+        this.tipoCaso = tipoCaso;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

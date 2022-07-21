@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:18:22 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,26 +23,26 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
 
 
      private int idHistorial;
-     private String nitColaborador;
-     private int idEstado;
      private Date fechaModifica;
-     private String usuarioModifica;
+     private int idEstado;
      private String ipModifica;
+     private String nitColaborador;
+     private String usuarioModifica;
 
     public SgeHistorialEstadosColaborador() {
     }
 
-    public SgeHistorialEstadosColaborador(int idHistorial, String nitColaborador, int idEstado, Date fechaModifica, String usuarioModifica, String ipModifica) {
-       this.idHistorial = idHistorial;
-       this.nitColaborador = nitColaborador;
-       this.idEstado = idEstado;
+    public SgeHistorialEstadosColaborador(Date fechaModifica, int idEstado, String ipModifica, String nitColaborador, String usuarioModifica) {
        this.fechaModifica = fechaModifica;
-       this.usuarioModifica = usuarioModifica;
+       this.idEstado = idEstado;
        this.ipModifica = ipModifica;
+       this.nitColaborador = nitColaborador;
+       this.usuarioModifica = usuarioModifica;
     }
    
-     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_historial", unique=true, nullable=false)
     public int getIdHistorial() {
         return this.idHistorial;
@@ -50,26 +50,6 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
     
     public void setIdHistorial(int idHistorial) {
         this.idHistorial = idHistorial;
-    }
-
-    
-    @Column(name="nit_colaborador", nullable=false, length=16)
-    public String getNitColaborador() {
-        return this.nitColaborador;
-    }
-    
-    public void setNitColaborador(String nitColaborador) {
-        this.nitColaborador = nitColaborador;
-    }
-
-    
-    @Column(name="id_estado", nullable=false)
-    public int getIdEstado() {
-        return this.idEstado;
-    }
-    
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,13 +63,13 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
+    @Column(name="id_estado", nullable=false)
+    public int getIdEstado() {
+        return this.idEstado;
     }
     
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
     }
 
     
@@ -100,6 +80,26 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="nit_colaborador", nullable=false, length=16)
+    public String getNitColaborador() {
+        return this.nitColaborador;
+    }
+    
+    public void setNitColaborador(String nitColaborador) {
+        this.nitColaborador = nitColaborador;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

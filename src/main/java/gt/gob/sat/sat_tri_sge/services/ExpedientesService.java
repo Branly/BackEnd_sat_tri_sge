@@ -116,7 +116,7 @@ public class ExpedientesService {
         fileCreate.setFechaIngreso(new Date());
         fileCreate.setFechaModifica(new Date());
         fileCreate.setFolios(dto.getFolios());
-        fileCreate.setGerenciaOrigen(dto.getGerenciaOrigen());
+        fileCreate.setIdGerenciaOrigen(dto.getIdGerenciaOrigen());
         fileCreate.setIdEstado(dto.getIdEstado());
         fileCreate.setIdProces(dto.getIdProces());
         fileCreate.setNitContribuyente(dto.getNitContribuyente());
@@ -125,6 +125,7 @@ public class ExpedientesService {
         fileCreate.setTipoRecurso(dto.getTipoRecurso());
         fileCreate.setIpModifica(detector.getIp());
         fileCreate.setUsuarioModifica(detector.getLogin());
+        fileCreate.setResolucionEntrada(dto.getResolucionEntrada());
         return expedientesRepository.save(fileCreate);
     }
 
@@ -281,7 +282,7 @@ public class ExpedientesService {
     public SgeExpedienteImpuesto createFileTax(ExpedienteImpuestoDTO dto) {
         final SgeExpedienteImpuesto fileTaxCreate = new SgeExpedienteImpuesto();
         fileTaxCreate.setFechaModifica(new Date());
-        fileTaxCreate.setId(new SgeExpedienteImpuestoId(dto.getNoExpedienteTributa(), dto.getIdIpmuesto()));
+        fileTaxCreate.setId(new SgeExpedienteImpuestoId(dto.getIdIpmuesto(), dto.getNoExpedienteTributa()));
         fileTaxCreate.setIpModifica(detector.getIp());
         fileTaxCreate.setMonto(dto.getMonto());
         fileTaxCreate.setUsuarioModifica(detector.getLogin());
@@ -508,14 +509,16 @@ public class ExpedientesService {
     public void AssignmentCentralizer(String noFile, String rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
-        dto.setComentario("Se asigno el expediente al "+rol);
+        dto.setComentario("Se asigno el expediente al " + rol);
         dto.setIdEstado(file.getIdEstado());
         dto.setNit(colaboradorService.centralizer(rol));
         dto.setNoExpedienteTributa(noFile);
         colaboradorService.createHistoryAssignmentCollaborator(dto);
     }
+
     /**
-     * Metodo para asignar un colaborador segun su rol y el tipo de tribunal a un expediente
+     * Metodo para asignar un colaborador segun su rol y el tipo de tribunal a
+     * un expediente
      *
      * @author Cristian Raguay (acdraguay)
      * @param noFile
@@ -552,8 +555,8 @@ public class ExpedientesService {
         dto.setNoExpedienteTributa(noFile);
         colaboradorService.createHistoryAssignmentCollaborator(dto);
     }
-    
-        /**
+
+    /**
      * Metodo para asignar manualmentu un colaborador
      *
      * @author Cristian Raguay (acdraguay)
@@ -563,7 +566,7 @@ public class ExpedientesService {
      * @since 01/07/2022
      */
     @Transactional
-    public SgeExpediente manualAssignment(String noFile, String nit){
+    public SgeExpediente manualAssignment(String noFile, String nit) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         final BitacoraAsignacionColaboradorDTO collaborator = new BitacoraAsignacionColaboradorDTO();
         collaborator.setComentario("Se asigno el Expediente a un Profesional");
@@ -577,8 +580,8 @@ public class ExpedientesService {
         colaboradorService.createHistoryAssignmentCollaborator(collaborator);
         return expedientesRepository.save(file);
     }
-    
-        /**
+
+    /**
      * Metodo para asignar un expediente a una agenda
      *
      * @author Cristian Raguay (acdraguay)
@@ -588,14 +591,15 @@ public class ExpedientesService {
      * @since 01/07/2022
      */
     @Transactional
-    public SgeExpediente diaryAssignment(String noFile, String diary){
-            final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
-            file.setIdAgenda(diary);
-            return expedientesRepository.save(file);
+    public SgeExpediente diaryAssignment(String noFile, String diary) {
+        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+        file.setIdAgenda(diary);
+        return expedientesRepository.save(file);
     }
-    
-     /**
-     * Metodo para asignar al profecional que confronta el proyecto de resulucion
+
+    /**
+     * Metodo para asignar al profecional que confronta el proyecto de
+     * resulucion
      *
      * @author Cristian Raguay (acdraguay)
      * @param noFile
@@ -604,12 +608,13 @@ public class ExpedientesService {
      * @since 05/07/2022
      */
     @Transactional
-    public SgeComplementoExpediente confrontationAssignment(String noFile, String nit){
+    public SgeComplementoExpediente confrontationAssignment(String noFile, String nit) {
         final SgeComplementoExpediente file = complentoExpedienteRepository.findById(noFile).orElse(null);
         file.setNitColaboradorConfronto(nit);
         return complentoExpedienteRepository.save(file);
     }
-     /**
+
+    /**
      * Metodo para asignar un colaborador segun su rol a un expediente
      *
      * @author Cristian Raguay (acdraguay)
@@ -617,10 +622,10 @@ public class ExpedientesService {
      * @since 05/07/2022
      */
     @Transactional(readOnly = true)
-    public List<RecepcionistaProjection> receptionist(){
+    public List<RecepcionistaProjection> receptionist() {
         return expedientesRepository.receptionist();
     }
-    
+
     /**
      * Metodo para traer la informacion del Coordinador
      *
@@ -629,10 +634,10 @@ public class ExpedientesService {
      * @since 15/07/2022
      */
     @Transactional(readOnly = true)
-    public List<AsignacionManualProjection> coordinator(){
-     return expedientesRepository.coordinator();
+    public List<AsignacionManualProjection> coordinator() {
+        return expedientesRepository.coordinator();
     }
-    
+
     /**
      * Metodo para traer la informacion del CEntralizador de Entrada
      *
@@ -641,10 +646,10 @@ public class ExpedientesService {
      * @since 13/07/2022
      */
     @Transactional(readOnly = true)
-    public List<ExpedientesProjection> informationVerification(String expediente){
+    public List<ExpedientesProjection> informationVerification(String expediente) {
         return expedientesRepository.informationVerification(expediente);
     }
-    
+
     /**
      * Metodo para traer la informacion del Profesional
      *
@@ -654,10 +659,10 @@ public class ExpedientesService {
      * @since 13/07/2022
      */
     @Transactional(readOnly = true)
-    public ExpedientesProjection informationProfessional(String expediente){
+    public ExpedientesProjection informationProfessional(String expediente) {
         return expedientesRepository.informationProfessional(expediente);
     }
-    
+
     /**
      * Metodo para asignar un colaborador segun su rol a un expediente
      *
@@ -667,10 +672,10 @@ public class ExpedientesService {
      * @since 19/07/2022
      */
     @Transactional
-    public ProvidenciaProjection getLastId(int tipo){
+    public ProvidenciaProjection getLastId(int tipo) {
         return expedientesRepository.getLastId(tipo);
     }
-    
+
     /**
      * Metodo para generar el id interno del Expediente
      *
@@ -679,25 +684,29 @@ public class ExpedientesService {
      * @return id
      * @since 19/07/2022
      */
-    public String generateId(int tipo){
+    public String generateId(int tipo) {
         String id = "";
         int num = 1;
         ProvidenciaProjection lastId = this.getLastId(tipo);
         SimpleDateFormat getYearFormat = new SimpleDateFormat("yyyy");
-        String currentYear = getYearFormat.format(lastId.getFecha_creacion());
-        if (currentYear.equals(Integer.toString(LocalDate.now().getYear()))) {
-            num = getNumber(lastId.getId());
+        String currentYear = "";
+        if (lastId != null) {
+            currentYear = getYearFormat.format(lastId.getFecha_creacion());
+            if (currentYear.equals(Integer.toString(LocalDate.now().getYear()))) {
+                num = getNumber(lastId.getId());
+            }
         }
         if (tipo == 9) {
-            id += "TAT-";
-        } else if (tipo == 10) {
-            id += "TAA-";
-        }
+                id += "TAT-";
+            } else if (tipo == 10) {
+                id += "TAA-";
+            }
+
         id += Integer.toString(num) + "-";
         id += LocalDate.now().getYear();
         return id;
     }
-    
+
     /**
      * Metodo para obtener el ultimo numero de id interno
      *
@@ -725,5 +734,5 @@ public class ExpedientesService {
         }
         return Integer.parseInt(num) + 1;
     }
-    
+
 }

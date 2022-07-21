@@ -30,7 +30,7 @@ public class ExpedientesDTO {
      private Date fechaModifica;
      private Date fechaPreincripcion;
      private int folios;
-     private String gerenciaOrigen;
+     private int IdGerenciaOrigen;
      private String idAgenda;
      private int idEstado;
      private long idProces;
@@ -40,4 +40,5 @@ public class ExpedientesDTO {
      private String noExpediente;
      private int tipoRecurso;
      private String usuarioModifica;
+     private String resolucionEntrada;
 }

@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:11:30 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,26 +23,26 @@ public class SgeObservacion  implements java.io.Serializable {
 
 
      private int idObservacion;
+     private Date fechaModifica;
+     private String ipModifica;
      private String noExpedienteTributa;
      private int observaciones;
-     private Date fechaModifica;
      private String usuarioModifica;
-     private String ipModifica;
 
     public SgeObservacion() {
     }
 
-    public SgeObservacion(int idObservacion, String noExpedienteTributa, int observaciones, Date fechaModifica, String usuarioModifica, String ipModifica) {
-       this.idObservacion = idObservacion;
+    public SgeObservacion(Date fechaModifica, String ipModifica, String noExpedienteTributa, int observaciones, String usuarioModifica) {
+       this.fechaModifica = fechaModifica;
+       this.ipModifica = ipModifica;
        this.noExpedienteTributa = noExpedienteTributa;
        this.observaciones = observaciones;
-       this.fechaModifica = fechaModifica;
        this.usuarioModifica = usuarioModifica;
-       this.ipModifica = ipModifica;
     }
    
-    @Id  
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_observacion", unique=true, nullable=false)
     public int getIdObservacion() {
         return this.idObservacion;
@@ -50,6 +50,26 @@ public class SgeObservacion  implements java.io.Serializable {
     
     public void setIdObservacion(int idObservacion) {
         this.idObservacion = idObservacion;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_modifica", nullable=false, length=29)
+    public Date getFechaModifica() {
+        return this.fechaModifica;
+    }
+    
+    public void setFechaModifica(Date fechaModifica) {
+        this.fechaModifica = fechaModifica;
+    }
+
+    
+    @Column(name="ip_modifica", nullable=false, length=15)
+    public String getIpModifica() {
+        return this.ipModifica;
+    }
+    
+    public void setIpModifica(String ipModifica) {
+        this.ipModifica = ipModifica;
     }
 
     
@@ -72,16 +92,6 @@ public class SgeObservacion  implements java.io.Serializable {
         this.observaciones = observaciones;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_modifica", nullable=false, length=29)
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-
     
     @Column(name="usuario_modifica", nullable=false, length=50)
     public String getUsuarioModifica() {
@@ -90,16 +100,6 @@ public class SgeObservacion  implements java.io.Serializable {
     
     public void setUsuarioModifica(String usuarioModifica) {
         this.usuarioModifica = usuarioModifica;
-    }
-
-    
-    @Column(name="ip_modifica", nullable=false, length=15)
-    public String getIpModifica() {
-        return this.ipModifica;
-    }
-    
-    public void setIpModifica(String ipModifica) {
-        this.ipModifica = ipModifica;
     }
 
 

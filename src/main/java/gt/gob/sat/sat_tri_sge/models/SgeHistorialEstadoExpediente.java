@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:03:19 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,26 +23,26 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
 
 
      private int idHistorial;
-     private String noExpedienteTributa;
-     private int idEstado;
-     private String usuarioModifica;
      private Date fechaModifica;
+     private int idEstado;
      private String ipModifica;
+     private String noExpedienteTributa;
+     private String usuarioModifica;
 
     public SgeHistorialEstadoExpediente() {
     }
 
-    public SgeHistorialEstadoExpediente(int idHistorial, String noExpedienteTributa, int idEstado, String usuarioModifica, Date fechaModifica, String ipModifica) {
-       this.idHistorial = idHistorial;
-       this.noExpedienteTributa = noExpedienteTributa;
-       this.idEstado = idEstado;
-       this.usuarioModifica = usuarioModifica;
+    public SgeHistorialEstadoExpediente(Date fechaModifica, int idEstado, String ipModifica, String noExpedienteTributa, String usuarioModifica) {
        this.fechaModifica = fechaModifica;
+       this.idEstado = idEstado;
        this.ipModifica = ipModifica;
+       this.noExpedienteTributa = noExpedienteTributa;
+       this.usuarioModifica = usuarioModifica;
     }
    
-     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_historial", unique=true, nullable=false)
     public int getIdHistorial() {
         return this.idHistorial;
@@ -50,36 +50,6 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
     
     public void setIdHistorial(int idHistorial) {
         this.idHistorial = idHistorial;
-    }
-
-    
-    @Column(name="no_expediente_tributa", nullable=false, length=50)
-    public String getNoExpedienteTributa() {
-        return this.noExpedienteTributa;
-    }
-    
-    public void setNoExpedienteTributa(String noExpedienteTributa) {
-        this.noExpedienteTributa = noExpedienteTributa;
-    }
-
-    
-    @Column(name="id_estado", nullable=false)
-    public int getIdEstado() {
-        return this.idEstado;
-    }
-    
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -93,6 +63,16 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
     }
 
     
+    @Column(name="id_estado", nullable=false)
+    public int getIdEstado() {
+        return this.idEstado;
+    }
+    
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    
     @Column(name="ip_modifica", nullable=false, length=15)
     public String getIpModifica() {
         return this.ipModifica;
@@ -100,6 +80,26 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="no_expediente_tributa", nullable=false, length=50)
+    public String getNoExpedienteTributa() {
+        return this.noExpedienteTributa;
+    }
+    
+    public void setNoExpedienteTributa(String noExpedienteTributa) {
+        this.noExpedienteTributa = noExpedienteTributa;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

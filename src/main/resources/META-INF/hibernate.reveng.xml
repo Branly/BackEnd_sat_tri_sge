@@ -3,5 +3,7 @@
 
 <hibernate-reverse-engineering>
     <!-- <table-filter match-schema="test" match-name="user"/> -->
-    <table-filter match-schema="sat_tri_sge" match-name="sge_historial_estados_colaborador"/>
+    
+    
+    <table-filter match-schema="sat_tri_sge" match-name="sge_providencia"/>
 </hibernate-reverse-engineering>

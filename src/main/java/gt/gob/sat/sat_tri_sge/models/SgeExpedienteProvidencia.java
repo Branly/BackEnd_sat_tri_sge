@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:15:47 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,29 +24,29 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
 
      private SgeExpedienteProvidenciaId id;
      private String comentario;
-     private String resolucion;
      private Date fechaModifica;
-     private String usuarioModifica;
      private String ipModifica;
+     private String resolucion;
+     private String usuarioModifica;
 
     public SgeExpedienteProvidencia() {
     }
 
 	
-    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String resolucion, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, Date fechaModifica, String ipModifica, String resolucion, String usuarioModifica) {
         this.id = id;
-        this.resolucion = resolucion;
         this.fechaModifica = fechaModifica;
-        this.usuarioModifica = usuarioModifica;
         this.ipModifica = ipModifica;
+        this.resolucion = resolucion;
+        this.usuarioModifica = usuarioModifica;
     }
-    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String comentario, String resolucion, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String comentario, Date fechaModifica, String ipModifica, String resolucion, String usuarioModifica) {
        this.id = id;
        this.comentario = comentario;
-       this.resolucion = resolucion;
        this.fechaModifica = fechaModifica;
-       this.usuarioModifica = usuarioModifica;
        this.ipModifica = ipModifica;
+       this.resolucion = resolucion;
+       this.usuarioModifica = usuarioModifica;
     }
    
      @EmbeddedId
@@ -73,16 +73,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
         this.comentario = comentario;
     }
 
-    
-    @Column(name="resolucion", nullable=false, length=100)
-    public String getResolucion() {
-        return this.resolucion;
-    }
-    
-    public void setResolucion(String resolucion) {
-        this.resolucion = resolucion;
-    }
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha_modifica", nullable=false, length=29)
     public Date getFechaModifica() {
@@ -94,16 +84,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
-    }
-
-    
     @Column(name="ip_modifica", nullable=false, length=15)
     public String getIpModifica() {
         return this.ipModifica;
@@ -111,6 +91,26 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="resolucion", nullable=false, length=100)
+    public String getResolucion() {
+        return this.resolucion;
+    }
+    
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

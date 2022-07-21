@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:05:40 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,30 +23,30 @@ public class SgeResumen  implements java.io.Serializable {
 
 
      private int idResumen;
-     private int sentido;
-     private String noExpedienteTributa;
-     private String resumen;
-     private String resolucion;
-     private String usuarioModifica;
      private Date fechaModifica;
      private String ipModifica;
+     private String noExpedienteTributa;
+     private String resolucion;
+     private String resumen;
+     private int sentido;
+     private String usuarioModifica;
 
     public SgeResumen() {
     }
 
-    public SgeResumen(int idResumen, int sentido, String noExpedienteTributa, String resumen, String resolucion, String usuarioModifica, Date fechaModifica, String ipModifica) {
-       this.idResumen = idResumen;
-       this.sentido = sentido;
-       this.noExpedienteTributa = noExpedienteTributa;
-       this.resumen = resumen;
-       this.resolucion = resolucion;
-       this.usuarioModifica = usuarioModifica;
+    public SgeResumen(Date fechaModifica, String ipModifica, String noExpedienteTributa, String resolucion, String resumen, int sentido, String usuarioModifica) {
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
+       this.noExpedienteTributa = noExpedienteTributa;
+       this.resolucion = resolucion;
+       this.resumen = resumen;
+       this.sentido = sentido;
+       this.usuarioModifica = usuarioModifica;
     }
    
-     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_resumen", unique=true, nullable=false)
     public int getIdResumen() {
         return this.idResumen;
@@ -54,56 +54,6 @@ public class SgeResumen  implements java.io.Serializable {
     
     public void setIdResumen(int idResumen) {
         this.idResumen = idResumen;
-    }
-
-    
-    @Column(name="sentido", nullable=false)
-    public int getSentido() {
-        return this.sentido;
-    }
-    
-    public void setSentido(int sentido) {
-        this.sentido = sentido;
-    }
-
-    
-    @Column(name="no_expediente_tributa", nullable=false, length=50)
-    public String getNoExpedienteTributa() {
-        return this.noExpedienteTributa;
-    }
-    
-    public void setNoExpedienteTributa(String noExpedienteTributa) {
-        this.noExpedienteTributa = noExpedienteTributa;
-    }
-
-    
-    @Column(name="resumen", nullable=false, length=2000)
-    public String getResumen() {
-        return this.resumen;
-    }
-    
-    public void setResumen(String resumen) {
-        this.resumen = resumen;
-    }
-
-    
-    @Column(name="resolucion", nullable=false, length=1000)
-    public String getResolucion() {
-        return this.resolucion;
-    }
-    
-    public void setResolucion(String resolucion) {
-        this.resolucion = resolucion;
-    }
-
-    
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -124,6 +74,56 @@ public class SgeResumen  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="no_expediente_tributa", nullable=false, length=50)
+    public String getNoExpedienteTributa() {
+        return this.noExpedienteTributa;
+    }
+    
+    public void setNoExpedienteTributa(String noExpedienteTributa) {
+        this.noExpedienteTributa = noExpedienteTributa;
+    }
+
+    
+    @Column(name="resolucion", nullable=false, length=1000)
+    public String getResolucion() {
+        return this.resolucion;
+    }
+    
+    public void setResolucion(String resolucion) {
+        this.resolucion = resolucion;
+    }
+
+    
+    @Column(name="resumen", nullable=false, length=2000)
+    public String getResumen() {
+        return this.resumen;
+    }
+    
+    public void setResumen(String resumen) {
+        this.resumen = resumen;
+    }
+
+    
+    @Column(name="sentido", nullable=false)
+    public int getSentido() {
+        return this.sentido;
+    }
+    
+    public void setSentido(int sentido) {
+        this.sentido = sentido;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

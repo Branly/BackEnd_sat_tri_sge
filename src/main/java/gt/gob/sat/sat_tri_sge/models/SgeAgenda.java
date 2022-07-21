@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:01:58 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,22 +21,24 @@ public class SgeAgenda  implements java.io.Serializable {
 
 
      private String idAgenda;
-     private String asuntoAgenda;
      private Date fechaCreacion;
+     private String asuntoAgenda;
+     private int tipoAgenda;
+     private String usuarioModifica;
      private Date fechaModifica;
      private String ipModifica;
-     private String usuarioModifica;
 
     public SgeAgenda() {
     }
 
-    public SgeAgenda(String idAgenda, String asuntoAgenda, Date fechaCreacion, Date fechaModifica, String ipModifica, String usuarioModifica) {
+    public SgeAgenda(String idAgenda, Date fechaCreacion, String asuntoAgenda, int tipoAgenda, String usuarioModifica, Date fechaModifica, String ipModifica) {
        this.idAgenda = idAgenda;
-       this.asuntoAgenda = asuntoAgenda;
        this.fechaCreacion = fechaCreacion;
+       this.asuntoAgenda = asuntoAgenda;
+       this.tipoAgenda = tipoAgenda;
+       this.usuarioModifica = usuarioModifica;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
-       this.usuarioModifica = usuarioModifica;
     }
    
      @Id 
@@ -51,6 +53,16 @@ public class SgeAgenda  implements java.io.Serializable {
         this.idAgenda = idAgenda;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_creacion", nullable=false, length=29)
+    public Date getFechaCreacion() {
+        return this.fechaCreacion;
+    }
+    
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
     
     @Column(name="asunto_agenda", nullable=false, length=50)
     public String getAsuntoAgenda() {
@@ -61,14 +73,24 @@ public class SgeAgenda  implements java.io.Serializable {
         this.asuntoAgenda = asuntoAgenda;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_creacion", nullable=false, length=29)
-    public Date getFechaCreacion() {
-        return this.fechaCreacion;
+    
+    @Column(name="tipo_agenda", nullable=false)
+    public int getTipoAgenda() {
+        return this.tipoAgenda;
     }
     
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setTipoAgenda(int tipoAgenda) {
+        this.tipoAgenda = tipoAgenda;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=20)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -89,16 +111,6 @@ public class SgeAgenda  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
-    }
-
-    
-    @Column(name="usuario_modifica", nullable=false, length=20)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
     }
 
 

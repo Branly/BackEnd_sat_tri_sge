@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 9/06/2022 10:01:58 AM by Hibernate Tools 4.3.1
+// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,49 +23,48 @@ public class SgePrestamo  implements java.io.Serializable {
 
 
      private int idPrestamo;
-     private String noExpedienteTributa;
-     private int departamento;
-     private int gerencia;
-     private String nitSolicitante;
      private String comentario;
-     private Date fechaSalida;
+     private int departamento;
      private Date fechaEntrada;
-     private String usuarioModifica;
      private Date fechaModifica;
+     private Date fechaSalida;
+     private int gerencia;
      private String ipModifica;
+     private String nitSolicitante;
+     private String noExpedienteTributa;
+     private String usuarioModifica;
 
     public SgePrestamo() {
     }
 
 	
-    public SgePrestamo(int idPrestamo, String noExpedienteTributa, int departamento, int gerencia, String nitSolicitante, String comentario, Date fechaSalida, String usuarioModifica, Date fechaModifica, String ipModifica) {
-        this.idPrestamo = idPrestamo;
-        this.noExpedienteTributa = noExpedienteTributa;
-        this.departamento = departamento;
-        this.gerencia = gerencia;
-        this.nitSolicitante = nitSolicitante;
+    public SgePrestamo(String comentario, int departamento, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
         this.comentario = comentario;
-        this.fechaSalida = fechaSalida;
-        this.usuarioModifica = usuarioModifica;
+        this.departamento = departamento;
         this.fechaModifica = fechaModifica;
+        this.fechaSalida = fechaSalida;
+        this.gerencia = gerencia;
         this.ipModifica = ipModifica;
+        this.nitSolicitante = nitSolicitante;
+        this.noExpedienteTributa = noExpedienteTributa;
+        this.usuarioModifica = usuarioModifica;
     }
-    public SgePrestamo(int idPrestamo, String noExpedienteTributa, int departamento, int gerencia, String nitSolicitante, String comentario, Date fechaSalida, Date fechaEntrada, String usuarioModifica, Date fechaModifica, String ipModifica) {
-       this.idPrestamo = idPrestamo;
-       this.noExpedienteTributa = noExpedienteTributa;
-       this.departamento = departamento;
-       this.gerencia = gerencia;
-       this.nitSolicitante = nitSolicitante;
+    public SgePrestamo(String comentario, int departamento, Date fechaEntrada, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
        this.comentario = comentario;
-       this.fechaSalida = fechaSalida;
+       this.departamento = departamento;
        this.fechaEntrada = fechaEntrada;
-       this.usuarioModifica = usuarioModifica;
        this.fechaModifica = fechaModifica;
+       this.fechaSalida = fechaSalida;
+       this.gerencia = gerencia;
        this.ipModifica = ipModifica;
+       this.nitSolicitante = nitSolicitante;
+       this.noExpedienteTributa = noExpedienteTributa;
+       this.usuarioModifica = usuarioModifica;
     }
    
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id @GeneratedValue(strategy=IDENTITY)
+
+    
     @Column(name="id_prestamo", unique=true, nullable=false)
     public int getIdPrestamo() {
         return this.idPrestamo;
@@ -76,13 +75,13 @@ public class SgePrestamo  implements java.io.Serializable {
     }
 
     
-    @Column(name="no_expediente_tributa", nullable=false, length=50)
-    public String getNoExpedienteTributa() {
-        return this.noExpedienteTributa;
+    @Column(name="comentario", nullable=false, length=400)
+    public String getComentario() {
+        return this.comentario;
     }
     
-    public void setNoExpedienteTributa(String noExpedienteTributa) {
-        this.noExpedienteTributa = noExpedienteTributa;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     
@@ -93,6 +92,36 @@ public class SgePrestamo  implements java.io.Serializable {
     
     public void setDepartamento(int departamento) {
         this.departamento = departamento;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_entrada", length=29)
+    public Date getFechaEntrada() {
+        return this.fechaEntrada;
+    }
+    
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_modifica", nullable=false, length=29)
+    public Date getFechaModifica() {
+        return this.fechaModifica;
+    }
+    
+    public void setFechaModifica(Date fechaModifica) {
+        this.fechaModifica = fechaModifica;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_salida", nullable=false, length=29)
+    public Date getFechaSalida() {
+        return this.fechaSalida;
+    }
+    
+    public void setFechaSalida(Date fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
     
@@ -106,6 +135,16 @@ public class SgePrestamo  implements java.io.Serializable {
     }
 
     
+    @Column(name="ip_modifica", nullable=false, length=15)
+    public String getIpModifica() {
+        return this.ipModifica;
+    }
+    
+    public void setIpModifica(String ipModifica) {
+        this.ipModifica = ipModifica;
+    }
+
+    
     @Column(name="nit_solicitante", nullable=false, length=16)
     public String getNitSolicitante() {
         return this.nitSolicitante;
@@ -116,33 +155,13 @@ public class SgePrestamo  implements java.io.Serializable {
     }
 
     
-    @Column(name="comentario", nullable=false, length=400)
-    public String getComentario() {
-        return this.comentario;
+    @Column(name="no_expediente_tributa", nullable=false, length=50)
+    public String getNoExpedienteTributa() {
+        return this.noExpedienteTributa;
     }
     
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_salida", nullable=false, length=29)
-    public Date getFechaSalida() {
-        return this.fechaSalida;
-    }
-    
-    public void setFechaSalida(Date fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_entrada", length=29)
-    public Date getFechaEntrada() {
-        return this.fechaEntrada;
-    }
-    
-    public void setFechaEntrada(Date fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;
+    public void setNoExpedienteTributa(String noExpedienteTributa) {
+        this.noExpedienteTributa = noExpedienteTributa;
     }
 
     
@@ -153,26 +172,6 @@ public class SgePrestamo  implements java.io.Serializable {
     
     public void setUsuarioModifica(String usuarioModifica) {
         this.usuarioModifica = usuarioModifica;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_modifica", nullable=false, length=29)
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-
-    
-    @Column(name="ip_modifica", nullable=false, length=15)
-    public String getIpModifica() {
-        return this.ipModifica;
-    }
-    
-    public void setIpModifica(String ipModifica) {
-        this.ipModifica = ipModifica;
     }
 
 

@@ -55,5 +55,5 @@ public interface ExpedientesProjection {
     
     String getSubTipo_caso();
     
-    
+    String getNo_expediente_tributa();
 }

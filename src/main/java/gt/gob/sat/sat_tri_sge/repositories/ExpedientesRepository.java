@@ -15,7 +15,6 @@ import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.RechazoExpedienteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
-import gt.gob.sat.sat_tri_sge.projections.TipoCasoProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -30,7 +29,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     //Query para mostrar la informacion a la presidenta
     @Query(value = "select se.no_expediente , scd2.nombre as Tipo_recurso,\n"
             + "se.nit_contribuyente, se.nit_contribuyente as Nombre, date(se.fecha_ingreso) as Fecha_ingreso,\n"
-            + "se.gerencia_origen, date(sc.fecha_interposicion) as Fecha_interposicion, scd2.nombre as Recurso,\n"
+            + "se.id_gerencia_origen, date(sc.fecha_interposicion) as Fecha_interposicion, scd2.nombre as Recurso,\n"
             + "sum(si.monto) as Monto, date(se.fecha_preincripcion) as Fecha_preincripcion, scd.nombre as Estado,\n"
             + "sco.nombre as Profesional, sco2.nombre as Especialista, se.id_agenda\n"
             + "from sat_tri_sge.sge_expediente se\n"
@@ -44,7 +43,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = se.tipo_recurso\n"
             + "where se.tipo_recurso = :tipo and se.nit_profesional is not null\n"
             + "group by se.no_expediente_tributa, scd2.nombre, se.nit_contribuyente, se.fecha_ingreso,\n"
-            + "se.gerencia_origen, sc.fecha_interposicion, se.fecha_preincripcion, scd.nombre,\n"
+            + "se.id_gerencia_origen, sc.fecha_interposicion, se.fecha_preincripcion, scd.nombre,\n"
             + "sco.nombre, sco2.nombre", nativeQuery = true)
     List<ExpedientesProjection> expedientes(@Param("tipo") int tipo);
 
@@ -58,14 +57,14 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "se.nit_contribuyente as nombre\n"
             + "from sat_tri_sge.sge_expediente se\n"
             + "inner join sat_tri_sge.sge_cat_dato scd on se.id_estado = scd.codigo\n"
-            + "inner join sat_tri_sge.sge_colaborador sc on sc.nit = se.nit_profesional\n"
+            + "left join sat_tri_sge.sge_colaborador sc on sc.nit = se.nit_profesional\n"
             + "inner join sat_tri_sge.sge_bitacora_asignacion_colaborador bc on bc.no_expediente_tributa = se.no_expediente_tributa\n"
             + "where bc.nit = :nit and se.id_estado in (:estados)", nativeQuery = true)
     List<ExpedientesProjetions> getFiles(@Param("nit") String nit, @Param("estados") List<Integer> estados);
 
     //query para el reporte mensual
     @Query(value = "select se.no_expediente, scd9.nombre as TipoRecurso,\n"
-            + "se.nit_contribuyente, se.fecha_ingreso, se.gerencia_origen, scd2.nombre  as Observacion, se.no_expediente_tributa,\n"
+            + "se.nit_contribuyente, se.fecha_ingreso, se.id_gerencia_origen, scd2.nombre  as Observacion, se.no_expediente_tributa,\n"
             + "sce.complejidad, se.cantidad_ajustes, scd4.nombre as Impuesto, sei.monto, scd3.nombre as TipoCaso,\n"
             + "scd.nombre as SubTipo, sce.fecha_interposicion , scd5.nombre as Especial, scd6.nombre as Gerencia , \n"
             + "scd7.nombre as Departamento, sp.comentario,\n"
@@ -124,7 +123,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     //Query de los profesionales activos y con menor carga de trabajo
     @Query(value = "select sc.nit,  min(sc.carga_trabajo) as Carga from sat_tri_sge.sge_colaborador sc\n"
             + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sc.id_puesto \n"
-            + "where sc.tipo_tributa = 9 and sc.id_estado = 1 and scd.nombre = 'Profesional'\n"
+            + "where sc.tipo_tributa = 9 and sc.id_estado = 44 and scd.nombre = 'Profesional'\n"
             + "group by sc.nit\n"
             + "order by sc.carga_trabajo asc", nativeQuery = true)
     List<ProfesionalProjection> professional();
@@ -147,8 +146,8 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     RechazoExpedienteProjection rechazoExpediente();
 
     //Query para ver los Expedientes de la resepcionista
-    @Query(value = "select se.no_expediente, scd.nombre as Tipo_Recurso, se.gerencia_origen as Nombre, se.nit_contribuyente, \n"
-            + "se.fecha_ingreso, se.gerencia_origen, se.folios, string_agg(scd2.nombre, ', ' order by scd2.nombre) as Obsevacion, \n"
+    @Query(value = "select se.no_expediente, scd.nombre as Tipo_Recurso, se.id_gerencia_origen as Nombre, se.nit_contribuyente, \n"
+            + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, string_agg(scd2.nombre, ', ' order by scd2.nombre) as Obsevacion, \n"
             + "se.no_expediente_tributa, se.no_expediente_tributa as Recurso, \n"
             + "se.direccion_fiscal, se.cantidad_ajustes\n"
             + "from sat_tri_sge.sge_expediente se\n"
@@ -156,13 +155,13 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = so.id_observacion\n"
             + "where se.id_estado in (5, 6)\n"
-            + "group by se.no_expediente, scd.nombre, se.gerencia_origen, se.nit_contribuyente, \n"
-            + "se.fecha_ingreso, se.gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa, \n"
+            + "group by se.no_expediente, scd.nombre, se.id_gerencia_origen, se.nit_contribuyente, \n"
+            + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa, \n"
             + "se.direccion_fiscal, se.cantidad_ajustes", nativeQuery = true)
     List<RecepcionistaProjection> receptionist();
 
     //Query para ver los expedientes que nesecitan la asignacion manual de Profesional
-    @Query(value = "select scd4.nombre as Tipo_recurso, se.nit_contribuyente, se.gerencia_origen, se.folios,\n"
+    @Query(value = "select scd4.nombre as Tipo_recurso, se.nit_contribuyente, se.id_gerencia_origen, se.folios,\n"
             + "se.no_expediente_tributa, se.cantidad_ajustes, string_agg(scd.nombre || ' Q' || sei.monto, ', ' order by scd2.nombre) as impuestos\n"
             + ", scd2.nombre as Tipo_caso, scd3.nombre as Sub_tipo_caso\n"
             + "from sat_tri_sge.sge_expediente se\n"
@@ -174,43 +173,49 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "inner join sat_tri_sge.sge_cat_dato scd4 on scd4.codigo = se.tipo_recurso\n"
             + "inner join sat_tri_sge.sge_cat_dato scd5 on scd5.codigo = sce.id_caso_especial\n"
             + "where se.id_estado = 8 and scd5.nombre = 'Si'\n"
-            + "group by scd4.nombre, se.nit_contribuyente, se.gerencia_origen, se.folios,\n"
+            + "group by scd4.nombre, se.nit_contribuyente, se.id_gerencia_origen, se.folios,\n"
             + "se.no_expediente_tributa, se.cantidad_ajustes, scd2.nombre, scd3.nombre", nativeQuery = true)
     List<AsignacionManualProjection> coordinator();
 
     //Query para la informacion Capturada en recepcion
-    @Query(value = "select scd2.nombre as Tipo_recurso, scd.nombre as Estado, se.no_expediente, nit_contribuyente, \n"
-            + "date(se.fecha_ingreso) as Fecha_ingreso, se.gerencia_origen, se.folios, \n"
-            + "se.direccion_fiscal, se.cantidad_ajustes, string_agg(scd3.nombre, ', ' order by scd3.nombre) as Observacion\n"
-            + "from sat_tri_sge.sge_expediente se \n"
+    @Query(value = "select scd2.nombre as Tipo_recurso, scd.nombre as Estado, se.no_expediente, nit_contribuyente,\n"
+            + "date(se.fecha_ingreso) as Fecha_ingreso, scd4.nombre as gerencia_origen, se.folios,\n"
+            + "se.direccion_fiscal, se.cantidad_ajustes, string_agg(scd3.nombre, ', ' order by scd3.nombre) as Observacion,\n"
+            + "se.resolucion_entrada as recurso\n"
+            + "from sat_tri_sge.sge_expediente se\n"
             + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = se.id_estado\n"
             + "inner join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo =se.tipo_recurso\n"
-            + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa \n"
+            + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
             + "left join sat_tri_sge.sge_cat_dato scd3 on so.id_observacion = scd3.codigo\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd4 on scd4.codigo = se.id_gerencia_origen\n"
             + "where se.no_expediente_tributa = :expediente\n"
-            + "group by scd2.nombre, scd.nombre, se.no_expediente, nit_contribuyente, \n"
-            + "se.fecha_ingreso, se.gerencia_origen, se.folios, se.direccion_fiscal, se.cantidad_ajustes", nativeQuery = true)
+            + "group by scd2.nombre, scd.nombre, se.no_expediente, nit_contribuyente,\n"
+            + "se.fecha_ingreso, se.folios, se.direccion_fiscal, se.cantidad_ajustes,\n"
+            + "se.no_expediente_tributa, se.resolucion_entrada, scd4.nombre", nativeQuery = true)
     List<ExpedientesProjection> informationVerification(@Param("expediente") String expediente);
 
     //Query para traer la infromacion de un expedeiten para un profesional
-    @Query(value = "select scd2.nombre as Tipo_recurso, scd.nombre as Estado, se.no_expediente, nit_contribuyente, \n"
-            + "date(se.fecha_ingreso) as Fecha_ingreso, se.gerencia_origen, se.folios, \n"
+    @Query(value = "select scd2.nombre as Tipo_recurso, scd.nombre as Estado, se.no_expediente, nit_contribuyente,\n"
+            + "date(se.fecha_ingreso) as Fecha_ingreso, scd7.nombre  as gerencia_origen, se.folios,\n"
             + "se.direccion_fiscal, se.cantidad_ajustes, string_agg(scd3.nombre, ', ' order by scd3.nombre) as Observacion,\n"
             + "string_agg(scd4.nombre || ' '|| sei.monto, ', ' order by scd4.nombre) as Impuesto,\n"
-            + "scd5.nombre as Tipo_caso, scd6.nombre as SubTipo_caso, date(sce.fecha_interposicion) as Fecha_interposicion\n"
-            + "from sat_tri_sge.sge_expediente se \n"
+            + "scd5.nombre as Tipo_caso, scd6.nombre as SubTipo_caso, date(sce.fecha_interposicion) as Fecha_interposicion,\n"
+            + "se.resolucion_entrada as recurso\n"
+            + "from sat_tri_sge.sge_expediente se\n"
             + "left join sat_tri_sge.sge_cat_dato scd on scd.codigo = se.id_estado\n"
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo =se.tipo_recurso\n"
-            + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa \n"
+            + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
             + "left join sat_tri_sge.sge_cat_dato scd3 on so.id_observacion = scd3.codigo\n"
             + "left join sat_tri_sge.sge_expediente_impuesto sei on sei.no_expediente_tributa = se.no_expediente_tributa\n"
-            + "left join sat_tri_sge.sge_cat_dato scd4 on scd4.codigo = sei.id_impuesto \n"
+            + "left join sat_tri_sge.sge_cat_dato scd4 on scd4.codigo = sei.id_impuesto\n"
             + "left join sat_tri_sge.sge_complemento_expediente sce on sce.no_expediente_tributa = se.no_expediente_tributa\n"
-            + "left join sat_tri_sge.sge_cat_dato scd5 on scd5.codigo = sce.tipo_caso \n"
+            + "left join sat_tri_sge.sge_cat_dato scd5 on scd5.codigo = sce.tipo_caso\n"
             + "left join sat_tri_sge.sge_cat_dato scd6 on scd6.codigo = sce.sub_tipo_caso\n"
+            + "left join sat_tri_sge.sge_cat_dato scd7 on scd7.codigo = se.id_gerencia_origen \n"
             + "where se.no_expediente_tributa = :expediente\n"
-            + "group by scd2.nombre, scd.nombre, se.no_expediente, nit_contribuyente, se.fecha_ingreso, se.gerencia_origen, se.folios, \n"
-            + "se.direccion_fiscal, se.cantidad_ajustes, scd5.nombre, scd6.nombre, sce.fecha_interposicion", nativeQuery = true)
+            + "group by scd2.nombre, scd.nombre, se.no_expediente, nit_contribuyente, se.fecha_ingreso, \n"
+            + "scd7.nombre , se.folios, se.direccion_fiscal, se.cantidad_ajustes, scd5.nombre, \n"
+            + "scd6.nombre, sce.fecha_interposicion, se.resolucion_entrada", nativeQuery = true)
     ExpedientesProjection informationProfessional(@Param("expediente") String expediente);
 
     //Query para traer el ultimo id ingresado
