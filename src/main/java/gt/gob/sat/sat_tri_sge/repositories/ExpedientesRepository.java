@@ -10,6 +10,7 @@ import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
+import gt.gob.sat.sat_tri_sge.projections.ProvidenciaProjection;
 import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.RechazoExpedienteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
@@ -211,5 +212,12 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "group by scd2.nombre, scd.nombre, se.no_expediente, nit_contribuyente, se.fecha_ingreso, se.gerencia_origen, se.folios, \n"
             + "se.direccion_fiscal, se.cantidad_ajustes, scd5.nombre, scd6.nombre, sce.fecha_interposicion", nativeQuery = true)
     ExpedientesProjection informationProfessional(@Param("expediente") String expediente);
+
+    //Query para traer el ultimo id ingresado
+    @Query(value = "select se.no_expediente_tributa as Id, se.fecha_ingreso as Fecha_creacion from sat_tri_sge.sge_expediente se\n"
+            + "where se.tipo_recurso = :tipo\n"
+            + "order by se.no_expediente_tributa desc\n"
+            + "limit 1", nativeQuery = true)
+    ProvidenciaProjection getLastId(@Param("tipo") int tipo);
 
 }

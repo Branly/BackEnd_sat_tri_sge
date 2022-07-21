@@ -29,6 +29,7 @@ import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
+import gt.gob.sat.sat_tri_sge.projections.ProvidenciaProjection;
 import gt.gob.sat.sat_tri_sge.projections.RecepcionistaProjection;
 import gt.gob.sat.sat_tri_sge.projections.ReporteProjection;
 import gt.gob.sat.sat_tri_sge.projections.ResumenProjection;
@@ -41,6 +42,8 @@ import gt.gob.sat.sat_tri_sge.repositories.HistorialEstadosExpedienteRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ObservacionRepository;
 import gt.gob.sat.sat_tri_sge.repositories.PrestamoRepository;
 import gt.gob.sat.sat_tri_sge.repositories.ResumenRepository;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -117,7 +120,7 @@ public class ExpedientesService {
         fileCreate.setIdEstado(dto.getIdEstado());
         fileCreate.setIdProces(dto.getIdProces());
         fileCreate.setNitContribuyente(dto.getNitContribuyente());
-        fileCreate.setNoExpedienteTributa(dto.getNoExpedienteTributa());
+        fileCreate.setNoExpedienteTributa(this.generateId(dto.getTipoRecurso()));
         fileCreate.setNoExpediente(dto.getNoExpediente());
         fileCreate.setTipoRecurso(dto.getTipoRecurso());
         fileCreate.setIpModifica(detector.getIp());
@@ -606,7 +609,7 @@ public class ExpedientesService {
         file.setNitColaboradorConfronto(nit);
         return complentoExpedienteRepository.save(file);
     }
-        /**
+     /**
      * Metodo para asignar un colaborador segun su rol a un expediente
      *
      * @author Cristian Raguay (acdraguay)
@@ -618,18 +621,109 @@ public class ExpedientesService {
         return expedientesRepository.receptionist();
     }
     
+    /**
+     * Metodo para traer la informacion del Coordinador
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @return coordinator
+     * @since 15/07/2022
+     */
     @Transactional(readOnly = true)
     public List<AsignacionManualProjection> coordinator(){
      return expedientesRepository.coordinator();
     }
     
+    /**
+     * Metodo para traer la informacion del CEntralizador de Entrada
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @return informationVerification
+     * @since 13/07/2022
+     */
     @Transactional(readOnly = true)
     public List<ExpedientesProjection> informationVerification(String expediente){
         return expedientesRepository.informationVerification(expediente);
     }
     
+    /**
+     * Metodo para traer la informacion del Profesional
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param expediente
+     * @return informationProfessional
+     * @since 13/07/2022
+     */
     @Transactional(readOnly = true)
     public ExpedientesProjection informationProfessional(String expediente){
         return expedientesRepository.informationProfessional(expediente);
     }
+    
+    /**
+     * Metodo para asignar un colaborador segun su rol a un expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param tipo
+     * @return getLastId
+     * @since 19/07/2022
+     */
+    @Transactional
+    public ProvidenciaProjection getLastId(int tipo){
+        return expedientesRepository.getLastId(tipo);
+    }
+    
+    /**
+     * Metodo para generar el id interno del Expediente
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param tipo
+     * @return id
+     * @since 19/07/2022
+     */
+    public String generateId(int tipo){
+        String id = "";
+        int num = 1;
+        ProvidenciaProjection lastId = this.getLastId(tipo);
+        SimpleDateFormat getYearFormat = new SimpleDateFormat("yyyy");
+        String currentYear = getYearFormat.format(lastId.getFecha_creacion());
+        if (currentYear.equals(Integer.toString(LocalDate.now().getYear()))) {
+            num = getNumber(lastId.getId());
+        }
+        if (tipo == 9) {
+            id += "TAT-";
+        } else if (tipo == 10) {
+            id += "TAA-";
+        }
+        id += Integer.toString(num) + "-";
+        id += LocalDate.now().getYear();
+        return id;
+    }
+    
+    /**
+     * Metodo para obtener el ultimo numero de id interno
+     *
+     * @author Cristian Raguay (acdraguay)
+     * @param text
+     * @return num
+     * @since 19/07/2022
+     */
+    public int getNumber(String text) {
+        int state = 1;
+        String num = "";
+        for (int i = 0; i < text.length(); i++) {
+            if (state == 1) {
+                if (Character.isDigit(text.charAt(i))) {
+                    state = 2;
+                }
+            }
+            if (state == 2) {
+                if (Character.isDigit(text.charAt(i))) {
+                    num += text.charAt(i);
+                } else {
+                    break;
+                }
+            }
+        }
+        return Integer.parseInt(num) + 1;
+    }
+    
 }
