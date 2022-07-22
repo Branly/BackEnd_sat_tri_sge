@@ -37,14 +37,14 @@ public class CatDatoController {
     
     @GetMapping(path = "/{tipo}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Obtiene las agendas disponibles.")
+    @ApiOperation(value = "Obtiene los Catalogos disponibles.")
     public ResponseEntity<List<DatosProjection>> data(@PathVariable int tipo){    
         return ResponseEntity.ok(catDatoService.data(tipo));
     }
     
     @GetMapping(path = "/Sub/{tipo}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Obtiene las agendas disponibles.")
+    @ApiOperation(value = "Obtiene los SubCatalogos disponibles.")
     public ResponseEntity<List<DatosProjection>> subData(@PathVariable int tipo){    
         return ResponseEntity.ok(catDatoService.subData(tipo));
     }

@@ -154,7 +154,6 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = se.tipo_recurso\n"
             + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = so.id_observacion\n"
-            + "where se.id_estado in (5, 6)\n"
             + "group by se.no_expediente, scd.nombre, se.id_gerencia_origen, se.nit_contribuyente, \n"
             + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa, \n"
             + "se.direccion_fiscal, se.cantidad_ajustes", nativeQuery = true)

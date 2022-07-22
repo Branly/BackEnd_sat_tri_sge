@@ -29,8 +29,6 @@ public class ExpedienteProvidenciaDTO {
 
     private String comentario;
 
-    private String resolucion;
-
     private Date fechaModifica;
 
     private String usuarioModifica;

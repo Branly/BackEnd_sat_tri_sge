@@ -26,7 +26,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
      private String comentario;
      private Date fechaModifica;
      private String ipModifica;
-     private String resolucion;
      private String usuarioModifica;
 
     public SgeExpedienteProvidencia() {
@@ -37,7 +36,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
         this.id = id;
         this.fechaModifica = fechaModifica;
         this.ipModifica = ipModifica;
-        this.resolucion = resolucion;
         this.usuarioModifica = usuarioModifica;
     }
     public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String comentario, Date fechaModifica, String ipModifica, String resolucion, String usuarioModifica) {
@@ -45,7 +43,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
        this.comentario = comentario;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
-       this.resolucion = resolucion;
        this.usuarioModifica = usuarioModifica;
     }
    
@@ -92,17 +89,6 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
     }
-
-    
-    @Column(name="resolucion", nullable=false, length=100)
-    public String getResolucion() {
-        return this.resolucion;
-    }
-    
-    public void setResolucion(String resolucion) {
-        this.resolucion = resolucion;
-    }
-
     
     @Column(name="usuario_modifica", nullable=false, length=50)
     public String getUsuarioModifica() {

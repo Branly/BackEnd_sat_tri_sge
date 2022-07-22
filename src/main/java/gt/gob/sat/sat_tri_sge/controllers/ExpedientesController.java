@@ -190,7 +190,6 @@ public class ExpedientesController {
     public void statePendigAssignment(@PathVariable(required = true) String noExpedienteTributa) {
         expedientesService.updateState(8, noExpedienteTributa);
         expedientesService.assignProfessional(noExpedienteTributa, 5);
-        expedientesService.AssignmentCollaborator(noExpedienteTributa, 19);
     }
 
     @PutMapping(path = "/StatePendigDraftResolution/{noExpedienteTributa}", produces = MediaType.APPLICATION_JSON_VALUE)

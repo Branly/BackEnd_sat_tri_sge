@@ -56,6 +56,7 @@ public class ProvidenciaService {
         newProvidence.setFechaModifica(new Date());
         newProvidence.setUsuarioModifica(detector.getLogin());
         newProvidence.setIpModifica(detector.getIp());
+        newProvidence.setTipoProvidencia(dto.getTipoProvidencia());
         return providenciaRepository.save(newProvidence);
     }
 
@@ -74,7 +75,6 @@ public class ProvidenciaService {
         final SgeExpedienteProvidencia newcreateFileProvidence = new SgeExpedienteProvidencia();
         newcreateFileProvidence.setId(new SgeExpedienteProvidenciaId(dto.getIdProvidencia(), dto.getNoexpediente()));
         newcreateFileProvidence.setComentario(dto.getComentario());
-        newcreateFileProvidence.setResolucion(dto.getResolucion());
         newcreateFileProvidence.setFechaModifica(new Date());
         newcreateFileProvidence.setUsuarioModifica(detector.getLogin());
         newcreateFileProvidence.setIpModifica(detector.getIp());
@@ -89,7 +89,7 @@ public class ProvidenciaService {
         String currentYear = getYearFormat.format(dto.getFechaCreacion());
         ProvidenciaProjection newProvidens = getLastId(dto.getIdTribunal(), dto.getTipoProvidencia());
         System.out.println("año  "+currentYear);
-        if (currentYear.equals(Integer.toString(LocalDate.now().getYear()))) {
+        if (currentYear.equals(Integer.toString(LocalDate.now().getYear())) && newProvidens != null) {
             num = getNumber(newProvidens.getId());
         }
         if (dto.getIdTribunal() == 9) {

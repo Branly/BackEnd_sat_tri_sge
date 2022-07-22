@@ -467,33 +467,37 @@ public class ExpedientesService {
      */
     @Transactional
     public void assignProfessional(String noFile, int limite) {
-        final List<ProfesionalProjection> professionals = expedientesRepository.professional();
         final SgeComplementoExpediente complement = complentoExpedienteRepository.findById(noFile).orElse(null);
-        final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
-        List<Integer> typeCase;
-        for (ProfesionalProjection professional : professionals) {
-            typeCase = expedientesRepository.caseType(professional.getNit(), limite);
-            if (!typeCase.isEmpty()) {
-                if (typeCase.contains(complement.getTipoCaso())) {
+        if (complement.getIdCasoEspecial() == 14) {
+            final List<ProfesionalProjection> professionals = expedientesRepository.professional();
+            final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
+            List<Integer> typeCase;
+            for (ProfesionalProjection professional : professionals) {
+                typeCase = expedientesRepository.caseType(professional.getNit(), limite);
+                if (!typeCase.isEmpty()) {
+                    if (typeCase.contains(complement.getTipoCaso())) {
+                        file.setNitProfesional(professional.getNit());
+                        this.AssignmentCollaborator(file.getNoExpedienteTributa(), 19);
+                        SgeColaborador collamorator = colaboradoRepository.findById(professional.getNit()).orElse(null);
+                        collamorator.setCargaTrabajo(collamorator.getCargaTrabajo() + complement.getComplejidad());
+                        colaboradoRepository.save(collamorator);
+                        expedientesRepository.save(file);
+                        this.updateState(28, noFile);
+                        break;
+                    }
+                } else {
                     file.setNitProfesional(professional.getNit());
+                    this.AssignmentCollaborator(file.getNoExpedienteTributa(), 19);
                     SgeColaborador collamorator = colaboradoRepository.findById(professional.getNit()).orElse(null);
                     collamorator.setCargaTrabajo(collamorator.getCargaTrabajo() + complement.getComplejidad());
                     colaboradoRepository.save(collamorator);
                     expedientesRepository.save(file);
                     this.updateState(28, noFile);
-                    break;
                 }
-            } else {
-                file.setNitProfesional(professional.getNit());
-                SgeColaborador collamorator = colaboradoRepository.findById(professional.getNit()).orElse(null);
-                collamorator.setCargaTrabajo(collamorator.getCargaTrabajo() + complement.getComplejidad());
-                colaboradoRepository.save(collamorator);
-                expedientesRepository.save(file);
-                this.updateState(28, noFile);
             }
-        }
-        if (file.getNitProfesional() == null) {
-            this.assignProfessional(noFile, limite - 1);
+            if (file.getNitProfesional() == null) {
+                this.assignProfessional(noFile, limite - 1);
+            }
         }
     }
 
@@ -554,6 +558,7 @@ public class ExpedientesService {
         }
         dto.setNoExpedienteTributa(noFile);
         colaboradorService.createHistoryAssignmentCollaborator(dto);
+
     }
 
     /**
@@ -697,10 +702,10 @@ public class ExpedientesService {
             }
         }
         if (tipo == 9) {
-                id += "TAT-";
-            } else if (tipo == 10) {
-                id += "TAA-";
-            }
+            id += "TAT-";
+        } else if (tipo == 10) {
+            id += "TAA-";
+        }
 
         id += Integer.toString(num) + "-";
         id += LocalDate.now().getYear();
