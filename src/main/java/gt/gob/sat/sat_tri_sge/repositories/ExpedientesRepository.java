@@ -27,7 +27,7 @@ import org.springframework.data.repository.query.Param;
 public interface ExpedientesRepository extends CrudRepository<SgeExpediente, String> {
 
     //Query para mostrar la informacion a la presidenta
-    @Query(value = "select se.no_expediente , scd2.nombre as Tipo_recurso,\n"
+    @Query(value = "select distinct se.no_expediente , scd2.nombre as Tipo_recurso,\n"
             + "se.nit_contribuyente, se.nit_contribuyente as Nombre, date(se.fecha_ingreso) as Fecha_ingreso,\n"
             + "se.id_gerencia_origen, date(sc.fecha_interposicion) as Fecha_interposicion, scd2.nombre as Recurso,\n"
             + "sum(si.monto) as Monto, date(se.fecha_preincripcion) as Fecha_preincripcion, scd.nombre as Estado,\n"
@@ -48,7 +48,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     List<ExpedientesProjection> expedientes(@Param("tipo") int tipo);
 
     //Query general para las vistas de los Colaboradores
-    @Query(value = "select se.nit_contribuyente,\n"
+    @Query(value = "select distinct se.nit_contribuyente,\n"
             + "date(se.fecha_ingreso) as Fecha_ingreso,\n"
             + "se.no_expediente_tributa,\n"
             + "scd.nombre as estado,\n"
