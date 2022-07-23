@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BoletaRechazadoExpediente" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c914f69e-bc64-4021-8c7e-f05972cd307f">
+	<subDataset name="Empty Dataset1" uuid="0d83d758-b21c-4814-a9c3-71be2858f1fc"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="expediente" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image onErrorType="Icon">
+				<reportElement x="-20" y="0" width="189" height="60" uuid="52e95439-1514-471c-a1d1-6090a9af8311">
+					<property name="com.jaspersoft.studio.unit.width" value=""/>
+					<property name="com.jaspersoft.studio.unit.height" value=""/>
+					<property name="com.jaspersoft.studio.unit.x" value=""/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/SAT/Tributa/logo-sat.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="169" y="26" width="402" height="30" uuid="cbd2d4b9-50f7-481f-94a9-e7543648f89f"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRIBUNAL ADMINISTRATIVO TRIBUTARIO Y ADUANERO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="556" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="16" y="30" width="562" height="20" uuid="bff1c4d5-820f-4727-884d-2d815c08b774"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  BOLETA DE RECHAZO DE EXPEDIENTES]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="16" y="50" width="110" height="70" uuid="ae757f11-29f8-4f60-9695-c38432fb3dc0"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="3" y="6" width="100" height="16" uuid="122dd658-fb8c-4e1b-98d4-fd65cb729efe"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="false"/>
+					</textElement>
+					<text><![CDATA[No. Expediente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="3" y="32" width="100" height="30" uuid="ae773ee7-d65d-45a9-8313-eb00e5ffa79f"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Nombre Contribuyente   ]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="50" width="370" height="70" uuid="0f504698-fdd6-4239-bf70-db79bfe46ee9"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField>
+					<reportElement x="11" y="6" width="351" height="16" uuid="fe72fefb-ab68-4cb8-b13f-21166996f2a0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{expediente}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="496" y="50" width="82" height="70" uuid="1e2ea736-228d-468b-b189-c648c2a439c7"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+			<frame>
+				<reportElement x="16" y="120" width="110" height="38" uuid="40aa4566-ffeb-43c0-979b-f735b904d78e"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="3" y="1" width="100" height="34" uuid="88699946-6e75-45a2-8d3c-8722f04e457a"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Motivo del      rechazo:]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="120" width="370" height="38" uuid="efe6c7bf-d7f1-4f53-87f2-e47767133562">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="38" uuid="9bdf2b2c-aefd-4fd7-ae8d-56dcdd82d6b2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[EL EXPEDIENTE VIENE MAL FOLIADO]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="158" width="370" height="38" uuid="26634bc2-9926-4292-91d9-25e6cc1dd111">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="38" uuid="93b00fc4-22f9-4377-87b3-93518f0471d7"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente no fue trasladado al Centralizador de la División]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="158" width="110" height="38" uuid="43798602-fa4a-4722-97e6-3f8038d69850"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="f8808a8b-4cc7-434a-aee5-111c46055126"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[1]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="196" width="370" height="38" uuid="53515920-b2d2-41ea-abbc-b29437f2f6f2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="38" uuid="87c6088e-ec50-461f-a5f1-6c4f73e98d24"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente no contiene la boleta de traslado generada por el sistema de Control y Gestión de Expedientes  -SGE-]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="234" width="370" height="38" uuid="eaed8fed-5fa8-496a-98b2-10063a2a56f8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="38" uuid="5deb7cff-b54b-417f-8dea-d84f1fb6a1b6"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente tiene folios engrapados, sujetados con clip, banderitas, ganchos en mal estado, con tornillos o el leitz.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="234" width="110" height="38" uuid="795dea83-09cf-49a4-9b01-d0d693c3266d"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="417697e5-88c8-4119-b732-e2e20c77c8d3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[3]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="272" width="370" height="38" uuid="398349e5-c198-4e2d-9ce8-475a465b0068">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="38" uuid="146163ce-5df3-4ed3-b6fd-8e275646d0fa"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente contiene folios con doble numeración, numeración repetida o sin numeración.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="272" width="110" height="38" uuid="fae1cf71-ae44-4803-bec1-81278a0cf97c"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="85ef9bcd-e0fc-47b5-99a3-953544dc8d23"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[4]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="310" width="370" height="50" uuid="5119301e-622a-44d5-be5c-e4168cc5ee17">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="0" width="360" height="50" uuid="7929c1a0-c7ab-406b-8a9d-5225cc39e445"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente no se encuentra identificado con el nombre del contribuyente , Nit y número de expediente asignado por el sistema de Control y Gestión de expedientes  SGCE.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="310" width="110" height="50" uuid="e2699b1e-244e-45b0-8be5-8c705c321b17"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="50" uuid="122e0dee-ba1f-44cb-85bb-a73c9ab07eec"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[5]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="360" width="370" height="38" uuid="5b4ce434-bdf9-4dea-91e5-104c43cdf7cf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="4" width="351" height="31" uuid="f28374b1-c820-4686-8471-b2c23413fb0c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente no corresponde a la región en donde se encuentra el Centralizador que revisa.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="360" width="110" height="38" uuid="f611412d-c35c-4d3b-93f0-536691a24a22"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="1fc23dbc-d07b-4e43-b2c2-558bbb4972a4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[6]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="398" width="370" height="38" uuid="f73fa6ca-4545-4c13-9bd1-640d0ed512d8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="0" width="361" height="38" uuid="86ecc605-5d3e-491b-be38-13feb8c53ecf"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente no tiene como último folio la providencia de remisión de este.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="398" width="110" height="38" uuid="ac453917-84ff-4d50-9af8-6d64893e8da1"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="628eab1e-4eec-417e-990b-d8520c58227e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[7]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="436" width="110" height="38" uuid="1f981452-1eb4-45f2-a0cb-009d4d8f5d3f"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="721f2264-e0ce-4680-b106-0677623cd1d0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[8]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="436" width="370" height="38" uuid="1b470744-2431-4d77-8327-d2c643b69666">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="0" width="361" height="38" uuid="e453db28-6d31-4591-850b-53555ab80052"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente tiene procesos pendientes de concluir.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="474" width="110" height="38" uuid="1e11813b-b79b-460f-903c-32e1f7891044"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="c544a104-05cd-4130-b4c5-e9545ffa0da5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[9]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="474" width="370" height="38" uuid="cb7bad30-7cd8-4a9d-8a8a-847accc3f920">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="0" width="361" height="38" uuid="5b0a2535-108a-4a8a-a394-03445db76db5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[El expediente tiene pendiente de anexar cedula de notificación, así como el documento notificado.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="126" y="512" width="370" height="38" uuid="bdf6cc0c-d879-4cb4-a754-e481c1399d25">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="9" y="0" width="361" height="38" uuid="eae2d879-8031-4b87-8e84-391b145042d6"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[EL EXPEDIENTE VIENE MAL FOLIADO.]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="16" y="512" width="110" height="38" uuid="f1b844aa-3504-4598-91c3-c67b3d7dab11"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="7f8ff897-7a58-4fc3-8334-e4488cf8cc10"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[10]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="496" y="120" width="82" height="430" uuid="2a784ba1-6bdf-4f9e-bac2-e54533fc6aaa"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+			<frame>
+				<reportElement x="16" y="196" width="110" height="38" uuid="a4bdd18a-2e69-44dc-8511-bac813e804ec"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="110" height="38" uuid="f8c9c9b8-8a2a-4f4f-9f92-f35e87b9418c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<text><![CDATA[2]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="31" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="383" y="26" width="181" height="30" uuid="391338a0-121a-4673-9e26-0ea2b9b3c41c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA Y SELLO DE RECIBIDO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="350" y="20" width="222" height="1" uuid="4f61abf2-1011-41a4-bfe5-7ca79ee96f21">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</summary>
+</jasperReport>
