@@ -126,6 +126,7 @@ public class ExpedientesService {
         fileCreate.setIpModifica(detector.getIp());
         fileCreate.setUsuarioModifica(detector.getLogin());
         fileCreate.setResolucionEntrada(dto.getResolucionEntrada());
+        fileCreate.setNombre(dto.getNombre());
         return expedientesRepository.save(fileCreate);
     }
 

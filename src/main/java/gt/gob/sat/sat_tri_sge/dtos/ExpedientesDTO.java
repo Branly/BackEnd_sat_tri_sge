@@ -41,4 +41,5 @@ public class ExpedientesDTO {
      private int tipoRecurso;
      private String usuarioModifica;
      private String resolucionEntrada;
+     private String nombre;
 }

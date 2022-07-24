@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:16:27 AM by Hibernate Tools 4.3.1
+// Generated 23/07/2022 10:17:40 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -39,12 +39,13 @@ public class SgeExpediente  implements java.io.Serializable {
      private String ipModifica;
      private String resolucionEntrada;
      private String resolucionSalida;
+     private String nombre;
 
     public SgeExpediente() {
     }
 
 	
-    public SgeExpediente(String noExpedienteTributa, int tipoRecurso, int idEstado, String nitContribuyente, int idGerenciaOrigen, String direccionFiscal, String noExpediente, int folios, int cantidadAjustes, long idProces, Date fechaIngreso, String usuarioModifica, Date fechaModifica, String ipModifica) {
+    public SgeExpediente(String noExpedienteTributa, int tipoRecurso, int idEstado, String nitContribuyente, int idGerenciaOrigen, String direccionFiscal, String noExpediente, int folios, int cantidadAjustes, long idProces, Date fechaIngreso, String usuarioModifica, Date fechaModifica, String ipModifica, String nombre) {
         this.noExpedienteTributa = noExpedienteTributa;
         this.tipoRecurso = tipoRecurso;
         this.idEstado = idEstado;
@@ -59,8 +60,9 @@ public class SgeExpediente  implements java.io.Serializable {
         this.usuarioModifica = usuarioModifica;
         this.fechaModifica = fechaModifica;
         this.ipModifica = ipModifica;
+        this.nombre = nombre;
     }
-    public SgeExpediente(String noExpedienteTributa, int tipoRecurso, int idEstado, String idAgenda, String nitProfesional, String nitContribuyente, int idGerenciaOrigen, String direccionFiscal, String noExpediente, int folios, int cantidadAjustes, long idProces, Date fechaIngreso, Date fechaPreincripcion, String usuarioModifica, Date fechaModifica, String ipModifica, String resolucionEntrada, String resolucionSalida) {
+    public SgeExpediente(String noExpedienteTributa, int tipoRecurso, int idEstado, String idAgenda, String nitProfesional, String nitContribuyente, int idGerenciaOrigen, String direccionFiscal, String noExpediente, int folios, int cantidadAjustes, long idProces, Date fechaIngreso, Date fechaPreincripcion, String usuarioModifica, Date fechaModifica, String ipModifica, String resolucionEntrada, String resolucionSalida, String nombre) {
        this.noExpedienteTributa = noExpedienteTributa;
        this.tipoRecurso = tipoRecurso;
        this.idEstado = idEstado;
@@ -80,6 +82,7 @@ public class SgeExpediente  implements java.io.Serializable {
        this.ipModifica = ipModifica;
        this.resolucionEntrada = resolucionEntrada;
        this.resolucionSalida = resolucionSalida;
+       this.nombre = nombre;
     }
    
      @Id 
@@ -272,6 +275,16 @@ public class SgeExpediente  implements java.io.Serializable {
     
     public void setResolucionSalida(String resolucionSalida) {
         this.resolucionSalida = resolucionSalida;
+    }
+
+    
+    @Column(name="nombre", nullable=false, length=500)
+    public String getNombre() {
+        return this.nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 
