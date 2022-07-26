@@ -7,6 +7,7 @@ package gt.gob.sat.sat_tri_sge.repositories;
 
 import gt.gob.sat.sat_tri_sge.models.SgeExpediente;
 import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
+import gt.gob.sat.sat_tri_sge.projections.CorreosProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
@@ -146,17 +147,18 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     RechazoExpedienteProjection rechazoExpediente();
 
     //Query para ver los Expedientes de la resepcionista
-    @Query(value = "select se.no_expediente, scd.nombre as Tipo_Recurso, se.id_gerencia_origen as Nombre, se.nit_contribuyente, \n"
-            + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, string_agg(scd2.nombre, ', ' order by scd2.nombre) as Obsevacion, \n"
-            + "se.no_expediente_tributa, se.no_expediente_tributa as Recurso, \n"
+    @Query(value = "select se.no_expediente, scd.nombre as Tipo_Recurso, se.nombre , se.nit_contribuyente,\n"
+            + "se.fecha_ingreso, scd3.nombre as Gerencia_origen, se.folios, string_agg(scd2.nombre, ', ' order by scd2.nombre) as Obsevacion,\n"
+            + "se.no_expediente_tributa, se.no_expediente_tributa as Recurso,\n"
             + "se.direccion_fiscal, se.cantidad_ajustes\n"
             + "from sat_tri_sge.sge_expediente se\n"
             + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = se.tipo_recurso\n"
             + "left join sat_tri_sge.sge_observacion so on so.no_expediente_tributa = se.no_expediente_tributa\n"
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = so.id_observacion\n"
-            + "group by se.no_expediente, scd.nombre, se.id_gerencia_origen, se.nit_contribuyente, \n"
-            + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa, \n"
-            + "se.direccion_fiscal, se.cantidad_ajustes", nativeQuery = true)
+            + "inner join sat_tri_sge.sge_cat_dato scd3 on scd3.codigo = se.id_gerencia_origen\n"
+            + "group by se.no_expediente, scd.nombre, se.id_gerencia_origen, se.nit_contribuyente,\n"
+            + "se.fecha_ingreso, se.id_gerencia_origen, se.folios, se.no_expediente_tributa, se.no_expediente_tributa,\n"
+            + "se.direccion_fiscal, se.cantidad_ajustes, scd3.nombre, se.nombre", nativeQuery = true)
     List<RecepcionistaProjection> receptionist();
 
     //Query para ver los expedientes que nesecitan la asignacion manual de Profesional
@@ -223,5 +225,22 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "order by se.no_expediente_tributa desc\n"
             + "limit 1", nativeQuery = true)
     ProvidenciaProjection getLastId(@Param("tipo") int tipo);
+
+    //Query para traer todos los expedientes con su numero de espediente y fecha de ingreso
+    @Query(value = "select se.no_expediente_tributa as id, se.fecha_ingreso as Fecha_creacion from sat_tri_sge.sge_expediente se ", nativeQuery = true)
+    List<ProvidenciaProjection> expedient();
+
+    @Query(value = "select sc.correo as Profesional, \n"
+            + "sc2.correo as Supervisor, \n"
+            + "sc3.correo as Especialista,\n"
+            + "sc4.correo as Coordinador from sat_tri_sge.sge_expediente se\n"
+            + "inner join sat_tri_sge.sge_colaborador sc on se.nit_profesional = sc.nit\n"
+            + "inner join sat_tri_sge.sge_integrante_grupo sig on sig.nit = sc.nit\n"
+            + "inner join sat_tri_sge.sge_grupo_trabjo sgt on sgt.id_grupo = sig.id_grupo\n"
+            + "inner join sat_tri_sge.sge_colaborador sc2 on sc2.nit = sig.nit_supervisor\n"
+            + "inner join sat_tri_sge.sge_colaborador sc3 on sc3.nit = sgt.nit_encargado\n"
+            + "left join sat_tri_sge.sge_colaborador sc4 on sc4.id_puesto = 50\n"
+            + "where se.no_expediente_tributa = :noExpediente", nativeQuery = true)
+    CorreosProjection email(@Param("noExpediente") String noExpediente);
 
 }
