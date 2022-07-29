@@ -9,11 +9,14 @@ package gt.gob.sat.sat_tri_sge.projections;
  *
  * @author crist
  */
-public interface GrupoTrabajoProjection {
+public interface SupervisorProjection {
 
-    Integer getId_Grupo();
+    String getNit();
 
     String getNombre();
-    
-    String getTribunal();
+
+    String getPuesto();
+
+    String getEstado();
+
 }

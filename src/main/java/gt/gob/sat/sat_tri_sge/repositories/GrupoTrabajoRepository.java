@@ -18,7 +18,8 @@ import gt.gob.sat.sat_tri_sge.projections.GrupoTrabajoProjection;
 public interface GrupoTrabajoRepository extends CrudRepository<SgeGrupoTrabjo, Integer> {
 
     //Query para traer a todos los grupos kkk
-    @Query(value = "select sg.id_grupo, \n"
-            + "sg.nombre from sat_tri_sge.sge_grupo_trabjo sg", nativeQuery = true)
+    @Query(value = " select sg.id_grupo, sg.nombre, scd.nombre as Tribunal\n"
+            + " from sat_tri_sge.sge_grupo_trabjo sg\n"
+            + " inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sg.tipo_grupo", nativeQuery = true)
     List<GrupoTrabajoProjection> Grupos();
 }

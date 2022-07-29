@@ -49,7 +49,7 @@
     <mapping class="gt.gob.sat.sat_tri_sge.models.SgeAgenda"/>
     <mapping class="gt.gob.sat.sat_tri_sge.models.SgeColaborador"/>
     <mapping class="gt.gob.sat.sat_tri_sge.models.SgeCatEstadoCatalogo"/>
-    <mapping class="gt.gob.sat.sat_tri_sge.models.SgePrestamo"/>
     <mapping class="gt.gob.sat.sat_tri_sge.models.SgeExpediente"/>
+    <mapping class="gt.gob.sat.sat_tri_sge.models.SgePrestamo"/>
   </session-factory>
 </hibernate-configuration>

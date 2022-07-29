@@ -27,12 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
+import gt.gob.sat.sat_tri_sge.projections.SupervisorProjection;
 
 /**
  *
  * @author crist
  */
-
 @Api(tags = {"Colaborador"})
 @Validated
 @RestController
@@ -40,52 +40,72 @@ import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
 @RequestMapping("/colaborators")
 
 public class ColaboradorController {
-    
+
     @Autowired
     ColaboradorService colaboradorService;
-    
+
     @GetMapping(path = "/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtener un colobarador en especifico.")
-    public ResponseEntity<List<ColaboradorProjection>> getColaborators(@PathVariable String nit){    
+    public ResponseEntity<List<ColaboradorProjection>> getColaborators(@PathVariable String nit) {
         return ResponseEntity.ok(colaboradorService.getColaborator(nit));
     }
-    
+
     @PostMapping(path = "/Create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Crea un colobarador.")
-    public ResponseEntity<?> CreateColaborator(@RequestBody ColaboradorDTO dtoColaborador){
+    public ResponseEntity<?> CreateColaborator(@RequestBody ColaboradorDTO dtoColaborador) {
         return ResponseEntity.ok(colaboradorService.CreateColaborator(dtoColaborador));
     }
-    
+
     @DeleteMapping(path = "/Delete/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Elimina logicamente un colobarador.")
-    public void DeleteColaborator(@PathVariable (required = true) String nit, @RequestBody HistorialEstadosColaboradorDTO dto){
+    public void DeleteColaborator(@PathVariable(required = true) String nit, @RequestBody HistorialEstadosColaboradorDTO dto) {
         colaboradorService.DeleteColaborador(nit, dto);
     }
-    
-    
+
     @PutMapping(path = "/Update/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Actualiza un colobarador.")
-    public void PutColaborator(@PathVariable (required = true) String nit, 
-            @RequestBody ColaboradorDTO dto){
+    public void PutColaborator(@PathVariable(required = true) String nit,
+            @RequestBody ColaboradorDTO dto) {
         colaboradorService.PutColaborador(nit, dto);
     }
-    
+
     @PostMapping(path = "/CreateHistory", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Crea un historial de colaborador.")
-    public ResponseEntity<?> CreateHistory(@RequestBody HistorialEstadosColaboradorDTO dtoHistorial){
-        return  ResponseEntity.ok(colaboradorService.CreateHistory(dtoHistorial));
+    public ResponseEntity<?> CreateHistory(@RequestBody HistorialEstadosColaboradorDTO dtoHistorial) {
+        return ResponseEntity.ok(colaboradorService.CreateHistory(dtoHistorial));
     }
-    
+
     @GetMapping(path = "CollaboratorRole/{puesto}/{tipo}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtener a los colaboradores segun su rol.")
-    public ResponseEntity<List<ColaboradorProjection>> CollaboratorRole(@PathVariable Integer puesto, @PathVariable String tipo){    
+    public ResponseEntity<List<ColaboradorProjection>> CollaboratorRole(@PathVariable Integer puesto, @PathVariable String tipo) {
         return ResponseEntity.ok(colaboradorService.CollaboratorType(puesto, tipo));
     }
-    
+
+    @GetMapping(path = "CollaboratorNotGroup/{puesto}/{tipo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtener a los colaboradores segun su rol.")
+    public ResponseEntity<List<ColaboradorProjection>> CollaboratorNotGroup(@PathVariable Integer puesto, @PathVariable int tipo) {
+        return ResponseEntity.ok(colaboradorService.collaboratorNotGroup(puesto, tipo));
+    }
+
+    @GetMapping(path = "supervisorGroup/{grupo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtiene a los supervisores de un grupo.")
+    public ResponseEntity<List<SupervisorProjection>> supervisorGroup(@PathVariable(required = true) int grupo) {
+        return ResponseEntity.ok(colaboradorService.supervisorGroup(grupo));
+    }
+
+    @GetMapping(path = "professionalGroup/{nit}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtiene a los profesionales de un supervisor.")
+    public ResponseEntity<List<SupervisorProjection>> professionalGroup(@PathVariable(required = true) String nit) {
+        return ResponseEntity.ok(colaboradorService.professionalGroup(nit));
+    }
+
 }

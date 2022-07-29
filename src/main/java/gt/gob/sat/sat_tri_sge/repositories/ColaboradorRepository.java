@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
+import gt.gob.sat.sat_tri_sge.projections.SupervisorProjection;
 
 /**
  *
@@ -75,5 +76,27 @@ public interface ColaboradorRepository extends CrudRepository<SgeColaborador, St
             + "where sc.id_puesto = :rol and scd.nombre = :tipo and sc.id_estado = 44", nativeQuery = true)
     List<ColaboradorProjection> collaboratorType(@Param("rol") int rol, @Param("tipo") String tipo);
 
+    //Query para trae a un colaborador que no este en ningun grupo
+    @Query(value = "select sc.nombre, sc.nit from sat_tri_sge.sge_colaborador sc\n"
+            + "inner join sat_tri_sge.sge_grupo_trabjo sgt on sc.nit != sgt.nit_encargado \n"
+            + "inner join sat_tri_sge.sge_integrante_grupo sig on sig.nit != sc.nit\n"
+            + "where sc.id_puesto = :puesto and sc.tipo_tributa = :tipo", nativeQuery = true)
+    List<ColaboradorProjection> collaboratorNotGroup(@Param("puesto") int puesto, @Param("tipo") int tipo);
+
+    //Query para traer los supervisores de un grupo
+    @Query(value = "select sc.nit, sc.nombre, scd2.nombre as puesto, scd.nombre as estado from sat_tri_sge.sge_colaborador sc\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on sc.id_estado = scd.codigo\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd2 on sc.id_puesto = scd2.codigo\n"
+            + "inner join sat_tri_sge.sge_integrante_grupo sig on sig.nit_supervisor = sc.nit\n"
+            + "where sig.id_grupo = :grupo", nativeQuery = true)
+    List<SupervisorProjection> supervisorGroup(@Param("grupo") int grupo);
+
+    //Query para traer a los profesionales de un supervisor
+    @Query(value = "select sc.nit, sc.nombre, scd2.nombre as puesto, scd.nombre as estado from sat_tri_sge.sge_colaborador sc\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd on sc.id_estado = scd.codigo\n"
+            + "inner join sat_tri_sge.sge_cat_dato scd2 on sc.id_puesto = scd2.codigo\n"
+            + "inner join sat_tri_sge.sge_integrante_grupo sig on sig.nit = sc.nit\n"
+            + "where sig.nit_supervisor = :nit", nativeQuery = true)
+    List<SupervisorProjection> propfessionalGroup(@Param("nit") String nit);
 
 }

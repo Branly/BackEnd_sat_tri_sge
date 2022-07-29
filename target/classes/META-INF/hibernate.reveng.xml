@@ -5,5 +5,5 @@
     <!-- <table-filter match-schema="test" match-name="user"/> -->
     
     
-    <table-filter match-schema="sat_tri_sge" match-name="sge_expediente"/>
+    <table-filter match-schema="sat_tri_sge" match-name="sge_grupo_trabjo"/>
 </hibernate-reverse-engineering>

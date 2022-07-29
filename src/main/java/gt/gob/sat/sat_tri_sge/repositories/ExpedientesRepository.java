@@ -30,7 +30,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
     //Query para mostrar la informacion a la presidenta
     @Query(value = "select distinct se.no_expediente , scd2.nombre as Tipo_recurso,\n"
             + "se.nit_contribuyente, se.nit_contribuyente as Nombre, date(se.fecha_ingreso) as Fecha_ingreso,\n"
-            + "se.id_gerencia_origen, date(sc.fecha_interposicion) as Fecha_interposicion, scd2.nombre as Recurso,\n"
+            + "scd3.nombre as gerencia_origen, date(sc.fecha_interposicion) as Fecha_interposicion, scd2.nombre as Recurso,\n"
             + "sum(si.monto) as Monto, date(se.fecha_preincripcion) as Fecha_preincripcion, scd.nombre as Estado,\n"
             + "sco.nombre as Profesional, sco2.nombre as Especialista, se.id_agenda\n"
             + "from sat_tri_sge.sge_expediente se\n"
@@ -42,9 +42,10 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "left join sat_tri_sge.sge_colaborador sco on sco.nit = se.nit_profesional\n"
             + "left join sat_tri_sge.sge_colaborador sco2 on sco2.nit = sgt.nit_encargado\n"
             + "left join sat_tri_sge.sge_cat_dato scd2 on scd2.codigo = se.tipo_recurso\n"
+            + "left join sat_tri_sge.sge_cat_dato scd3 on scd3.codigo  = se.id_gerencia_origen\n"
             + "where se.tipo_recurso = :tipo and se.nit_profesional is not null\n"
             + "group by se.no_expediente_tributa, scd2.nombre, se.nit_contribuyente, se.fecha_ingreso,\n"
-            + "se.id_gerencia_origen, sc.fecha_interposicion, se.fecha_preincripcion, scd.nombre,\n"
+            + "scd3.nombre, sc.fecha_interposicion, se.fecha_preincripcion, scd.nombre,\n"
             + "sco.nombre, sco2.nombre", nativeQuery = true)
     List<ExpedientesProjection> expedientes(@Param("tipo") int tipo);
 
@@ -55,7 +56,7 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
             + "scd.nombre as estado,\n"
             + "date(se.fecha_preincripcion) as Fecha_preincripcion,\n"
             + "sc.nombre as Profesional,\n"
-            + "se.nit_contribuyente as nombre\n"
+            + "se.nombre\n"
             + "from sat_tri_sge.sge_expediente se\n"
             + "inner join sat_tri_sge.sge_cat_dato scd on se.id_estado = scd.codigo\n"
             + "left join sat_tri_sge.sge_colaborador sc on sc.nit = se.nit_profesional\n"
@@ -95,11 +96,12 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
 
     //Query para los expedientes de una agenda
     @Query(value = "select se.nit_contribuyente,\n"
-            + "se.fecha_ingreso,\n"
+            + "date(se.fecha_ingreso) as fecha_ingreso,\n"
             + "se.no_expediente_tributa,\n"
             + "scd.nombre as estado,\n"
-            + "se.fecha_preincripcion,\n"
-            + "sc.nombre \n"
+            + "date(se.fecha_preincripcion) as fecha_preincripcion,\n"
+            + "sc.nombre as Profesional,\n"
+            + "se.nombre\n"
             + "from sat_tri_sge.sge_expediente se \n"
             + "inner join sat_tri_sge.sge_cat_dato scd on se.id_estado = scd.codigo \n"
             + "inner join sat_tri_sge.sge_colaborador sc on sc.nit = se.nit_profesional \n"

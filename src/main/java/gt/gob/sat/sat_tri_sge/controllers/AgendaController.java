@@ -36,11 +36,18 @@ public class AgendaController {
     @Autowired
     private AgendaService agendaService;
     
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{tipo}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtiene las agendas disponibles.")
-    public ResponseEntity<List<AgendaProjection>> diaryList(){    
-        return ResponseEntity.ok(agendaService.diaryLista());
+    public ResponseEntity<List<AgendaProjection>> diaryList(@PathVariable (required = true) int tipo){    
+        return ResponseEntity.ok(agendaService.diaryLista(tipo));
+    }
+    
+    @GetMapping(path = "/Specialist/{nit}" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Obtiene las agendas disponibles.")
+    public ResponseEntity<List<AgendaProjection>> diaryList(@PathVariable (required = true) String nit){    
+        return ResponseEntity.ok(agendaService.specialistLista(nit));
     }
     
 }

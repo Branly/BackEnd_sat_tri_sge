@@ -1,12 +1,10 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 28/07/2022 10:06:25 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,25 +22,28 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
 
      private int idGrupo;
      private int estado;
-     private Date fechaModifica;
-     private String ipModifica;
      private String nitEncargado;
      private String nombre;
      private String usuarioModifica;
+     private Date fechaModifica;
+     private String ipModifica;
+     private int tipoGrupo;
 
     public SgeGrupoTrabjo() {
     }
 
-    public SgeGrupoTrabjo(int estado, Date fechaModifica, String ipModifica, String nitEncargado, String nombre, String usuarioModifica) {
+    public SgeGrupoTrabjo(int idGrupo, int estado, String nitEncargado, String nombre, String usuarioModifica, Date fechaModifica, String ipModifica, int tipoGrupo) {
+       this.idGrupo = idGrupo;
        this.estado = estado;
-       this.fechaModifica = fechaModifica;
-       this.ipModifica = ipModifica;
        this.nitEncargado = nitEncargado;
        this.nombre = nombre;
        this.usuarioModifica = usuarioModifica;
+       this.fechaModifica = fechaModifica;
+       this.ipModifica = ipModifica;
+       this.tipoGrupo = tipoGrupo;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="id_grupo", unique=true, nullable=false)
@@ -62,26 +63,6 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
     
     public void setEstado(int estado) {
         this.estado = estado;
-    }
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="fecha_modifica", nullable=false, length=29)
-    public Date getFechaModifica() {
-        return this.fechaModifica;
-    }
-    
-    public void setFechaModifica(Date fechaModifica) {
-        this.fechaModifica = fechaModifica;
-    }
-
-    
-    @Column(name="ip_modifica", nullable=false, length=15)
-    public String getIpModifica() {
-        return this.ipModifica;
-    }
-    
-    public void setIpModifica(String ipModifica) {
-        this.ipModifica = ipModifica;
     }
 
     
@@ -112,6 +93,36 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
     
     public void setUsuarioModifica(String usuarioModifica) {
         this.usuarioModifica = usuarioModifica;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_modifica", nullable=false, length=29)
+    public Date getFechaModifica() {
+        return this.fechaModifica;
+    }
+    
+    public void setFechaModifica(Date fechaModifica) {
+        this.fechaModifica = fechaModifica;
+    }
+
+    
+    @Column(name="ip_modifica", nullable=false, length=15)
+    public String getIpModifica() {
+        return this.ipModifica;
+    }
+    
+    public void setIpModifica(String ipModifica) {
+        this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="tipo_grupo", nullable=false)
+    public int getTipoGrupo() {
+        return this.tipoGrupo;
+    }
+    
+    public void setTipoGrupo(int tipoGrupo) {
+        this.tipoGrupo = tipoGrupo;
     }
 
 

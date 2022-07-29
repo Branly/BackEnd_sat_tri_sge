@@ -36,4 +36,9 @@ public class CatDatoService {
     public List<DatosProjection> subData(int tipo){
         return catDatoRepository.subData(tipo);
     }
+    
+    @Transactional(readOnly = true)
+    public List<DatosProjection> getObservation(){
+        return catDatoRepository.getObservation();
+    }
 }
