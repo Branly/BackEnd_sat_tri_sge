@@ -518,7 +518,7 @@ public class ExpedientesService {
      * @since 28/06/2022
      */
     @Transactional
-    public void AssignmentCentralizer(String noFile, String rol) {
+    public void AssignmentCentralizer(String noFile, int rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
         dto.setComentario("Se asigno el expediente al " + rol);
@@ -560,7 +560,7 @@ public class ExpedientesService {
                 dto.setComentario("Asignacion del Expediente Especialista");
                 break;
             case 45:
-                dto.setNit(colaboradorService.centralizer("Recepcion"));
+                dto.setNit(colaboradorService.centralizer(1));
                 dto.setComentario("Asignasion del Expediente a Recepcion");
                 break;
         }
@@ -655,6 +655,7 @@ public class ExpedientesService {
      * Metodo para traer la informacion del CEntralizador de Entrada
      *
      * @author Cristian Raguay (acdraguay)
+     * @param expediente
      * @return informationVerification
      * @since 13/07/2022
      */

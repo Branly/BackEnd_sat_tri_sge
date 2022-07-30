@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 23/07/2022 10:17:40 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 02:30:03 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -278,7 +278,7 @@ public class SgeExpediente  implements java.io.Serializable {
     }
 
     
-    @Column(name="nombre", nullable=false, length=500)
+    @Column(name="nombre", nullable=false, length=200)
     public String getNombre() {
         return this.nombre;
     }

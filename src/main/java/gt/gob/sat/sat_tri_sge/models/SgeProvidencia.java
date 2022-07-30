@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:20:10 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,21 +22,21 @@ public class SgeProvidencia  implements java.io.Serializable {
 
      private String idProvidencia;
      private Date fechaCreacion;
-     private int tipoProvidencia;
      private Date fechaModifica;
-     private String usuarioModifica;
      private String ipModifica;
+     private int tipoProvidencia;
+     private String usuarioModifica;
 
     public SgeProvidencia() {
     }
 
-    public SgeProvidencia(String idProvidencia, Date fechaCreacion, int tipoProvidencia, Date fechaModifica, String usuarioModifica, String ipModifica) {
+    public SgeProvidencia(String idProvidencia, Date fechaCreacion, Date fechaModifica, String ipModifica, int tipoProvidencia, String usuarioModifica) {
        this.idProvidencia = idProvidencia;
        this.fechaCreacion = fechaCreacion;
-       this.tipoProvidencia = tipoProvidencia;
        this.fechaModifica = fechaModifica;
-       this.usuarioModifica = usuarioModifica;
        this.ipModifica = ipModifica;
+       this.tipoProvidencia = tipoProvidencia;
+       this.usuarioModifica = usuarioModifica;
     }
    
      @Id 
@@ -61,16 +61,6 @@ public class SgeProvidencia  implements java.io.Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    
-    @Column(name="tipo_providencia", nullable=false)
-    public int getTipoProvidencia() {
-        return this.tipoProvidencia;
-    }
-    
-    public void setTipoProvidencia(int tipoProvidencia) {
-        this.tipoProvidencia = tipoProvidencia;
-    }
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha_modifica", nullable=false, length=29)
     public Date getFechaModifica() {
@@ -82,16 +72,6 @@ public class SgeProvidencia  implements java.io.Serializable {
     }
 
     
-    @Column(name="usuario_modifica", nullable=false, length=50)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
-    }
-
-    
     @Column(name="ip_modifica", nullable=false, length=15)
     public String getIpModifica() {
         return this.ipModifica;
@@ -99,6 +79,26 @@ public class SgeProvidencia  implements java.io.Serializable {
     
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
+    }
+
+    
+    @Column(name="tipo_providencia", nullable=false)
+    public int getTipoProvidencia() {
+        return this.tipoProvidencia;
+    }
+    
+    public void setTipoProvidencia(int tipoProvidencia) {
+        this.tipoProvidencia = tipoProvidencia;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=50)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 

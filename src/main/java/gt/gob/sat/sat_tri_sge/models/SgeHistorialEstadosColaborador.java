@@ -1,12 +1,10 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,7 +30,8 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
     public SgeHistorialEstadosColaborador() {
     }
 
-    public SgeHistorialEstadosColaborador(Date fechaModifica, int idEstado, String ipModifica, String nitColaborador, String usuarioModifica) {
+    public SgeHistorialEstadosColaborador(int idHistorial, Date fechaModifica, int idEstado, String ipModifica, String nitColaborador, String usuarioModifica) {
+       this.idHistorial = idHistorial;
        this.fechaModifica = fechaModifica;
        this.idEstado = idEstado;
        this.ipModifica = ipModifica;
@@ -40,7 +39,7 @@ public class SgeHistorialEstadosColaborador  implements java.io.Serializable {
        this.usuarioModifica = usuarioModifica;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="id_historial", unique=true, nullable=false)

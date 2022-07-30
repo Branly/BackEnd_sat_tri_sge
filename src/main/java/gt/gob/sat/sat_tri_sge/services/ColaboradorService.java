@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -50,6 +50,7 @@ public class ColaboradorService {
      * Metodo para mostrar un colaborador en base a su nit
      *
      * @author Cristian Raguay (acdraguay)
+     * @param nit
      * @since 10/06/2022
      * @return Colaborador
      */
@@ -63,6 +64,7 @@ public class ColaboradorService {
      * Metodo para Crear un colaborador
      *
      * @author Cristian Raguay (acdraguay)
+     * @param dto
      * @since 10/06/2022
      * @return true
      */
@@ -74,11 +76,14 @@ public class ColaboradorService {
         colaborator.setCargaTrabajo(dto.getCargaTrabajo());
         colaborator.setCorreo(dto.getCorreo());
         colaborator.setIdEstado(dto.getIdEstado());
-        colaborator.setIdPuesto(dto.getIdPuesto());
         colaborator.setTipoTributa(dto.getTipoTributa());
         colaborator.setUsuarioModifica(dto.getUsuarioModifica());
         colaborator.setFechaModifica(dto.getFechaModifica());
         colaborator.setIpModifica(dto.getIpModifica());
+        colaborator.setIniciales(dto.getIniciales());
+        colaborator.setLogin(dto.getLogin());
+        colaborator.setPuestoTrabajo(dto.getPuestoTrabajo());
+        colaborator.setIdGerencia(dto.getIdGerencia());
         final SgeHistorialEstadosColaborador history = new SgeHistorialEstadosColaborador();
         history.setFechaModifica(dto.getFechaModifica());
         history.setIdEstado(dto.getIdEstado());
@@ -104,7 +109,6 @@ public class ColaboradorService {
         final SgeColaborador colaboratorPut = colaboradorRepository.findById(nit).orElse(null);
         colaboratorPut.setIdEstado(dto.getIdEstado());
         colaboratorPut.setCorreo(dto.getCorreo());
-        colaboratorPut.setIdPuesto(dto.getIdPuesto());
         colaboratorPut.setTipoTributa(dto.getTipoTributa());
         final SgeHistorialEstadosColaborador history = new SgeHistorialEstadosColaborador();
         history.setFechaModifica(dto.getFechaModifica());
@@ -192,7 +196,7 @@ public class ColaboradorService {
     }
 
     @Transactional(readOnly = true)
-    public String centralizer(String rol) {
+    public String centralizer(int rol) {
         return colaboradorRepository.Centralizer(rol);
     }
 

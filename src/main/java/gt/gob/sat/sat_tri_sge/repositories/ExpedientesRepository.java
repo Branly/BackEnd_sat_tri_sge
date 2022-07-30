@@ -125,8 +125,9 @@ public interface ExpedientesRepository extends CrudRepository<SgeExpediente, Str
 
     //Query de los profesionales activos y con menor carga de trabajo
     @Query(value = "select sc.nit,  min(sc.carga_trabajo) as Carga from sat_tri_sge.sge_colaborador sc\n"
-            + "inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sc.id_puesto \n"
-            + "where sc.tipo_tributa = 9 and sc.id_estado = 44 and scd.nombre = 'Profesional'\n"
+            + "inner join sat_tri_sge.sge_colaborador_perfil scp on scp.nit = sc.nit \n"
+            + "inner join sat_tri_sge.sge_perfil sp on sp.id_perfil = scp.id_perfil \n"
+            + "where sc.tipo_tributa = 9 and sc.id_estado = 44 and sp.id_rol = 5\n"
             + "group by sc.nit\n"
             + "order by sc.carga_trabajo asc", nativeQuery = true)
     List<ProfesionalProjection> professional();

@@ -1,12 +1,10 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,7 +36,8 @@ public class SgePrestamo  implements java.io.Serializable {
     }
 
 	
-    public SgePrestamo(String comentario, int departamento, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
+    public SgePrestamo(int idPrestamo, String comentario, int departamento, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
+        this.idPrestamo = idPrestamo;
         this.comentario = comentario;
         this.departamento = departamento;
         this.fechaModifica = fechaModifica;
@@ -49,7 +48,8 @@ public class SgePrestamo  implements java.io.Serializable {
         this.noExpedienteTributa = noExpedienteTributa;
         this.usuarioModifica = usuarioModifica;
     }
-    public SgePrestamo(String comentario, int departamento, Date fechaEntrada, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
+    public SgePrestamo(int idPrestamo, String comentario, int departamento, Date fechaEntrada, Date fechaModifica, Date fechaSalida, int gerencia, String ipModifica, String nitSolicitante, String noExpedienteTributa, String usuarioModifica) {
+       this.idPrestamo = idPrestamo;
        this.comentario = comentario;
        this.departamento = departamento;
        this.fechaEntrada = fechaEntrada;
@@ -62,7 +62,7 @@ public class SgePrestamo  implements java.io.Serializable {
        this.usuarioModifica = usuarioModifica;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="id_prestamo", unique=true, nullable=false)

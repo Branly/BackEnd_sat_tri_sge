@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 28/07/2022 10:06:25 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,25 +22,25 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
 
      private int idGrupo;
      private int estado;
-     private String nitEncargado;
-     private String nombre;
-     private String usuarioModifica;
      private Date fechaModifica;
      private String ipModifica;
+     private String nitEncargado;
+     private String nombre;
      private int tipoGrupo;
+     private String usuarioModifica;
 
     public SgeGrupoTrabjo() {
     }
 
-    public SgeGrupoTrabjo(int idGrupo, int estado, String nitEncargado, String nombre, String usuarioModifica, Date fechaModifica, String ipModifica, int tipoGrupo) {
+    public SgeGrupoTrabjo(int idGrupo, int estado, Date fechaModifica, String ipModifica, String nitEncargado, String nombre, int tipoGrupo, String usuarioModifica) {
        this.idGrupo = idGrupo;
        this.estado = estado;
-       this.nitEncargado = nitEncargado;
-       this.nombre = nombre;
-       this.usuarioModifica = usuarioModifica;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
+       this.nitEncargado = nitEncargado;
+       this.nombre = nombre;
        this.tipoGrupo = tipoGrupo;
+       this.usuarioModifica = usuarioModifica;
     }
    
      @Id 
@@ -65,36 +65,6 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
         this.estado = estado;
     }
 
-    
-    @Column(name="nit_encargado", nullable=false, length=16)
-    public String getNitEncargado() {
-        return this.nitEncargado;
-    }
-    
-    public void setNitEncargado(String nitEncargado) {
-        this.nitEncargado = nitEncargado;
-    }
-
-    
-    @Column(name="nombre", nullable=false, length=50)
-    public String getNombre() {
-        return this.nombre;
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    
-    @Column(name="usuario_modifica", nullable=false, length=20)
-    public String getUsuarioModifica() {
-        return this.usuarioModifica;
-    }
-    
-    public void setUsuarioModifica(String usuarioModifica) {
-        this.usuarioModifica = usuarioModifica;
-    }
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha_modifica", nullable=false, length=29)
     public Date getFechaModifica() {
@@ -116,6 +86,26 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
     }
 
     
+    @Column(name="nit_encargado", nullable=false, length=16)
+    public String getNitEncargado() {
+        return this.nitEncargado;
+    }
+    
+    public void setNitEncargado(String nitEncargado) {
+        this.nitEncargado = nitEncargado;
+    }
+
+    
+    @Column(name="nombre", nullable=false, length=50)
+    public String getNombre() {
+        return this.nombre;
+    }
+    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
     @Column(name="tipo_grupo", nullable=false)
     public int getTipoGrupo() {
         return this.tipoGrupo;
@@ -123,6 +113,16 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
     
     public void setTipoGrupo(int tipoGrupo) {
         this.tipoGrupo = tipoGrupo;
+    }
+
+    
+    @Column(name="usuario_modifica", nullable=false, length=20)
+    public String getUsuarioModifica() {
+        return this.usuarioModifica;
+    }
+    
+    public void setUsuarioModifica(String usuarioModifica) {
+        this.usuarioModifica = usuarioModifica;
     }
 
 
