@@ -37,7 +37,7 @@ import gt.gob.sat.sat_tri_sge.projections.GrupoTrabajoProjection;
 @Validated
 @RestController
 @Slf4j
-@RequestMapping("/gruposTrabajo")
+@RequestMapping("/WorkGroup")
 
 public class GrupoTrabajoController {
     
@@ -51,7 +51,7 @@ public class GrupoTrabajoController {
         return ResponseEntity.ok(grupoTrabajoService.getGroups());
     }
     
-    @PostMapping(path = "/Create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/Group", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Crea un grupo.")
     public ResponseEntity<?> CreateColaborator(@RequestBody GrupotrabajoDTO dtoColaborador){
@@ -66,17 +66,16 @@ public class GrupoTrabajoController {
         grupoTrabajoService.deletGroup(id);
     }
     
-    @PutMapping(path = "/Update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/Update/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Actualiza un grupo.")
-    public void PutColaborator(@PathVariable (required = true) int id, 
-            @RequestBody GrupotrabajoDTO dto){
-        grupoTrabajoService.updateGoup(id, dto);
+    public void PutColaborator(@RequestBody GrupotrabajoDTO dto){
+        grupoTrabajoService.updateGoup(dto.getIdGrupo(), dto);
     }
     
-    @PostMapping(path = "/Create/Member", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/Group/Member", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "Crea un grupo.")
+    @ApiOperation(value = "Agrega un miembro a un grupo.")
     public ResponseEntity<?> CreateMember(@RequestBody IntegranteGurpoDTO dto){
         return ResponseEntity.ok(grupoTrabajoService.createMemberGroup(dto));
     }

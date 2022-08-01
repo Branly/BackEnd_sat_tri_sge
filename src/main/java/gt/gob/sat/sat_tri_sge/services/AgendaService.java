@@ -28,8 +28,15 @@ public class AgendaService {
     private AgendaRepository agendaRepository;
     
     @Transactional(readOnly = true)
-    public List<AgendaProjection> diaryLista(){
-        return agendaRepository.diaryList();
+    public List<AgendaProjection> diaryLista(int tipo){
+        return agendaRepository.diaryList(tipo);
     }
+    
+    @Transactional
+    public List<AgendaProjection> specialistLista(String tipo){
+        return agendaRepository.specialistList(tipo);
+    }
+    
+    
     
 }

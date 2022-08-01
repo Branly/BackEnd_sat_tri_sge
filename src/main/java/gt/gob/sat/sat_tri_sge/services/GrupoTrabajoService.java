@@ -64,6 +64,7 @@ public class GrupoTrabajoService {
      * Metodo para crear grupos de trabajo
      *
      * @author Cristian Raguay (acdraguay)
+     * @param dto
      * @since 13/06/2022
      * @return grupoTrabajo
      */
@@ -71,11 +72,12 @@ public class GrupoTrabajoService {
     public SgeGrupoTrabjo createGroup(GrupotrabajoDTO dto) {
         final SgeGrupoTrabjo grupoTrabajo = new SgeGrupoTrabjo();
         grupoTrabajo.setEstado(dto.getEstado());
-        grupoTrabajo.setFechaModifica(dto.getFechaModifica());
-        grupoTrabajo.setIpModifica(dto.getIpModifica());
+        grupoTrabajo.setFechaModifica(new Date());
+        grupoTrabajo.setIpModifica(detector.getIp());
         grupoTrabajo.setNitEncargado(dto.getNitEncargado());
         grupoTrabajo.setNombre(dto.getNombre());
-        grupoTrabajo.setUsuarioModifica(dto.getUsuarioModifica());
+        grupoTrabajo.setUsuarioModifica(detector.getLogin());
+        grupoTrabajo.setTipoGrupo(dto.getTipoGrupo());
         return grupoTrabajoRepository.save(grupoTrabajo);
     }
 

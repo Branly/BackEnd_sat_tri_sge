@@ -31,5 +31,6 @@ public class GrupotrabajoDTO {
      private String nitEncargado;
      private String nombre;
      private String usuarioModifica;
+     private int tipoGrupo;
     
 }

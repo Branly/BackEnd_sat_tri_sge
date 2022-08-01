@@ -15,23 +15,26 @@ import lombok.NoArgsConstructor;
  *
  * @author crist
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 
-
 public class ColaboradorDTO {
+
     private String nit;
-     private Integer cargaTrabajo;
-     private String correo;
-     private Date fechaModifica;
-     private int idEstado;
-     private int idPuesto;
-     private String ipModifica;
-     private String nombre;
-     private int tipoTributa;
-     private String usuarioModifica;
-     
+    private Integer cargaTrabajo;
+    private String correo;
+    private Date fechaModifica;
+    private int idEstado;
+    private int idGerencia;
+    private String iniciales;
+    private String ipModifica;
+    private String login;
+    private String nombre;
+    private String puestoTrabajo;
+    private int tipoTributa;
+    private String usuarioModifica;
+    private int rol;
+
 }

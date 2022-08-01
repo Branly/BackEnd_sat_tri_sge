@@ -26,5 +26,10 @@ public interface CatDatoRepository extends CrudRepository<SgeCatDato, Integer> {
     @Query(value = "select scd.nombre, scd.codigo from sat_tri_sge.sge_cat_dato scd\n"
             + "where scd.codigo_dato_padre  = :tipo", nativeQuery = true)
     List<DatosProjection> subData(@Param("tipo") int tipo);
-    
+
+    // Query quer debuelve los tipos de Dato
+    @Query(value = "select scd.descripcion as nombre, scd.codigo from sat_tri_sge.sge_cat_dato scd\n"
+            + "where scd.codigo_catalogo = 11", nativeQuery = true)
+    List<DatosProjection> getObservation();
+
 }

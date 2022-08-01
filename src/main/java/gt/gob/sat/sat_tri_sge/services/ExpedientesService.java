@@ -26,6 +26,7 @@ import gt.gob.sat.sat_tri_sge.models.SgeObservacion;
 import gt.gob.sat.sat_tri_sge.models.SgePrestamo;
 import gt.gob.sat.sat_tri_sge.models.SgeResumen;
 import gt.gob.sat.sat_tri_sge.projections.AsignacionManualProjection;
+import gt.gob.sat.sat_tri_sge.projections.CorreosProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjection;
 import gt.gob.sat.sat_tri_sge.projections.ExpedientesProjetions;
 import gt.gob.sat.sat_tri_sge.projections.ProfesionalProjection;
@@ -48,6 +49,9 @@ import java.util.Date;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,6 +97,9 @@ public class ExpedientesService {
 
     @Autowired
     private ColaboradorService colaboradorService;
+
+//    @Autowired
+//    private JavaMailSender mailSender;
 
     @Transactional(readOnly = true)
     public List<ExpedientesProjection> getFiles(int tipo) {
@@ -511,7 +518,7 @@ public class ExpedientesService {
      * @since 28/06/2022
      */
     @Transactional
-    public void AssignmentCentralizer(String noFile, String rol) {
+    public void AssignmentCentralizer(String noFile, int rol) {
         final SgeExpediente file = expedientesRepository.findById(noFile).orElse(null);
         BitacoraAsignacionColaboradorDTO dto = new BitacoraAsignacionColaboradorDTO();
         dto.setComentario("Se asigno el expediente al " + rol);
@@ -553,7 +560,7 @@ public class ExpedientesService {
                 dto.setComentario("Asignacion del Expediente Especialista");
                 break;
             case 45:
-                dto.setNit(colaboradorService.centralizer("Recepcion"));
+                dto.setNit(colaboradorService.centralizer(1));
                 dto.setComentario("Asignasion del Expediente a Recepcion");
                 break;
         }
@@ -648,6 +655,7 @@ public class ExpedientesService {
      * Metodo para traer la informacion del CEntralizador de Entrada
      *
      * @author Cristian Raguay (acdraguay)
+     * @param expediente
      * @return informationVerification
      * @since 13/07/2022
      */
@@ -739,6 +747,38 @@ public class ExpedientesService {
             }
         }
         return Integer.parseInt(num) + 1;
+    }
+
+    @Transactional
+    @Scheduled(cron = "0 0 10")
+    public void checkTime() {
+
+        for (ProvidenciaProjection data : expedientesRepository.expedient()) {
+            LocalDate currentDate;
+            currentDate = LocalDate.parse(data.getFecha_creacion().toString());
+            if (currentDate.getMonthValue() == LocalDate.now().getMonthValue() && currentDate.getDayOfMonth() == LocalDate.now().getDayOfMonth()) {
+                int cantida = currentDate.getYear() - LocalDate.now().getYear();
+                if (cantida <= 4) {
+//                    CorreosProjection temp = expedientesRepository.email(data.getId());
+//                    SimpleMailMessage email = new SimpleMailMessage();
+//                    String[] destino = new String[4];
+//                    destino[0] = temp.getCoordinador();
+//                    destino[1] = temp.getEspecialista();
+//                    destino[2] = temp.getProfesional();
+//                    destino[3] = temp.getSupervisor();
+//                    String mensaje = "\"Estimado colaborador, se le informa que al expediente: \"" + data.getId();
+//                    if (cantida == 1) {
+//                        mensaje += ", fue agregado el " + data.getFecha_creacion() + ", el cual lleva " + 1 + " \"Año dentro del sistema\"";
+//                    } else {
+//                        mensaje += ", fue agregado el " + data.getFecha_creacion() + ", el cual lleva " + cantida + " \"Años dentro del sistema\"";
+//                    }
+//                    email.setTo(destino);
+//                    email.setSubject(mensaje);
+//                    email.setText("");
+//                    mailSender.send(email);
+                }
+            }
+        }
     }
 
 }

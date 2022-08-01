@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -25,9 +25,12 @@ public class SgeColaborador  implements java.io.Serializable {
      private String correo;
      private Date fechaModifica;
      private int idEstado;
-     private int idPuesto;
+     private int idGerencia;
+     private String iniciales;
      private String ipModifica;
+     private String login;
      private String nombre;
+     private String puestoTrabajo;
      private int tipoTributa;
      private String usuarioModifica;
 
@@ -35,26 +38,32 @@ public class SgeColaborador  implements java.io.Serializable {
     }
 
 	
-    public SgeColaborador(String nit, String correo, Date fechaModifica, int idEstado, int idPuesto, String ipModifica, String nombre, int tipoTributa, String usuarioModifica) {
+    public SgeColaborador(String nit, String correo, Date fechaModifica, int idEstado, int idGerencia, String iniciales, String ipModifica, String login, String nombre, String puestoTrabajo, int tipoTributa, String usuarioModifica) {
         this.nit = nit;
         this.correo = correo;
         this.fechaModifica = fechaModifica;
         this.idEstado = idEstado;
-        this.idPuesto = idPuesto;
+        this.idGerencia = idGerencia;
+        this.iniciales = iniciales;
         this.ipModifica = ipModifica;
+        this.login = login;
         this.nombre = nombre;
+        this.puestoTrabajo = puestoTrabajo;
         this.tipoTributa = tipoTributa;
         this.usuarioModifica = usuarioModifica;
     }
-    public SgeColaborador(String nit, Integer cargaTrabajo, String correo, Date fechaModifica, int idEstado, int idPuesto, String ipModifica, String nombre, int tipoTributa, String usuarioModifica) {
+    public SgeColaborador(String nit, Integer cargaTrabajo, String correo, Date fechaModifica, int idEstado, int idGerencia, String iniciales, String ipModifica, String login, String nombre, String puestoTrabajo, int tipoTributa, String usuarioModifica) {
        this.nit = nit;
        this.cargaTrabajo = cargaTrabajo;
        this.correo = correo;
        this.fechaModifica = fechaModifica;
        this.idEstado = idEstado;
-       this.idPuesto = idPuesto;
+       this.idGerencia = idGerencia;
+       this.iniciales = iniciales;
        this.ipModifica = ipModifica;
+       this.login = login;
        this.nombre = nombre;
+       this.puestoTrabajo = puestoTrabajo;
        this.tipoTributa = tipoTributa;
        this.usuarioModifica = usuarioModifica;
     }
@@ -112,13 +121,23 @@ public class SgeColaborador  implements java.io.Serializable {
     }
 
     
-    @Column(name="id_puesto", nullable=false)
-    public int getIdPuesto() {
-        return this.idPuesto;
+    @Column(name="id_gerencia", nullable=false)
+    public int getIdGerencia() {
+        return this.idGerencia;
     }
     
-    public void setIdPuesto(int idPuesto) {
-        this.idPuesto = idPuesto;
+    public void setIdGerencia(int idGerencia) {
+        this.idGerencia = idGerencia;
+    }
+
+    
+    @Column(name="iniciales", nullable=false, length=8)
+    public String getIniciales() {
+        return this.iniciales;
+    }
+    
+    public void setIniciales(String iniciales) {
+        this.iniciales = iniciales;
     }
 
     
@@ -132,6 +151,16 @@ public class SgeColaborador  implements java.io.Serializable {
     }
 
     
+    @Column(name="login", nullable=false)
+    public String getLogin() {
+        return this.login;
+    }
+    
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    
     @Column(name="nombre", nullable=false, length=250)
     public String getNombre() {
         return this.nombre;
@@ -139,6 +168,16 @@ public class SgeColaborador  implements java.io.Serializable {
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    
+    @Column(name="puesto_trabajo", nullable=false, length=250)
+    public String getPuestoTrabajo() {
+        return this.puestoTrabajo;
+    }
+    
+    public void setPuestoTrabajo(String puestoTrabajo) {
+        this.puestoTrabajo = puestoTrabajo;
     }
 
     

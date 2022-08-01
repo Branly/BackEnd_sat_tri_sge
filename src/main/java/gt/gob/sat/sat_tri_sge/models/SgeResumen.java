@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,7 +34,8 @@ public class SgeResumen  implements java.io.Serializable {
     public SgeResumen() {
     }
 
-    public SgeResumen(Date fechaModifica, String ipModifica, String noExpedienteTributa, String resolucion, String resumen, int sentido, String usuarioModifica) {
+    public SgeResumen(int idResumen, Date fechaModifica, String ipModifica, String noExpedienteTributa, String resolucion, String resumen, int sentido, String usuarioModifica) {
+       this.idResumen = idResumen;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
        this.noExpedienteTributa = noExpedienteTributa;
@@ -44,9 +45,8 @@ public class SgeResumen  implements java.io.Serializable {
        this.usuarioModifica = usuarioModifica;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+     @Id 
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_resumen", unique=true, nullable=false)
     public int getIdResumen() {
         return this.idResumen;

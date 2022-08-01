@@ -1,5 +1,5 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,13 +32,13 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
     }
 
 	
-    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, Date fechaModifica, String ipModifica, String resolucion, String usuarioModifica) {
+    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, Date fechaModifica, String ipModifica, String usuarioModifica) {
         this.id = id;
         this.fechaModifica = fechaModifica;
         this.ipModifica = ipModifica;
         this.usuarioModifica = usuarioModifica;
     }
-    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String comentario, Date fechaModifica, String ipModifica, String resolucion, String usuarioModifica) {
+    public SgeExpedienteProvidencia(SgeExpedienteProvidenciaId id, String comentario, Date fechaModifica, String ipModifica, String usuarioModifica) {
        this.id = id;
        this.comentario = comentario;
        this.fechaModifica = fechaModifica;
@@ -89,6 +89,7 @@ public class SgeExpedienteProvidencia  implements java.io.Serializable {
     public void setIpModifica(String ipModifica) {
         this.ipModifica = ipModifica;
     }
+
     
     @Column(name="usuario_modifica", nullable=false, length=50)
     public String getUsuarioModifica() {

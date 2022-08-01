@@ -181,7 +181,7 @@ public class ExpedientesController {
     @ApiOperation(value = "Actualiza el estado del Expediente a Confirmacion de Informacion.")
     public void stateInformationComfirmation(@PathVariable(required = true) String noExpedienteTributa) {
         expedientesService.updateState(7, noExpedienteTributa);
-        expedientesService.AssignmentCentralizer(noExpedienteTributa, "Centralizador de Entrada");
+        expedientesService.AssignmentCentralizer(noExpedienteTributa, 2);
     }
 
     @PutMapping(path = "/StatePendigAssignment/{noExpedienteTributa}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -274,7 +274,7 @@ public class ExpedientesController {
     @ApiOperation(value = "Actualiza el estado del Expediente a Certificar.")
     public void stateCertify(@PathVariable(required = true) String noExpedienteTributa) {
         expedientesService.updateState(39, noExpedienteTributa);
-        expedientesService.AssignmentCentralizer(noExpedienteTributa, "Centralizador de Salida");
+        expedientesService.AssignmentCentralizer(noExpedienteTributa, 9);
     }
 
     @PutMapping(path = "/StateApprovedCertificate/{noExpedienteTributa}", produces = MediaType.APPLICATION_JSON_VALUE)

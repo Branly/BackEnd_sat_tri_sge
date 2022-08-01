@@ -13,5 +13,7 @@ public interface GrupoTrabajoProjection {
 
     Integer getId_Grupo();
 
-    String getNoimbre();
+    String getNombre();
+    
+    String getTribunal();
 }

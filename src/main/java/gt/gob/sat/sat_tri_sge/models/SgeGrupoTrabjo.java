@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,23 +28,25 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
      private String ipModifica;
      private String nitEncargado;
      private String nombre;
+     private int tipoGrupo;
      private String usuarioModifica;
 
     public SgeGrupoTrabjo() {
     }
 
-    public SgeGrupoTrabjo(int estado, Date fechaModifica, String ipModifica, String nitEncargado, String nombre, String usuarioModifica) {
+    public SgeGrupoTrabjo(int idGrupo, int estado, Date fechaModifica, String ipModifica, String nitEncargado, String nombre, int tipoGrupo, String usuarioModifica) {
+       this.idGrupo = idGrupo;
        this.estado = estado;
        this.fechaModifica = fechaModifica;
        this.ipModifica = ipModifica;
        this.nitEncargado = nitEncargado;
        this.nombre = nombre;
+       this.tipoGrupo = tipoGrupo;
        this.usuarioModifica = usuarioModifica;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+     @Id 
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_grupo", unique=true, nullable=false)
     public int getIdGrupo() {
         return this.idGrupo;
@@ -102,6 +104,16 @@ public class SgeGrupoTrabjo  implements java.io.Serializable {
     
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    
+    @Column(name="tipo_grupo", nullable=false)
+    public int getTipoGrupo() {
+        return this.tipoGrupo;
+    }
+    
+    public void setTipoGrupo(int tipoGrupo) {
+        this.tipoGrupo = tipoGrupo;
     }
 
     

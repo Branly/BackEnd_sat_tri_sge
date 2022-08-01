@@ -6,4 +6,5 @@
     
     
     <table-filter match-schema="sat_tri_sge" match-name="sge_expediente"/>
+
 </hibernate-reverse-engineering>

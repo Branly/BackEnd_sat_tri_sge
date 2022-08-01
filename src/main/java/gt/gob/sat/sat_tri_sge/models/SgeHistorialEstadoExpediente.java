@@ -1,12 +1,12 @@
 package gt.gob.sat.sat_tri_sge.models;
-// Generated 21/07/2022 11:03:06 AM by Hibernate Tools 4.3.1
+// Generated 29/07/2022 12:58:29 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,7 +32,8 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
     public SgeHistorialEstadoExpediente() {
     }
 
-    public SgeHistorialEstadoExpediente(Date fechaModifica, int idEstado, String ipModifica, String noExpedienteTributa, String usuarioModifica) {
+    public SgeHistorialEstadoExpediente(int idHistorial, Date fechaModifica, int idEstado, String ipModifica, String noExpedienteTributa, String usuarioModifica) {
+       this.idHistorial = idHistorial;
        this.fechaModifica = fechaModifica;
        this.idEstado = idEstado;
        this.ipModifica = ipModifica;
@@ -40,9 +41,8 @@ public class SgeHistorialEstadoExpediente  implements java.io.Serializable {
        this.usuarioModifica = usuarioModifica;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_historial", unique=true, nullable=false)
     public int getIdHistorial() {
         return this.idHistorial;
