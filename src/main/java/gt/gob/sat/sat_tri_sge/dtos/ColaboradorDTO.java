@@ -35,5 +35,6 @@ public class ColaboradorDTO {
     private String puestoTrabajo;
     private int tipoTributa;
     private String usuarioModifica;
+    private int rol;
 
 }

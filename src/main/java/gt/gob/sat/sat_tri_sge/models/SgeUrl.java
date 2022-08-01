@@ -4,6 +4,8 @@ package gt.gob.sat.sat_tri_sge.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -31,8 +33,7 @@ public class SgeUrl  implements java.io.Serializable {
     }
    
      @Id 
-
-    
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_url", unique=true, nullable=false)
     public int getIdUrl() {
         return this.idUrl;

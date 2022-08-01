@@ -5,6 +5,8 @@ package gt.gob.sat.sat_tri_sge.models;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -63,8 +65,7 @@ public class SgePrestamo  implements java.io.Serializable {
     }
    
      @Id 
-
-    
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_prestamo", unique=true, nullable=false)
     public int getIdPrestamo() {
         return this.idPrestamo;

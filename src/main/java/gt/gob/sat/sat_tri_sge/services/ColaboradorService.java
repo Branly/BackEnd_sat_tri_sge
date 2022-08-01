@@ -9,8 +9,11 @@ import gt.gob.sat.arquitectura.microservices.config.request.Detector;
 import gt.gob.sat.sat_tri_sge.dtos.BitacoraAsignacionColaboradorDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ColaboradorDTO;
 import gt.gob.sat.sat_tri_sge.dtos.HistorialEstadosColaboradorDTO;
+import gt.gob.sat.sat_tri_sge.repositories.ColaboradorPerfilRepository;
 import gt.gob.sat.sat_tri_sge.models.SgeBitacoraAsignacionColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeColaborador;
+import gt.gob.sat.sat_tri_sge.models.SgeColaboradorPerfil;
+import gt.gob.sat.sat_tri_sge.models.SgeColaboradorPerfilId;
 import gt.gob.sat.sat_tri_sge.models.SgeHistorialEstadosColaborador;
 import gt.gob.sat.sat_tri_sge.repositories.ColaboradorRepository;
 import gt.gob.sat.sat_tri_sge.repositories.HistorialEstadosColaboradorRepository;
@@ -31,7 +34,7 @@ import java.util.Date;
 @Transactional
 @Service
 @Slf4j
-
+  
 public class ColaboradorService {
 
     @Autowired
@@ -45,6 +48,9 @@ public class ColaboradorService {
 
     @Autowired
     private BitacoraAsignacionColaboradorRepository bitacoraAsignacionColaboradorRepository;
+    
+   @Autowired
+   private ColaboradorPerfilRepository colaboradorPerfilRepository;
 
     /**
      * Metodo para mostrar un colaborador en base a su nit
@@ -71,6 +77,7 @@ public class ColaboradorService {
     @Transactional
     public boolean CreateColaborator(ColaboradorDTO dto) {
         final SgeColaborador colaborator = new SgeColaborador();
+        final SgeColaboradorPerfil rol = new SgeColaboradorPerfil();
         colaborator.setNit(dto.getNit());
         colaborator.setNombre(dto.getNombre());
         colaborator.setCargaTrabajo(dto.getCargaTrabajo());
@@ -84,12 +91,15 @@ public class ColaboradorService {
         colaborator.setLogin(dto.getLogin());
         colaborator.setPuestoTrabajo(dto.getPuestoTrabajo());
         colaborator.setIdGerencia(dto.getIdGerencia());
+        rol.setId(new SgeColaboradorPerfilId(dto.getRol(), dto.getNit()));
+        rol.setEstado(1);
         final SgeHistorialEstadosColaborador history = new SgeHistorialEstadosColaborador();
         history.setFechaModifica(dto.getFechaModifica());
         history.setIdEstado(dto.getIdEstado());
         history.setIpModifica(dto.getIpModifica());
         history.setNitColaborador(dto.getNit());
         history.setUsuarioModifica(dto.getUsuarioModifica());
+        colaboradorPerfilRepository.save(rol);
         colaboradorRepository.save(colaborator);
         historialEstadosColaboradorRepository.save(history);
         return true;
