@@ -122,13 +122,13 @@ public class GrupoTrabajoService {
     public SgeIntegranteGrupo createMemberGroup(IntegranteGurpoDTO dto) {
         final SgeIntegranteGrupo createMember = new SgeIntegranteGrupo();
         createMember.setFechaModifica(new Date());
-        createMember.setId(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfecional()));
+        createMember.setId(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfesional()));
         createMember.setIpModifica(detector.getIp());
         createMember.setUsuarioModifica(detector.getLogin());
         createMember.setNitSupervisor(dto.getNitSupervisor());
         return integranteGrupoRepository.save(createMember);
     }
-    
+
     /**
      * Metodo para actualizar un miembro del grupo
      *
@@ -140,9 +140,9 @@ public class GrupoTrabajoService {
     @Transactional
     public boolean updateMemberGroup(IntegranteGurpoDTO dto) {
         final SgeIntegranteGrupo updateMember = new SgeIntegranteGrupo();
-        final SgeIntegranteGrupo member = integranteGrupoRepository.findById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfecional())).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grupo no encontrado."));
+        final SgeIntegranteGrupo member = integranteGrupoRepository.findById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfesional())).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grupo no encontrado."));
         if (member != null) {
-            integranteGrupoRepository.deleteById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfecional()));
+            integranteGrupoRepository.deleteById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfesional()));
             this.createMemberGroup(dto);
             return true;
         }
@@ -154,13 +154,23 @@ public class GrupoTrabajoService {
      * Metodo para eliminar a un miembro del grupo
      *
      * @author Cristian Raguay (acdraguay)
-     * @param dto
+     * @param nit
+     * @param grupo
      * @since 16/06/2022
      */
     @Transactional
-    public void deleteMember(IntegranteGurpoDTO dto) {
-        final SgeIntegranteGrupo member = integranteGrupoRepository.findById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfecional())).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grupo no encontrado."));
-        integranteGrupoRepository.deleteById(new SgeIntegranteGrupoId(dto.getIdGrupo(), dto.getNitProfecional()));
+    public void deleteMember(String nit, int grupo) {
+        final SgeIntegranteGrupo member = integranteGrupoRepository.findById(new SgeIntegranteGrupoId(grupo, nit)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grupo no encontrado."));
+        integranteGrupoRepository.deleteById(new SgeIntegranteGrupoId(grupo, nit));
+    }
+
+    @Transactional
+    public void deleteSupervisor(String nit, int grupo) {
+        List<String> professionals = integranteGrupoRepository.deleteSupervisor(nit, grupo);
+        for (String professional : professionals) {
+            final SgeIntegranteGrupo member = integranteGrupoRepository.findById(new SgeIntegranteGrupoId(grupo, professional)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Grupo no encontrado."));
+            integranteGrupoRepository.deleteById(new SgeIntegranteGrupoId(grupo, professional));
+        }
     }
 
 }

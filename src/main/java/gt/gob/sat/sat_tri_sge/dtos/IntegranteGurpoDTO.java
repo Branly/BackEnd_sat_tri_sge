@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 
 public class IntegranteGurpoDTO {
 
-    private String nitProfecional;
+    private String nitProfesional;
     private int idGrupo;
     private Date fechaModifica;
     private String ipModifica;

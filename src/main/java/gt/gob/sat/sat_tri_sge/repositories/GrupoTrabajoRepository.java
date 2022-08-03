@@ -20,6 +20,6 @@ public interface GrupoTrabajoRepository extends CrudRepository<SgeGrupoTrabjo, I
     //Query para traer a todos los grupos kkk
     @Query(value = " select sg.id_grupo, sg.nombre, scd.nombre as Tribunal\n"
             + " from sat_tri_sge.sge_grupo_trabjo sg\n"
-            + " inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sg.tipo_grupo", nativeQuery = true)
+            + " inner join sat_tri_sge.sge_cat_dato scd on scd.codigo = sg.tipo_grupo and sg.estado = 11", nativeQuery = true)
     List<GrupoTrabajoProjection> Grupos();
 }

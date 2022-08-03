@@ -32,7 +32,6 @@ import gt.gob.sat.sat_tri_sge.projections.GrupoTrabajoProjection;
  *
  * @author crist
  */
-
 @Api(tags = {"Grupos"})
 @Validated
 @RestController
@@ -40,58 +39,64 @@ import gt.gob.sat.sat_tri_sge.projections.GrupoTrabajoProjection;
 @RequestMapping("/WorkGroup")
 
 public class GrupoTrabajoController {
-    
+
     @Autowired
     private GrupoTrabajoService grupoTrabajoService;
-    
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Obtiene los grupos disponibles")
-    public ResponseEntity<List<GrupoTrabajoProjection>> Groups(){
+    public ResponseEntity<List<GrupoTrabajoProjection>> Groups() {
         return ResponseEntity.ok(grupoTrabajoService.getGroups());
     }
-    
+
     @PostMapping(path = "/Group", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Crea un grupo.")
-    public ResponseEntity<?> CreateColaborator(@RequestBody GrupotrabajoDTO dtoColaborador){
+    public ResponseEntity<?> CreateColaborator(@RequestBody GrupotrabajoDTO dtoColaborador) {
         return ResponseEntity.ok(grupoTrabajoService.createGroup(dtoColaborador));
     }
-    
-    
+
     @DeleteMapping(path = "/Delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Elimina logicamente un grupo.")
-    public void DeletGroup(@PathVariable (required = true) int id){
+    public void DeletGroup(@PathVariable(required = true) int id) {
         grupoTrabajoService.deletGroup(id);
     }
-    
+
     @PutMapping(path = "/Update/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Actualiza un grupo.")
-    public void PutColaborator(@RequestBody GrupotrabajoDTO dto){
+    public void PutColaborator(@RequestBody GrupotrabajoDTO dto) {
         grupoTrabajoService.updateGoup(dto.getIdGrupo(), dto);
     }
-    
+
     @PostMapping(path = "/Group/Member", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Agrega un miembro a un grupo.")
-    public ResponseEntity<?> CreateMember(@RequestBody IntegranteGurpoDTO dto){
+    public ResponseEntity<?> CreateMember(@RequestBody IntegranteGurpoDTO dto) {
         return ResponseEntity.ok(grupoTrabajoService.createMemberGroup(dto));
     }
-    
+
     @PutMapping(path = "/Update/Member", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Actualiza un grupo.")
-    public void PutColaborator(@RequestBody IntegranteGurpoDTO dto){
+    public void PutColaborator(@RequestBody IntegranteGurpoDTO dto) {
         grupoTrabajoService.updateMemberGroup(dto);
     }
-    
-    @DeleteMapping(path = "/Delete/Member", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @DeleteMapping(path = "/Delete/Member/{nit}/{grupo}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "Elimina a un miembro del grupo.")
-    public void DeletGroup(@RequestBody IntegranteGurpoDTO dto){
-        grupoTrabajoService.deleteMember(dto);
+    public void DeletGroup(@PathVariable(required = true) String nit, @PathVariable(required = true) int grupo) {
+        grupoTrabajoService.deleteMember(nit, grupo);
     }
-    
+
+    @DeleteMapping(path = "/Delete/Supervisor/{nit}/{grupo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Elimina a los mienbros de un supervisor.")
+    public void DeleteSupervisor(@PathVariable(required = true) String nit, @PathVariable(required = true) int grupo) {
+        grupoTrabajoService.deleteSupervisor(nit, grupo);
+    }
+
 }
