@@ -77,12 +77,12 @@ public interface ColaboradorRepository extends CrudRepository<SgeColaborador, St
     List<ColaboradorProjection> collaboratorType(@Param("rol") int rol, @Param("tipo") String tipo);
 
     //Query para trae a un colaborador que no este en ningun grupo
-    @Query(value = "select sc.nombre, sc.nit from sat_tri_sge.sge_colaborador sc\n"
-            + "left join sat_tri_sge.sge_grupo_trabjo sgt on sc.nit != sgt.nit_encargado \n"
-            + "left join sat_tri_sge.sge_integrante_grupo sig on sig.nit != sc.nit\n"
+    @Query(value = "select sc.nombre, sc.nit, sgt.id_grupo, sig.id_grupo as grupo from sat_tri_sge.sge_colaborador sc\n"
+            + "left join sat_tri_sge.sge_grupo_trabjo sgt on sc.nit = sgt.nit_encargado \n"
+            + "left join sat_tri_sge.sge_integrante_grupo sig on sig.nit = sc.nit\n"
             + "left join sat_tri_sge.sge_colaborador_perfil scp on scp.nit = sc.nit\n"
             + "left join sat_tri_sge.sge_perfil sp on sp.id_perfil = scp.id_perfil \n"
-            + "where sp.id_rol = :puesto and sc.tipo_tributa = :tipo ", nativeQuery = true)
+            + "where sp.id_rol = :puesto and sc.tipo_tributa = :tipo and sig.id_grupo is null and sgt.id_grupo is null", nativeQuery = true)
     List<ColaboradorProjection> collaboratorNotGroup(@Param("puesto") int puesto, @Param("tipo") int tipo);
 
     //Query para traer los supervisores de un grupo
