@@ -7,6 +7,7 @@ package gt.gob.sat.sat_tri_sge.repositories;
 
 import gt.gob.sat.sat_tri_sge.models.SgeAgenda;
 import gt.gob.sat.sat_tri_sge.projections.AgendaProjection;
+import gt.gob.sat.sat_tri_sge.projections.ProvidenciaProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -31,5 +32,12 @@ public interface AgendaRepository extends CrudRepository<SgeAgenda, String> {
             + "inner join sat_tri_sge.sge_grupo_trabjo sgt on sgt.id_grupo = sig.id_grupo\n"
             + "where sgt.nit_encargado = :nit", nativeQuery = true)
     List<AgendaProjection> specialistList(@Param("nit") String nit);
+
+    @Query(value = "select sa.id_agenda as Id, sa.fecha_creacion from sat_tri_sge.sge_agenda sa\n"
+            + "where sa.tipo_agenda = :tipo\n"
+            + "order by sa.fecha_creacion desc\n"
+            + "limit 1", nativeQuery = true)
+    ProvidenciaProjection getLastId(@Param("tipo") int tipo);
+
 
 }
