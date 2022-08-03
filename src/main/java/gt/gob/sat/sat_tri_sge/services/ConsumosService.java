@@ -5,6 +5,8 @@
  */
 package gt.gob.sat.sat_tri_sge.services;
 
+import gt.gob.sat.sat_tri_sge.Config;
+import gt.gob.sat.sat_tri_sge.Utils.HeaderUtils;
 import javax.annotation.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
