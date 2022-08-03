@@ -6,7 +6,9 @@
 package gt.gob.sat.sat_tri_sge.controllers;
 
 import gt.gob.sat.sat_tri_sge.dtos.ColaboradorDTO;
+import gt.gob.sat.sat_tri_sge.dtos.EmpleadoFromProsisDto;
 import gt.gob.sat.sat_tri_sge.dtos.HistorialEstadosColaboradorDTO;
+import gt.gob.sat.sat_tri_sge.dtos.UserLogged;
 import gt.gob.sat.sat_tri_sge.services.ColaboradorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
 import gt.gob.sat.sat_tri_sge.projections.SupervisorProjection;
+import io.swagger.annotations.ApiParam;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  *
@@ -107,5 +111,15 @@ public class ColaboradorController {
     public ResponseEntity<List<SupervisorProjection>> professionalGroup(@PathVariable(required = true) String nit) {
         return ResponseEntity.ok(colaboradorService.professionalGroup(nit));
     }
+    
+//    @GetMapping (path = "/informacion/prosis/{pNit}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus (HttpStatus.OK)
+//    @ApiOperation(value = "Obtiene la informacion de un colaborador desde prosis")
+//    public ResponseEntity<EmpleadoFromProsisDto> getInfoFromProsis( @ApiParam(value = "Nit del colaborador")
+//    @PathVariable String pNit,
+//    @ApiIgnore UserLogged logged){
+//         
+//            return ResponseEntity.ok(colaboradorService.getInfoFromProsis(pNit));
+//    }
 
 }

@@ -5,16 +5,22 @@
  */
 package gt.gob.sat.sat_tri_sge.services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import gt.gob.sat.arquitectura.microservices.config.request.Detector;
 import gt.gob.sat.sat_tri_sge.dtos.BitacoraAsignacionColaboradorDTO;
 import gt.gob.sat.sat_tri_sge.dtos.ColaboradorDTO;
+import gt.gob.sat.sat_tri_sge.dtos.EmpleadoFromProsisDto;
+import gt.gob.sat.sat_tri_sge.dtos.GeneralResponseDto;
 import gt.gob.sat.sat_tri_sge.dtos.HistorialEstadosColaboradorDTO;
+import gt.gob.sat.sat_tri_sge.exceptions.BusinessException;
 import gt.gob.sat.sat_tri_sge.repositories.ColaboradorPerfilRepository;
 import gt.gob.sat.sat_tri_sge.models.SgeBitacoraAsignacionColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeColaborador;
 import gt.gob.sat.sat_tri_sge.models.SgeColaboradorPerfil;
 import gt.gob.sat.sat_tri_sge.models.SgeColaboradorPerfilId;
 import gt.gob.sat.sat_tri_sge.models.SgeHistorialEstadosColaborador;
+import gt.gob.sat.sat_tri_sge.models.SgeUnidadAdministrativa;
 import gt.gob.sat.sat_tri_sge.repositories.ColaboradorRepository;
 import gt.gob.sat.sat_tri_sge.repositories.HistorialEstadosColaboradorRepository;
 import java.util.List;
@@ -25,7 +31,11 @@ import org.springframework.transaction.annotation.Transactional;
 import gt.gob.sat.sat_tri_sge.projections.ColaboradorProjection;
 import gt.gob.sat.sat_tri_sge.projections.SupervisorProjection;
 import gt.gob.sat.sat_tri_sge.repositories.BitacoraAsignacionColaboradorRepository;
+import gt.gob.sat.sat_tri_sge.repositories.UnidadAdministrativaRepository;
 import java.util.Date;
+import java.util.Optional;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 
 /**
  *
@@ -51,6 +61,12 @@ public class ColaboradorService {
     
    @Autowired
    private ColaboradorPerfilRepository colaboradorPerfilRepository;
+   
+       @Autowired
+    private ConsumosService consumosService;
+       
+    @Autowired
+    private UnidadAdministrativaRepository unidadesAdministrativaRepository;
 
     /**
      * Metodo para mostrar un colaborador en base a su nit
@@ -234,4 +250,25 @@ public class ColaboradorService {
     public List<SupervisorProjection> professionalGroup(String nit) {
         return colaboradorRepository.propfessionalGroup(nit);
     }
+    
+//    public EmpleadoFromProsisDto getInfoFromProsis(String pNit) {
+//
+//        GeneralResponseDto<EmpleadoFromProsisDto> resultado = consumosService.consumeCompleteUrlSqlServer(null, "employee/" + pNit, GeneralResponseDto.class, HttpMethod.GET);
+//        log.debug("el objecto es:" + resultado);
+//        if (resultado.getCode() == 1001) {
+//            throw new BusinessException(HttpStatus.NOT_FOUND, "El NIT ingresado no se encontro en la base de datos del Sistema Prosis");
+//        }
+//
+//        EmpleadoFromProsisDto list = new ObjectMapper().convertValue(resultado.getData(), new TypeReference<EmpleadoFromProsisDto>() {
+//        });
+//        
+//        Optional<SgeUnidadAdministrativa> unit = Optional.ofNullable(UnidadAdministrativaRepository.findByIdUnidadProsis(list.getCodigoUnidad()));
+//        
+//        if(!unit.isPresent()){
+//            throw new BusinessException(HttpStatus.NOT_FOUND, "El usuario no pertenece actualmente a la Intendencia de Fiscalizacion");
+//        }
+//
+//        return list;
+//    }
+    
 }
